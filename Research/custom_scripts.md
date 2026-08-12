@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-tw-make custom --theme ukrhouse --world-size 1 --nb-objects 2 --seed 1234 --output tw_games/custom_1room.z8
-=======
 Налаштування користувацької гри (Custom game settings):
 
   --world-size SIZE
@@ -119,9 +116,10 @@ tw-make custom --theme ukrhouse --world-size 1 --nb-objects 2 --seed 1234 --outp
 
   -v, --verbose
       Детальний режим виведення інформації.
-      
-tw-make custom --world-size 1 --nb-objects 2 --seed 1234 --output tw_games/custom_1room.z8
->>>>>>> 9ca971b6886d3cab8558a182b718b46c26010cec
+
+
+tw-make custom --theme ukrhouse --world-size 1 --nb-objects 2 --seed 1234 --output tw_games/custom_2room.z8
+
 
 tw-play tw_games/custom_1room.z8 --viewer
 
