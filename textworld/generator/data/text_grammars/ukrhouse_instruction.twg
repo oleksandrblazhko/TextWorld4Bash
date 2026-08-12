@@ -1,0 +1,156 @@
+#-------------------------
+# Instructions Grammar
+#-------------------------
+obj_types:(o|k|f)
+obj_types_no_key:(o|f)
+on_types:(c|s)
+lock_types:(c|d)
+eat_types:(f)
+close_open_types:(d|c)
+lock_type_var:#lock_types#;#lock_types# #in_the_(r)#
+(s)*var:(s);(s) #in_the*(r)#
+(c)*var:(c);(c) #in_the*(r)#
+on_var:#on_types#;#on_types# #in_the_(r)#
+in_the_(r):у (r);в (r);усередині (r)
+make_syn_u:Переконайся;Перевір;Зроби так;Переконайся ще раз;Перевір і переконайся;Обов'язково переконайся
+make_syn_v:переконайся;перевір;зроби так;переконайся ще раз;перевір і переконайся;обов'язково переконайся
+by_the_syn:за допомогою
+init_syn:у ньому;всередині;поміщений усередину
+into_syn:у;всередину
+
+# actions
+# actions should start with a verb
+look:огляньте (r).
+examine:розгляньте (o|k|f|d|c|s|t).
+inventory:перевірте свій інвентар.
+take:#take_synonym_1# #obj_types# у (r).;#take_synonym_1# #obj_types# з (r).;#take_synonym_1# #obj_types#, що знаходиться в (r).
+take_synonym_1:візьміть;отримайте;заберіть;підберіть
+take/s:#take_synonym_1# #obj_types# з #on_var#.
+take/c:#take_synonym_1# #obj_types# з #on_var#.
+take:#pick-up_synonym_1# #obj_types# з підлоги (r).
+pick-up_synonym_1:підберіть;візьміть;заберіть;підніміть;підхопіть
+pick-up_synonym_v:Підберіть;Візьміть;Заберіть;Підніміть;Підхопіть
+insert:#insert_syn_1# #obj_types# #into_syn# #(c)_var#.;ви можете #insert_syn_1# #obj_types# #into_syn# #(c)_var#.
+insert_syn_u:Вставте;Покладіть;Помістіть;Покладіть
+insert_syn_1:вставте;покладіть;помістіть;покладіть
+insert_syn_v:вставлено;покладено;поміщено;покладено
+begood:добре;чудово;фантастично;чудова ідея
+put:#put_syn_v# #obj_types# на #(s)*var#.
+put_syn_u:Покладіть;Помістіть;Поставте;Залиште
+put_syn_v:покладіть;помістіть;поставте;залиште
+on_it_syn:на нього;на ньому
+drop:#drop_syn_v# #obj_types# на підлогу (r).
+drop_syn_u:Покладіть
+drop_syn_v:покладіть;киньте;залиште;жбурніть;помістіть
+eat:#eat_syn_1# #eat_var#.
+eat_syn_u:З'їжте
+eat_syn_1:з'їжте
+eat_syn_v:з'їдено
+open:відкрийте #lock_type_var#.;переконайтеся, що #lock_type_var# відкрито.;#make_syn_v#, що #lock_type_var# #open_syn#.
+open_syn:відкрито;відкрите;повністю відкрите;прочинене
+close:закрийте #lock_type_var#.;#make_syn_v#, що #lock_type_var# #closed_syn#.
+closed_syn:закрито;зачинено
+eat_var:#eat_types#;#eat_types#
+on_var:#on_types#;#on_types# #in_the_(r)#
+unlock:#unlock_key#;#unlock_no_key#
+unlock_key:відкрийте #lock_type_var# за допомогою (k).;перевірте, що #lock_type_var# розблоковано за допомогою (k).;#make_syn_v#, що #lock_type_var# розблоковано за допомогою (k).;вставте (k) у замок #lock_type_var#, щоб розблокувати його.
+unlock_no_key:розблокуйте #lock_type_var#.;#make_syn_v#, що #lock_type_var# розблоковано.
+lock:#lock_key#;#lock_no_key#
+lock_key:замкніть #lock_type_var# за допомогою (k).;#make_syn_v#, що #lock_type_var# замкнено за допомогою (k).;#insert_syn_u# (k) у #lock_type_var#, щоб замкнути його.
+lock_no_key:замкніть #lock_type_var#.;#make_syn_v# #lock_type_var# замкнено.;#make_syn_v#, що #lock_type_var# замкнено.
+go/north:#go_syn_l# на північ.;#tryto# #go_syn_l# на північ.
+go/south:#go_syn_l# на південь.;#tryto# #go_syn_l# на південь.
+go/east:#go_syn_l# на схід.;#tryto# #go_syn_l# на схід.
+go/west:#go_syn_l# на захід.;#tryto# #go_syn_l# на захід.
+go/north/d:#go_syn_l# через північні (d).;#tryto# #go_syn_l# через північні (d).
+go/south/d:#go_syn_l# через південні (d).;#tryto# #go_syn_l# через південні (d).
+go/east/d:#go_syn_l# через східні (d).;#tryto# #go_syn_l# через східні (d).
+go/west/d:#go_syn_l# через західні (d).;#tryto# #go_syn_l# через західні (d).
+go_syn_u:Йдіть;Прямуйте;Вирушайте;Рухайтеся;Ідіть до;Вирушіть
+go_syn_l:йдіть;прямуйте;вирушайте;рухайтеся;ідіть до;вирушіть
+go_syn_v:пішли;перейшли;рухалися;вирушили;пішли
+tryto:спробуйте;зробіть спробу;спробуйте виконати;намагайтеся
+wait:Зачекайте.
+
+# action expandables
+#---------------
+# Compound Command Description Functions
+#----------------
+ig_unlock_open:відкрийте замкнені #lock_types# за допомогою (k).;розблокуйте та відкрийте #lock_types#.;розблокуйте та відкрийте #lock_types# за допомогою (k).;відкрийте #lock_types# за допомогою (k).
+ig_unlock_open_take:відкрийте замкнені #lock_types# за допомогою (k) та візьміть #obj_types_no_key#.;розблокуйте #lock_types# та візьміть #obj_types_no_key#.;розблокуйте #lock_types# за допомогою (k) і візьміть #obj_types_no_key#.;візьміть #obj_types_no_key# із замкнених #lock_types#.
+ig_open_take:візьміть #obj_types# з (c).;відкрийте (c) та візьміть #obj_types#.;візьміть #obj_types# із закритого (c).
+ig_take/c_unlock:візьміть (k) та використайте його, щоб розблокувати #lock_types#.;розблокуйте #lock_types# за допомогою (k).
+ig_take/s_unlock:візьміть (k) та використайте його, щоб розблокувати #lock_types#.;розблокуйте #lock_types# за допомогою (k).
+ig_take_unlock:#pick-up_synonym_1# (k) та використайте його, щоб розблокувати #lock_types#.;розблокуйте #lock_types# за допомогою (k).
+ig_open_insert:відкрийте (c) та покладіть #obj_types# у нього.;покладіть #obj_types# у закритий (c).
+ig_insert_close:покладіть #obj_types# у (c) та закрийте його.;закрийте (c) після того, як поклали в нього #obj_types#.
+ig_close_lock:закрийте #lock_types# та замкніть його.;закрийте #lock_types# та замкніть його за допомогою (k).
+
+# Flavour Text
+#----------------
+quest:#prologue# (list_of_actions) #epilogue#
+quest_one_action:#prologue_one_action# (action)
+prologue:#welcome#! Ось ваше завдання на сьогодні. #newsentence#;#welcome#! Ось як грати! #newsentence#;#welcome#! #newsentence#;Привіт! Дякую, що завітали до TextWorld. Є дещо, що я хочу, щоб ви зробили. #newsentence#
+prologue_one_action:#welcome#! Ваше завдання на сьогодні:;#welcome#!;Ваша мета:;Привіт! Дякую, що завітали до TextWorld! Будь ласка,
+newsentence:Перш за все,;Насамперед,;Перший крок —;Почніть із цього:;Ваша перша мета —;Перше, що вам потрібно зробити, —;Спочатку, якщо це не надто складно, я прошу вас;Насамперед ви можете;Спочатку було б #begood#, якби ви
+action_separator: Потім, ; Далі, ; Після цього, ; Якщо ви зможете #do# це, ; Коли ви #do# це, ; Після виконання цього, ; Після цього, ; Після того як це буде зроблено, ; Після завершення цього, ; Гаразд, а потім, ; А потім, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+epilogue:Коли все буде виконано, можете зупинитися!;І коли ви це зробите, ви переможете!;Якщо ви це зробите, ви переможець!;Ось і все!;Зрозуміло? Чудово!;Гаразд, дякую!
+do:виконати;зробити;завершити;взятися за;закінчити;впоратися з;успішно виконати
+welcome:Ласкаво просимо до TextWorld;Ви зараз граєте в #exciting# #game# TextWorld;Вітаємо в новій #exciting# #game# TextWorld;Час досліджувати дивовижний світ TextWorld;Будьте готові брати предмети та класти їх у різні місця, адже ви щойно потрапили до TextWorld;Сподіваюся, ви готові заходити до кімнат і взаємодіяти з предметами, адже ви щойно потрапили до TextWorld;Хто має віртуальну машину і готовий пройти #exciting# раунд TextWorld? Ви!
+exciting:захопливий;динамічний;цікавий;неймовірний
+game:гра;раунд;сеанс;епізод
+
+# Action separators
+# Need at least 5 for each action type
+action_separator_take: #afterhave# #havetaken# #obj_types#, ; #after# #taking# #obj_types#, ; З #obj_types#, ; Якщо вам вдасться знайти #obj_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_take/s: #afterhave# #havetaken# #obj_types#, ; #after# #taking# #obj_types#, ; З #obj_types#, ; Якщо вам вдасться знайти #obj_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_take/c: #afterhave# #havetaken# #obj_types#, ; #after# #taking# #obj_types#, ; З #obj_types#, ; Якщо вам вдасться знайти #obj_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_eat: #afterhave# #ate# #eat_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_insert: #afterhave# #inserted# #obj_types# у (c), ; #after# #inserting# #obj_types# у (c), ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_put: #afterhave# #put_v# #obj_types# на (s), ; #after# #putting# #obj_types# на (s), ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_open: #afterhave# #opened# #close_open_types#, ; #after# #opening# #close_open_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_unlock: #afterhave# #unlocked# #lock_types#, ; #after# #unlocking# #lock_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_lock: #afterhave# #locked# #lock_types#, ; #after# #locking# #lock_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go: #afterhave# #gone# (dir), ; #after# #getting# (dir), ; коли ви (dir), ; коли ви перебуваєте в напрямку (dir), ; Якщо вам вдасться піти (dir), ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go/south: #afterhave# пішли на південь, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go/north: #afterhave# пішли на північ, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go/east: #afterhave# пішли на схід, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go/west: #afterhave# пішли на захід, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+
+action_separator_close: #afterhave# #closed# #close_open_types#, ; #after# #closing# #close_open_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_drop: #afterhave# #dropped# #obj_types#, ; #after# #dropping# #obj_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+
+# Separator Symbols
+afterhave:Після того як ви;Виконавши;Коли ви;Якщо ви
+havetaken:взяли;отримали;підняли
+havepicked-up:взяли;отримали;підняли
+after:Після
+taking:беручи;отримуючи;піднімаючи;забираючи
+picking-up:беручи;отримуючи;піднімаючи;забираючи
+ate:з'їли;спожили
+inserted:вставили;поклали
+inserting:вставляючи;кладучи
+put_v:поклали;помістили;поставили;поклали
+putting:кладучи;розміщуючи;ставлячи;встановлюючи
+opening:відкриваючи;відчиняючи
+opened:відкрили;відчинили
+unlocked:розблокували
+unlocking:розблоковуючи
+locked:замкнули
+locking:замикаючи
+gone:пішли;вирушили
+getting:йдучи;вирушаючи
+closed:закрили;зачинили
+closing:закриваючи;зачиняючи
+dropped:поклали;кинули;залишили
+dropping:кладучи;кидаючи;залишаючи
+emptyinstruction1: І потім, ;
+emptyinstruction2: Потім, ;
+emptyinstruction3: Після цього, ;
+emptyinstruction4: І потім, ;
+emptyinstruction5: Після цього, ;
+emptyinstruction6: Потім, ;
+emptyinstruction7: І потім, ;
+emptyinstruction8: Після цього, ;
+emptyinstruction9: І потім, ;
+emptyinstruction10: Потім, ;

@@ -1,0 +1,589 @@
+game:
+
+  # ============================================================
+  # 1. METADATA
+  # ============================================================
+
+  metadata:
+    id: "tw-gVFkIWFVFksgFmsMFN-house-GP-OgOJFl9Jtba5I1Rb"
+    name: "Simple game"
+    game_type: "tw-simple"
+    version: 1
+    generator:
+      name: "TextWorld"
+      seeds:
+        map: null
+        objects: null
+        quest: null
+        grammar: null
+      world_size: null
+      quest_length: null
+    configuration:
+      theme: "house"
+      reward_type: "sparse"
+      goal_description: "brief"
+      grammar:
+        include_adj: false
+        blend_descriptions: false
+        ambiguous_instructions: false
+        only_last_action: false
+        blend_instructions: false
+        allowed_variables_numbering: false
+        unique_expansion: false
+
+  # ============================================================
+  # 2. OBJECTIVE
+  # ============================================================
+
+  objective:
+    description: >
+      Get ready to pick stuff up and put it in places, because you've just entered TextWorld! Here is how to play! First step, recover the key from the floor of the attic. Once you have got the key, assure that the chest is locked. Alright, thanks!
+    reward: 1
+    completion:
+      condition:
+        object: "k_0"
+        name: "key"
+        relation: "in"
+        target: "I"
+        target_name: null
+
+  # ============================================================
+  # 3. WORLD
+  # ============================================================
+
+  world:
+
+    # ----------------------------------------------------------
+    # 3.1 PLAYER
+    # ----------------------------------------------------------
+
+    player:
+      id: "P"
+      name: "player"
+      location: "r_0"
+      location_name: "attic"
+      inventory: []
+
+    # ----------------------------------------------------------
+    # 3.2 LOCATIONS
+    # ----------------------------------------------------------
+
+    locations:
+
+      # ========================================================
+      # r_0 — ATTIC
+      # ========================================================
+
+      - id: "r_0"
+        name: "attic"
+        type: "Location"
+        room_type: "storage"
+        description: "You've entered an attic."
+        entities:
+          - id: "c_0"
+            name: "chest"
+            type: "Container"
+            description: >
+              The chest looks strong, and impossible to break.
+            state:
+              status: "closed"
+            contains: []
+          - id: "k_0"
+            name: "key"
+            type: "Key"
+            description: "The key is cold to the touch"
+            state:
+              available: true
+        exits: []
+
+    # ----------------------------------------------------------
+    # 3.3 CONNECTIONS
+    # ----------------------------------------------------------
+
+    connections: []
+
+    # ----------------------------------------------------------
+    # 3.4 SEMANTIC RELATIONS
+    # ----------------------------------------------------------
+
+    relations:
+
+      - type: "matches"
+        from: "k_0"
+        to: "c_0"
+        description: "The key matches the chest."
+
+  # ============================================================
+  # 4. ACTIONS
+  # ============================================================
+
+  actions:
+    templates:
+
+      # --------------------------------------------------------
+      # INFORMATION
+      # --------------------------------------------------------
+
+      - id: "look"
+
+        name: "look"
+
+        command: "look"
+
+        targets: []
+
+        preconditions: []
+
+        effects: []
+
+      - id: "inventory"
+
+        name: "inventory"
+
+        command: "inventory"
+
+        targets: []
+
+        preconditions: []
+
+        effects: []
+
+      # --------------------------------------------------------
+      # MOVEMENT
+      # --------------------------------------------------------
+
+      - id: "go_north"
+
+        name: "go north"
+
+        command: "go north"
+
+        targets: []
+
+        preconditions:
+          - "player_has_north_exit"
+          - "destination_is_free"
+
+        effects:
+          - "player_location_changed"
+
+      - id: "go_south"
+
+        name: "go south"
+
+        command: "go south"
+
+        targets: []
+
+        preconditions:
+          - "player_has_south_exit"
+          - "destination_is_free"
+
+        effects:
+          - "player_location_changed"
+
+      - id: "go_east"
+
+        name: "go east"
+
+        command: "go east"
+
+        targets: []
+
+        preconditions:
+          - "player_has_east_exit"
+          - "destination_is_free"
+
+        effects:
+          - "player_location_changed"
+
+      - id: "go_west"
+
+        name: "go west"
+
+        command: "go west"
+
+        targets: []
+
+        preconditions:
+          - "player_has_west_exit"
+          - "destination_is_free"
+
+        effects:
+          - "player_location_changed"
+
+      # --------------------------------------------------------
+      # OBJECT EXAMINATION
+      # --------------------------------------------------------
+
+      - id: "examine"
+
+        name: "examine"
+
+        command: "examine {object}"
+
+        targets:
+          object:
+            type: "Thing"
+
+        preconditions:
+          - "object_accessible"
+
+        effects: []
+
+      # --------------------------------------------------------
+      # CONTAINERS
+      # --------------------------------------------------------
+
+      - id: "open_container"
+
+        name: "open"
+
+        command: "open {container}"
+
+        targets:
+          container:
+            type: "Container"
+
+        preconditions:
+          - "container_accessible"
+          - "container_closed"
+
+        effects:
+          - "container_open"
+
+      - id: "close_container"
+
+        name: "close"
+
+        command: "close {container}"
+
+        targets:
+          container:
+            type: "Container"
+
+        preconditions:
+          - "container_accessible"
+          - "container_open"
+
+        effects:
+          - "container_closed"
+
+      - id: "take_from_container"
+
+        name: "take from container"
+
+        command: "take {object} from {container}"
+
+        targets:
+          object:
+            type: "Thing"
+
+          container:
+            type: "Container"
+
+        preconditions:
+          - "container_accessible"
+          - "container_open"
+          - "object_in_container"
+
+        effects:
+          - "object_in_inventory"
+
+      - id: "insert_into_container"
+
+        name: "insert"
+
+        command: "insert {object} into {container}"
+
+        targets:
+          object:
+            type: "Thing"
+
+          container:
+            type: "Container"
+
+        preconditions:
+          - "object_in_inventory"
+          - "container_accessible"
+          - "container_open"
+
+        effects:
+          - "object_in_container"
+
+      # --------------------------------------------------------
+      # SUPPORTERS
+      # --------------------------------------------------------
+
+      - id: "take_from_supporter"
+
+        name: "take from supporter"
+
+        command: "take {object} from {supporter}"
+
+        targets:
+          object:
+            type: "Thing"
+
+          supporter:
+            type: "Supporter"
+
+        preconditions:
+          - "supporter_accessible"
+          - "object_on_supporter"
+
+        effects:
+          - "object_in_inventory"
+
+      - id: "put_on_supporter"
+
+        name: "put"
+
+        command: "put {object} on {supporter}"
+
+        targets:
+          object:
+            type: "Thing"
+
+          supporter:
+            type: "Supporter"
+
+        preconditions:
+          - "object_in_inventory"
+          - "supporter_accessible"
+
+        effects:
+          - "object_on_supporter"
+
+      # --------------------------------------------------------
+      # DOORS AND LOCKS
+      # --------------------------------------------------------
+
+      - id: "unlock_door"
+
+        name: "unlock"
+
+        command: "unlock {door} with {key}"
+
+        targets:
+          door:
+            type: "Door"
+
+          key:
+            type: "Key"
+
+        preconditions:
+          - "door_accessible"
+          - "door_locked"
+          - "key_in_inventory"
+          - "key_matches_door"
+
+        effects:
+          - "door_closed"
+
+      - id: "lock_door"
+
+        name: "lock"
+
+        command: "lock {door} with {key}"
+
+        targets:
+          door:
+            type: "Door"
+
+          key:
+            type: "Key"
+
+        preconditions:
+          - "door_accessible"
+          - "door_closed"
+          - "key_in_inventory"
+          - "key_matches_door"
+
+        effects:
+          - "door_locked"
+
+      - id: "open_door"
+
+        name: "open"
+
+        command: "open {door}"
+
+        targets:
+          door:
+            type: "Door"
+
+        preconditions:
+          - "door_accessible"
+          - "door_closed"
+          - "door_unlocked"
+
+        effects:
+          - "door_open"
+
+      - id: "close_door"
+
+        name: "close"
+
+        command: "close {door}"
+
+        targets:
+          door:
+            type: "Door"
+
+        preconditions:
+          - "door_accessible"
+          - "door_open"
+
+        effects:
+          - "door_closed"
+
+      # --------------------------------------------------------
+      # GENERAL OBJECT ACTIONS
+      # --------------------------------------------------------
+
+      - id: "take"
+
+        name: "take"
+
+        command: "take {object}"
+
+        targets:
+          object:
+            type: "Thing"
+
+        preconditions:
+          - "object_accessible"
+          - "object_on_floor"
+
+        effects:
+          - "object_in_inventory"
+
+      - id: "drop"
+
+        name: "drop"
+
+        command: "drop {object}"
+
+        targets:
+          object:
+            type: "Thing"
+
+        preconditions:
+          - "object_in_inventory"
+
+        effects:
+          - "object_on_floor"
+
+      - id: "eat"
+
+        name: "eat"
+
+        command: "eat {food}"
+
+        targets:
+          food:
+            type: "Food"
+
+        preconditions:
+          - "food_accessible"
+          - "food_edible"
+
+        effects:
+          - "food_eaten"
+
+    # ----------------------------------------------------------
+    # 4.2 CONCRETE ACTION INSTANCES
+    # ----------------------------------------------------------
+
+    instances:
+
+      - id: "a_001"
+        template: "take"
+        command: "take key"
+        arguments:
+          object: "k_0"
+
+      - id: "a_002"
+        template: "lock/c"
+        command: "lock chest with key"
+        arguments: {}
+
+    # ----------------------------------------------------------
+    # 4.3 ADMISSIBLE ACTIONS — INITIAL STATE
+    # ----------------------------------------------------------
+
+    admissible:
+      - "look"
+      - "inventory"
+      - "open chest"
+      - "examine chest"
+      - "examine key"
+      - "take key"
+
+  # ============================================================
+  # 5. QUEST
+  # ============================================================
+
+  quests:
+
+    - id: "main_quest"
+      name: "Prepare grilled key"
+      description: >
+        Prepare the grilled key required by the game objective.
+      reward: 1
+      optional: false
+      repeatable: false
+      steps:
+
+        - sequence: 1
+          action: "take"
+          arguments:
+            object: "k_0"
+          command: "take key"
+          expected_effects:
+            - "k_0.location = inventory"
+
+        - sequence: 2
+          action: "lock/c"
+          arguments: {}
+          command: "lock chest with key"
+          expected_effects: []
+      completion:
+        conditions:
+          - "key is in None"
+      fail_conditions: []
+
+  # ============================================================
+  # 6. OBSERVATION
+  # ============================================================
+
+  observation:
+    location:
+      id: "r_0"
+      name: "attic"
+    text: >
+      You've entered an attic.
+
+      You rest your hand against a wall, but you miss the wall and fall onto a chest.
+    visible_entities:
+
+      - id: "c_0"
+        name: "chest"
+
+      - id: "k_0"
+        name: "key"
+    exits: []
+    last_action:
+      command: null
+      template: null
+    last_feedback: null
+
+# ============================================================
+# 7. KNOWLEDGE BASE
+# ============================================================
+
+# Note: The Knowledge Base (KB) section contains highly technical game logic
+# and grammar paths that are typically machine-generated and not intended
+# for direct human editing in this YAML template.
+# Its detailed structure is omitted here to simplify human perception.

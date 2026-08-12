@@ -1,0 +1,307 @@
+@startuml Conceptual Classes
+skinparam class {
+    BackgroundColor #F3F4F6
+    BorderColor #1F2937
+    ArrowColor #374151
+}
+skinparam RoundCorner 8
+
+' Головний клас гри, що об'єднує метадані, світ, дії, квести та поточний стан спостереження.
+class Game {
+    + metadata: Metadata
+    + objective: Objective
+    + world: World
+    + actions: Actions
+    + quests: List<Quest>
+    + observation: Observation
+}
+
+' ==========================================
+' 1. METADATA
+' ==========================================
+
+' Метадані гри, що містять назву, тип гри, версію та унікальний ідентифікатор.
+class Metadata {
+    + id: String
+    + name: String
+    + game_type: String
+    + version: Integer
+}
+
+' Інформація про генератор TextWorld, розмір світу та довжину квесту.
+class Generator {
+    + name: String
+    + world_size: Integer
+    + quest_length: Integer
+}
+
+' Випадкові насіння (seeds) для генерації карти, об'єктів, квестів та граматики.
+class Seeds {
+    + map: Integer
+    + objects: Integer
+    + quest: Integer
+    + grammar: Integer
+}
+
+' Конфігурація гри, яка визначає її тему, тип винагороди та деталізацію опису мети.
+class Configuration {
+    + theme: String
+    + reward_type: String
+    + goal_description: String
+}
+
+' Налаштування граматики генератора тексту (додавання прикметників, змішування інструкцій тощо).
+class GrammarConfig {
+    + include_adj: Boolean
+    + blend_descriptions: Boolean
+    + ambiguous_instructions: Boolean
+    + only_last_action: Boolean
+    + blend_instructions: Boolean
+    + allowed_variables_numbering: Boolean
+    + unique_expansion: Boolean
+}
+
+Game *-- Metadata
+Metadata *-- Generator
+Metadata *-- Configuration
+Generator *-- Seeds
+Configuration *-- GrammarConfig
+
+' ==========================================
+' 2. OBJECTIVE
+' ==========================================
+
+' Ціль гри, що містить опис завдання, винагороду та умови успішного завершення.
+class Objective {
+    + description: String
+    + reward: Integer
+}
+
+' Контейнер умов завершення квесту або гри.
+class Completion {
+}
+
+' Конкретна умова завершення (наприклад, розташування певного предмета на цільовому об'єкті).
+class GoalCondition {
+    + object: String
+    + name: String
+    + relation: String
+    + target: String
+    + target_name: String
+}
+
+Game *-- Objective
+Objective *-- Completion
+Completion *-- GoalCondition
+
+' ==========================================
+' 3. WORLD
+' ==========================================
+
+' Клас, який об'єднує інформацію про гравця, локації, зв'язки та семантичні відношення у світі.
+class World {
+}
+
+' Представлення гравця, його поточна локація та предмети в інвентарі.
+class Player {
+    + id: String
+    + name: String
+    + location: String
+    + location_name: String
+}
+
+' Ігрова локація (кімната), яка містить опис, доступні виходи та сутності всередині неї.
+class Location {
+    + id: String
+    + name: String
+    + type: String
+    + room_type: String
+    + description: String
+}
+
+' Будь-який предмет, контейнер, опора або двері в ігровому світі.
+class Entity {
+    + id: String
+    + name: String
+    + type: String
+    + description: String
+}
+
+' Поточний стан сутності (наприклад, статус зачинено/відчинено, чи є їстівним, чи доступний).
+class EntityState {
+    + status: String
+    + available: Boolean
+    + edible: Boolean
+}
+
+' Зв'язок дверей із суміжною кімнатою та її напрямком.
+class DoorConnection {
+    + to: String
+    + direction: String
+}
+
+' Опис виходу з локації в певному напрямку через вказані двері (або без них).
+class Exit {
+    + direction: String
+    + to: String
+    + via: String
+}
+
+' Ребро зв'язку між двома локаціями у світі з вказівкою напрямків та наявності дверей.
+class Connection {
+    + id: String
+    + from: String
+    + to: String
+    + direction: String
+    + reverse_direction: String
+    + via: String
+}
+
+' Стан просторового зв'язку між кімнатами (вільний, зачинений тощо).
+class ConnectionState {
+    + status: String
+}
+
+' Семантичне відношення між сутностями (наприклад, відповідність ключа певним дверям).
+class Relation {
+    + type: String
+    + from: String
+    + to: String
+    + description: String
+}
+
+Game *-- World
+World *-- Player
+World *-- "*" Location
+World *-- "*" Connection
+World *-- "*" Relation
+
+Player *-- "*" Entity : inventory
+Location *-- "*" Entity : entities
+Location *-- "*" Exit : exits
+
+Entity *-- "0..1" EntityState : state
+Entity *-- "*" Entity : contains / supports
+Entity *-- "0..1" DoorConnection : connects
+
+Connection *-- ConnectionState : state
+
+' ==========================================
+' 4. ACTIONS
+' ==========================================
+
+' Контейнер шаблонів та екземплярів дій, доступних у грі.
+class Actions {
+    + admissible: List<String>
+}
+
+' Шаблон опису дії (команда, аргументи, прекондишени та ефекти).
+class ActionTemplate {
+    + id: String
+    + name: String
+    + command: String
+    + targets: Map<String, String>
+    + preconditions: List<String>
+    + effects: List<String>
+}
+
+' Конкретний екземпляр виконаної дії з підставленими аргументами.
+class ActionInstance {
+    + id: String
+    + template: String
+    + command: String
+    + arguments: Map<String, String>
+}
+
+Game *-- Actions
+Actions *-- "*" ActionTemplate : templates
+Actions *-- "*" ActionInstance : instances
+
+' ==========================================
+' 5. QUESTS
+' ==========================================
+
+' Опис квесту, що містить кроки для його виконання, умови завершення та невдачі.
+class Quest {
+    + id: String
+    + name: String
+    + description: String
+    + reward: Integer
+    + optional: Boolean
+    + repeatable: Boolean
+}
+
+' Крок у квесті із вказівкою черговості, команди та очікуваних ефектів.
+class QuestStep {
+    + sequence: Integer
+    + action: String
+    + arguments: Map<String, String>
+    + command: String
+    + expected_effects: List<String>
+}
+
+' Перелік умов успішного завершення квесту у вигляді текстових рядків.
+class QuestCompletion {
+    + conditions: List<String>
+}
+
+' Умова провалу квесту (наприклад, з'їдання ключового об'єкта).
+class QuestFailCondition {
+    + id: String
+    + condition: Map<String, String>
+    + effect: Map<String, String>
+}
+
+Game *-- "*" Quest
+Quest *-- "*" QuestStep : steps
+Quest *-- QuestCompletion : completion
+Quest *-- "*" QuestFailCondition : fail_conditions
+
+' ==========================================
+' 6. OBSERVATION
+' ==========================================
+
+' Поточне спостереження гравця, включаючи опис кімнати, видимі об'єкти, виходи та останній відгук.
+class Observation {
+    + text: String
+    + last_feedback: String
+}
+
+' Ідентифікатор та назва кімнати у поточному спостереженні.
+class ObsLocation {
+    + id: String
+    + name: String
+}
+
+' Сутність, яку гравець безпосередньо бачить у поточному спостереженні.
+class ObsEntity {
+    + id: String
+    + name: String
+}
+
+' Вихід, доступний для гравця у поточному спостереженні.
+class ObsExit {
+    + direction: String
+    + to: String
+    + via: String
+}
+
+' Поточний стан дверей на виході в межах спостереження.
+class ObsExitState {
+    + status: String
+}
+
+' Остання виконана команда та відповідний шаблон дії.
+class ObsLastAction {
+    + command: String
+    + template: String
+}
+
+Game *-- Observation
+Observation *-- ObsLocation : location
+Observation *-- "*" ObsEntity : visible_entities
+Observation *-- "*" ObsExit : exits
+Observation *-- ObsLastAction : last_action
+ObsExit *-- "0..1" ObsExitState : state
+
+@enduml
