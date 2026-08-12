@@ -1,0 +1,82 @@
+usage: tw-make custom [-h] [--world-size SIZE] [--nb-objects NB]
+                      [--theme THEME] [--include-adj] [--blend-descriptions]
+                      [--ambiguous-instructions] [--only-last-action]
+                      [--blend-instructions] [--entity-numbering]
+                      [--nb-parallel-quests NB_PARALLEL_QUESTS]
+                      [--quest-length LENGTH] [--quest-breadth BREADTH]
+                      [--quest-min-length LENGTH] [--quest-max-length LENGTH]
+                      [--quest-min-breadth BREADTH]
+                      [--quest-max-breadth BREADTH] [--quest-min-depth DEPTH]
+                      [--quest-max-depth DEPTH] [--output PATH] [--seed SEED]
+                      [--format {z8}] [--overview] [--save-overview] [-f]
+                      [--silent | -v]
+
+options:
+  -h, --help            show this help message and exit
+
+Custom game settings:
+  --world-size SIZE     Nb. of rooms in the world.
+  --nb-objects NB       Minimum nb. of objects in the world.
+
+Grammar settings:
+  --theme THEME         Theme to use for generating the text. Default: house
+  --include-adj         Turn on adjectives.
+  --blend-descriptions  Blend descriptions across consecutive sentences.
+  --ambiguous-instructions
+                        Refer to an object using its type (e.g. red container
+                        vs. red chest).
+  --only-last-action    Intruction only describes the last action of quest.
+  --blend-instructions  Blend instructions across consecutive actions.
+  --entity-numbering    Append a number after an entity name if there is not
+                        enough variation for it (e.g. 'red apple 2').
+
+Quest settings:
+  --nb-parallel-quests NB_PARALLEL_QUESTS
+                        Nb. of parallel quests the game will have. Default: 1.
+  --quest-length LENGTH
+                        Nb. of actions the quest requires to be completed. It
+                        is a shorthand for '--quest-min-length N --quest-max-
+                        length N --quest-max-depth N'.
+  --quest-breadth BREADTH
+                        Nb. of subquests the quests will have. It is a
+                        shorthand for '--quest-min-breadth N --quest-max-
+                        breadth N'.
+
+Quest settings (advanced):
+  --quest-min-length LENGTH
+                        Minimum nb. of actions the quest requires to be
+                        completed. This setting is ignored if --quest-length
+                        is provided. Default: 1.
+  --quest-max-length LENGTH
+                        Maximum nb. of actions the quest requires to be
+                        completed. This setting is ignored if --quest-length
+                        is provided. Default: 5.
+  --quest-min-breadth BREADTH
+                        Minimum nb. of subquests the quests can have. This
+                        setting is ignored if --quest-breadth is provided.
+                        Default: 1.
+  --quest-max-breadth BREADTH
+                        Maxmimum nb. of subquests the quests can have. This
+                        setting is ignored if --quest-breadth is provided.
+                        Default: 5.
+  --quest-min-depth DEPTH
+                        Minimum nb. of actions the subquests can have.
+                        Default: 1.
+  --quest-max-depth DEPTH
+                        Maximum nb. of actions the subquests can have. This
+                        setting is ignored if --quest-length is provided.
+                        Default: 5.
+
+General settings:
+  --output PATH         Path where to save the generated game. If it points to
+                        a folder, the game's UUID will be used as the
+                        filename.
+  --seed SEED
+  --format {z8}         Which format to use when compiling the game. Default:
+                        z8
+  --overview            Display an overview of the generated game.
+  --save-overview       Save the overview image of the generated game
+                        alongside the game as a PNG file.
+  -f, --force
+  --silent
+  -v, --verbose
