@@ -169,6 +169,9 @@ The proposed algorithm has been fully implemented and integrated into the reposi
   * Seamless pass-through of unmapped commands.
 
 # 5 Особливості запуску
+
+**Принцип сортування правил мапінгу:** Правила мапінгу в `tw_bash_command_mapping.json` перевіряються зверху вниз. Щоб уникнути некоректних збігів, найбільш конкретні правила (наприклад, `mv {} ~`, які містять літеральні символи або є менш загальними) повинні розміщуватися перед більш загальними правилами (наприклад, `mv {1} {2}`, які можуть збігатися з ширшим діапазоном команд).
+
 1. Згенеруйте тестову гру:
     export PYTHONPATH="."
     python scripts/tw-make custom --world-size 2 --nb-objects 3 --quest-length 2 --output test_game.z8
