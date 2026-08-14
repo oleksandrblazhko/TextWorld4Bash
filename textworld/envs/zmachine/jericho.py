@@ -101,7 +101,7 @@ class JerichoEnv(textworld.Environment):
 
         print("DEBUG Jericho raw:", repr(self.state.raw), file=sys.stderr)
         print("DEBUG Jericho raw type:", type(self.state.raw), file=sys.stderr)
-
+        
         self._gather_infos()
         self._reset = True
         return self.state
@@ -121,12 +121,12 @@ class JerichoEnv(textworld.Environment):
         self.state = GameState()
         self.state.last_command = command.strip()
         res = self._jericho.step(self.state.last_command)
-
-        print("DEBUG Jericho step raw:", repr(self.state.raw), file=sys.stderr)
-        print("DEBUG Jericho step raw type:", type(self.state.raw), file=sys.stderr)
-
         # As of Jericho >= 2.1.0, the reward is returned instead of the score.
         self.state.raw, _, self.state.done, _ = res
+
+        print("DEBUG 1 JERICHO RAW:", repr(self.state.raw), file=sys.stderr)
+        print("DEBUG 1 TYPE:", type(self.state.raw), file=sys.stderr)
+
         self._gather_infos()
         return self.state, self.state.score, self.state.done
 
