@@ -1,10 +1,8 @@
 {
     "commands": [
-        {"tw": "look", "bash": "ls"},
-        {"tw": "go north", "bash": "cd north"},
-        {"tw": "go east", "bash": "cd east"},
-        {"tw": "go south", "bash": "cd south"},
-        {"tw": "go west", "bash": "cd west"},
-        {"tw": "take {}", "bash": "mv {} ~"}
+        {"tw": "insert {1} into {2}", "bash": "mv {1} {2}"},
+        {"tw": "take {}", "bash": "mv {} ~"},
+        {"tw": "go {}", "bash": "cd {}"},
+        {"tw": "look", "bash": "ls"}
     ]
 }
