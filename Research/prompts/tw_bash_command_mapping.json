@@ -1,7 +1,7 @@
 {
-    "commands": [
-        {"tw": "insert {1} into {2}", "bash": "mv {1} {2}"},
+    "commands": [    
         {"tw": "take {}", "bash": "mv {} ~"},
+        {"tw": "insert {1} into {2}", "bash": "mv {1} {2}"},
         {"tw": "go {}", "bash": "cd {}"},
         {"tw": "look", "bash": "ls"}
     ]
