@@ -17,7 +17,7 @@ from textworld.generator import make_game, compile_game
 
 
 def start(path: str, request_infos: Optional[EnvInfos] = None,
-          wrappers: List[callable] = []) -> Environment:
+          wrappers: List[callable] = [], bash_mapping: bool = False) -> Environment:
     """ Starts a TextWorld environment to play a game.
 
     Arguments:
@@ -28,6 +28,7 @@ def start(path: str, request_infos: Optional[EnvInfos] = None,
             :py:class:`textworld.EnvInfos <textworld.core.EnvInfos>`
             for the list of available information).
         wrappers: List of wrappers to apply to the environment.
+        bash_mapping: Whether to translate TW commands to Bash commands.
 
     Returns:
         TextWorld environment running the provided game.
@@ -49,12 +50,16 @@ def start(path: str, request_infos: Optional[EnvInfos] = None,
     for wrapper in wrappers:
         env = wrapper(env)
 
+    if bash_mapping:
+        from textworld.envs.wrappers.bash_mapping import BashCommandMappingWrapper
+        env = BashCommandMappingWrapper(env)
+
     env.load(path)
     return env
 
 
 def play(game_file: str, agent: Optional[Agent] = None, max_nb_steps: int = 1000,
-         wrappers: List[callable] = [], silent: bool = False) -> None:
+         wrappers: List[callable] = [], silent: bool = False, bash_mapping: bool = True) -> None:
     """ Convenience function to play a text-based game.
 
     Args:
@@ -63,12 +68,13 @@ def play(game_file: str, agent: Optional[Agent] = None, max_nb_steps: int = 1000
         max_nb_steps: Maximum number of steps allowed. Default: 1000.
         wrappers: List of wrappers to apply to the environment.
         silent: Do not render anything to screen.
+        bash_mapping: Whether to translate TW commands to Bash commands. Default: True.
 
     Notes:
         Use script :command:`tw-play` for more options.
     """
     agent = agent or HumanAgent()
-    env = start(game_file, wrappers=wrappers + agent.wrappers)
+    env = start(game_file, wrappers=wrappers + agent.wrappers, bash_mapping=bash_mapping)
     agent.reset(env)
     game_state = env.reset()
     if not silent:

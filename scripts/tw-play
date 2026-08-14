@@ -31,6 +31,8 @@ def build_parser():
                         help="Verbose mode.")
     parser.add_argument("-vv", "--very-verbose", action="store_true",
                         help="Print debug information.")
+    parser.add_argument("--no-bash", action="store_false", dest="bash_mapping", default=True,
+                        help="Disable translation of TW commands to Bash commands.")
     return parser
 
 
@@ -39,7 +41,7 @@ def main():
     if args.very_verbose:
         args.verbose = args.very_verbose
 
-    env = textworld.start(args.game)
+    env = textworld.start(args.game, bash_mapping=args.bash_mapping)
     env.seed(args.seed)
 
     if args.mode == "random":

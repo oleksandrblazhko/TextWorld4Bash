@@ -5,7 +5,10 @@
 import os
 import warnings
 
-import jericho
+try:
+    import jericho
+except ImportError:
+    jericho = None
 
 import textworld
 from textworld.core import GameState
@@ -22,6 +25,8 @@ class JerichoEnv(textworld.Environment):
         self._reset = False
 
     def load(self, z_file: str) -> None:
+        if jericho is None:
+            raise ImportError("jericho is not installed. Please install it to play Z-machine games.")
         self.gamefile = os.path.abspath(z_file)
         _, ext = os.path.splitext(os.path.basename(self.gamefile))
 
@@ -141,5 +146,6 @@ class JerichoEnv(textworld.Environment):
 
 
 # By default disable the warning about unsupported games.
-warnings.simplefilter("ignore", jericho.UnsupportedGameWarning)
-warnings.simplefilter("ignore", jericho.TruncatedInputActionWarning)
+if jericho is not None:
+    warnings.simplefilter("ignore", jericho.UnsupportedGameWarning)
+    warnings.simplefilter("ignore", jericho.TruncatedInputActionWarning)

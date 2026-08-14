@@ -1,0 +1,9 @@
+{
+    "commands": [
+        {"tw": "look", "bash": "ls"},
+        {"tw": "go north", "bash": "cd north"},
+        {"tw": "go east", "bash": "cd east"},
+        {"tw": "go south", "bash": "cd south"},
+        {"tw": "go west", "bash": "cd west"}
+    ]
+}

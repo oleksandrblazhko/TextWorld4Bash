@@ -7,3 +7,4 @@ from textworld.envs.wrappers.filter import Filter
 from textworld.envs.wrappers.limit import Limit
 from textworld.envs.wrappers.tw_inform7 import TWInform7
 from textworld.envs.wrappers.generic import GenericEnvironment
+from textworld.envs.wrappers.bash_mapping import BashCommandMappingWrapper
