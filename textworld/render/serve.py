@@ -207,12 +207,7 @@ class VisualizationService:
         :param game_state: game state.
         :param command: previous command
         """
-
-        print(
-            "DEBUG 3 VIEWER FEEDBACK:",
-            repr(game_state.feedback)
-        )
-        
+    
         state_dict = textworld.render.load_state_from_game_state(game_state)
         self._history += '<p class="command-text">> {}</p>'.format(command)
         self._history += '<p class="feedback-text">{}</p>'.format(game_state.feedback.strip().replace("\n", "<br/>"))
