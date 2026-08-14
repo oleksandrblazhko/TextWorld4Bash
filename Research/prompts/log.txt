@@ -1,0 +1,65 @@
+python scripts/tw-play tw_games/custom_5room.z8 --mode walkthrough -v
+--- DEBUG: Bypassing textwrap ---
+
+
+
+
+                    ________  ________  __    __  ________
+                   |        \|        \|  \  |  \|        \
+                    \$$$$$$$$| $$$$$$$$| $$  | $$ \$$$$$$$$
+                      | $$   | $$__     \$$\/  $$   | $$
+                      | $$   | $$  \     >$$  $$    | $$
+                      | $$   | $$$$$    /  $$$$\    | $$
+                      | $$   | $$_____ |  $$ \$$\   | $$
+                      | $$   | $$     \| $$  | $$   | $$
+                       \$$    \$$$$$$$$ \$$   \$$    \$$
+              __       __   ______   _______   __        _______
+             |  \  _  |  \ /      \ |       \ |  \      |       \
+             | $$ / \ | $$|  $$$$$$\| $$$$$$$\| $$      | $$$$$$$\
+             | $$/  $\| $$| $$  | $$| $$__| $$| $$      | $$  | $$
+             | $$  $$$\ $$| $$  | $$| $$    $$| $$      | $$  | $$
+             | $$ $$\$$\$$| $$  | $$| $$$$$$$\| $$      | $$  | $$
+             | $$$$  \$$$$| $$__/ $$| $$  | $$| $$_____ | $$__/ $$
+             | $$$    \$$$ \$$    $$| $$  | $$| $$     \| $$    $$
+              \$$      \$$  \$$$$$$  \$$   \$$ \$$$$$$$$ \$$$$$$$
+
+??????????, ?? ??????? ???????? ?? ?????? ? ??????????? ? ??????????, ???? ?? ????? ???????? ?? TextWorld! ??????????, ??????? key ? ??????? attic. ? ?????, ???????? key ? chest ? attic, ??? ???????? ????. ? ???? ?? ?? ??????, ?? ?????????!
+
+-= Attic =-
+You've entered an attic.
+
+You rest your hand against a wall, but you miss the wall and fall onto a chest.
+
+
+
+There is a key on the floor.
+
+>                                                                                                                                -= Attic =-0/1
+--- END DEBUG ---
+--- DEBUG: Bypassing textwrap ---
+> mv key ~
+
+You pick up the key from the ground.
+
+
+
+>                                                                                                                                -= Attic =-0/2
+--- END DEBUG ---
+--- DEBUG: Bypassing textwrap ---
+> lock chest with key
+
+You lock the chest.
+
+
+Your score has just gone up by one point.
+
+
+                                                       *** The End ***
+
+You scored 1 out of a possible 1, in 3 turns.
+
+
+Would you like to RESTART, RESTORE a saved game, QUIT or UNDO the last command?
+>                                                                                                                                 -= Attic =-0/2
+--- END DEBUG ---
+Done after 2 steps. Score 1/1.
