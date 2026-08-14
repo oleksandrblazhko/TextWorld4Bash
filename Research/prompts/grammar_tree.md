@@ -80,3 +80,30 @@
 *   **Джерело тексту**: `game_state.feedback`
 *   **Фінальна функція виводу**: `outfile.write()`, де `outfile` посилається на `sys.stdout`.
 *   **Розташування**: `textworld.core.Environment.render()`
+
+Текст проходить через jericho.py до того, як він потрапляє і до терміналу, і до веб-сторінки.
+
+  Обидва механізми виводу (термінал і веб) отримують дані з одного і того ж джерела — об'єкта game_state, який заповнюється у файлі textworld/envs/zmachine/jericho.py.
+
+  Ланцюжок передачі тексту виглядає так:
+   1. jericho.py: Отримує "сирий" байтовий потік від ігрового рушія, декодує його, створюючи текстовий рядок у game_state.feedback.
+   2. game_state: Цей об'єкт передається далі.
+   3. Далі шляхи розходяться:
+       * Шлях до терміналу:
+           * Функція render() у textworld/core.py бере рядок з game_state.feedback і намагається вивести його "як є". Термінал не може його коректно відобразити.
+       * Шлях до веб-сторінки:
+           * HtmlViewer передає той самий game_state до VisualizationService (serve.py).
+           * VisualizationService бере той самий рядок з game_state.feedback, 
+           загортає його в HTML-теги (<p>...</p>) 
+           і відправляє браузеру з чіткою вказівкою charset=utf-8.
+
+1. Для веб-сторінки (serve.py):
+      Береться game_state.feedback і просто замінюються символи нового рядка (\n) на HTML-тег <br/>.
+      game_state.feedback.strip().replace("\n", "<br/>")
+
+2. Для терміналу (core.py):
+      Береться той самий game_state.feedback, але перед виведенням він обробляється бібліотекою textwrap для автоматичного переносу довгих рядків.
+
+     paragraphs = msg.split("\n")
+     paragraphs = ["\n".join(textwrap.wrap(paragraph, width=80)) for paragraph in paragraphs]
+     msg = "\n".join(paragraphs)
