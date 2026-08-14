@@ -5,6 +5,6 @@
         {"tw": "go east", "bash": "cd east"},
         {"tw": "go south", "bash": "cd south"},
         {"tw": "go west", "bash": "cd west"},
-        {"tw": "take", "bash": "mv ~"}
+        {"tw": "take {}", "bash": "mv {} ~"}
     ]
 }

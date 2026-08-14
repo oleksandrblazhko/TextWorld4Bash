@@ -13,6 +13,7 @@ class BashCommandMappingWrapper(Wrapper):
     """
     Wrapper to translate TextWorld commands to Bash-like commands (e.g. ls, cd)
     using the mapping from tw_bash_command_mapping.json.
+    This version supports commands with arguments using '{}' as a placeholder.
     """
 
     def __init__(self, env: textworld.Environment, mapping_path: Optional[str] = None) -> None:
@@ -30,7 +31,6 @@ class BashCommandMappingWrapper(Wrapper):
 
     def _load_mappings(self):
         if not os.path.exists(self.mapping_path):
-            # Fallback if file not found (e.g. if run outside repository context)
             return
 
         try:
@@ -43,8 +43,32 @@ class BashCommandMappingWrapper(Wrapper):
                 self.bash_to_tw[bash_cmd] = tw_cmd
                 self.tw_to_bash[tw_cmd] = bash_cmd
         except Exception as e:
-            # Fail silently or log error if necessary
             pass
+
+    def _translate_command(self, command: str, mapping_dict: dict) -> str:
+        cmd_lower = command.strip().lower()
+
+        # First, try for an exact match (for commands without arguments).
+        if cmd_lower in mapping_dict:
+            return mapping_dict[cmd_lower]
+
+        # Then, try to match commands with arguments.
+        for from_template, to_template in mapping_dict.items():
+            if "{}" in from_template:
+                parts = from_template.split("{}", 1)
+                prefix = parts[0]
+                suffix = parts[1]
+
+                if cmd_lower.startswith(prefix) and cmd_lower.endswith(suffix):
+                    # Extract argument from the middle.
+                    start = len(prefix)
+                    end = len(cmd_lower) - len(suffix)
+                    arg = cmd_lower[start:end].strip()
+                    
+                    if arg:
+                        return to_template.replace("{}", arg, 1)
+
+        return command  # Return original if no match found.
 
     def _translate_state(self, state: GameState) -> GameState:
         if state is None:
@@ -52,39 +76,21 @@ class BashCommandMappingWrapper(Wrapper):
 
         # Translate admissible commands
         if "admissible_commands" in state and state["admissible_commands"]:
-            translated_commands = []
-            for cmd in state["admissible_commands"]:
-                cmd_lower = cmd.strip().lower()
-                # Check for exact matches
-                if cmd_lower in self.tw_to_bash:
-                    translated_commands.append(self.tw_to_bash[cmd_lower])
-                else:
-                    translated_commands.append(cmd)
-            state["admissible_commands"] = translated_commands
+            state["admissible_commands"] = [self._translate_command(cmd, self.tw_to_bash) for cmd in state["admissible_commands"]]
 
-        # Translate policy commands (oracle suggestions)
+        # Translate policy commands
         if "policy_commands" in state and state["policy_commands"]:
-            translated_policy = []
-            for cmd in state["policy_commands"]:
-                cmd_lower = cmd.strip().lower()
-                if cmd_lower in self.tw_to_bash:
-                    translated_policy.append(self.tw_to_bash[cmd_lower])
-                else:
-                    translated_policy.append(cmd)
-            state["policy_commands"] = translated_policy
+            state["policy_commands"] = [self._translate_command(cmd, self.tw_to_bash) for cmd in state["policy_commands"]]
 
         # Translate last command
         if "last_command" in state and state["last_command"]:
-            cmd_lower = state["last_command"].strip().lower()
-            if cmd_lower in self.tw_to_bash:
-                state["last_command"] = self.tw_to_bash[cmd_lower]
+            state["last_command"] = self._translate_command(state["last_command"], self.tw_to_bash)
 
         return state
 
     def step(self, command: str) -> Tuple[GameState, float, bool]:
         # Translate incoming command from Bash to TW
-        cmd_stripped = command.strip().lower()
-        tw_command = self.bash_to_tw.get(cmd_stripped, command)
+        tw_command = self._translate_command(command, self.bash_to_tw)
 
         # Call the underlying environment step
         state, reward, done = self._wrapped_env.step(tw_command)
