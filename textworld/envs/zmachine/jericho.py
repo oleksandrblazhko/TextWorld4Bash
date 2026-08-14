@@ -1,6 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT license.
 
+import sys
 
 import os
 import warnings
@@ -97,6 +98,10 @@ class JerichoEnv(textworld.Environment):
 
         self.state = GameState()
         self.state.raw, _ = self._jericho.reset()
+
+        print("DEBUG Jericho raw:", repr(self.state.raw), file=sys.stderr)
+        print("DEBUG Jericho raw type:", type(self.state.raw), file=sys.stderr)
+
         self._gather_infos()
         self._reset = True
         return self.state
@@ -116,6 +121,10 @@ class JerichoEnv(textworld.Environment):
         self.state = GameState()
         self.state.last_command = command.strip()
         res = self._jericho.step(self.state.last_command)
+
+        print("DEBUG Jericho step raw:", repr(self.state.raw), file=sys.stderr)
+        print("DEBUG Jericho step raw type:", type(self.state.raw), file=sys.stderr)
+
         # As of Jericho >= 2.1.0, the reward is returned instead of the score.
         self.state.raw, _, self.state.done, _ = res
         self._gather_infos()

@@ -254,10 +254,6 @@ class Environment:
 
         outfile.write(msg + "\n")
 
-        print("DEBUG feedback:", repr(self.state.feedback), file=sys.stderr)
-        print("DEBUG stdout encoding:", sys.stdout.encoding, file=sys.stderr)
-        print("DEBUG stdout errors:", sys.stdout.errors, file=sys.stderr)
-
         if mode == "text":
             outfile.seek(0)
             return outfile.read()
