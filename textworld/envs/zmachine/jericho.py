@@ -61,13 +61,6 @@ class JerichoEnv(textworld.Environment):
     def _gather_infos(self):
         """ Adds additional information to the internal state. """
         self.state.feedback = self.state.raw
-        try:
-            # Attempt to fix possible double-encoding issue from jericho.
-            # This happens if jericho decodes a UTF-8 stream using latin-1.
-            self.state.feedback = self.state.raw.encode('latin-1').decode('utf-8')
-        except (UnicodeEncodeError, UnicodeDecodeError):
-            pass  # If it fails, fallback to the original raw string.
-
         if not self._jericho.is_fully_supported:
             return  # No more information can be gathered.
 

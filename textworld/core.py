@@ -235,23 +235,22 @@ class Environment:
         return []
 
     def render(self, mode: str = "human") -> Optional[str]:
-        """ Renders the current state of the game. (DEBUG VERSION) """
+        """ Renders the current state of the game.
+
+        Args:
+            mode: The mode to use for rendering.
+        """
         outfile = StringIO() if mode in ['ansi', "text"] else sys.stdout
 
-        # For 'human' mode, bypass textwrap to test for encoding issues
-        if mode == "human":
-            print("--- DEBUG: Bypassing textwrap ---")
-            if self.display_command_during_render and self.state.last_command is not None:
-                print('> ' + self.state.last_command)
-            
-            print(self.state.feedback)
-            print("--- END DEBUG ---")
-            return
-
-        # Original logic for other modes
         msg = self.state.feedback.rstrip() + "\n"
         if self.display_command_during_render and self.state.last_command is not None:
             msg = '> ' + self.state.last_command + "\n" + msg
+
+        # Wrap each paragraph.
+        if mode == "human":
+            paragraphs = msg.split("\n")
+            paragraphs = ["\n".join(textwrap.wrap(paragraph, width=80)) for paragraph in paragraphs]
+            msg = "\n".join(paragraphs)
 
         outfile.write(msg + "\n")
 

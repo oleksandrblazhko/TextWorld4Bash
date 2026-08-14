@@ -63,3 +63,4 @@ Would you like to RESTART, RESTORE a saved game, QUIT or UNDO the last command?
 >                                                                                                                                 -= Attic =-0/2
 --- END DEBUG ---
 Done after 2 steps. Score 1/1.
+
