@@ -47,14 +47,18 @@ To swap TW commands with Bash commands, we introduce a **bi-directional translat
 
 ### Step 1: Load and Build Translation Maps
 Parse the JSON mapping file to create two lookup dictionaries:
-* **Bash-to-TW Dictionary**: Maps Bash inputs to standard TW actions.
-  ```python
-  bash_to_tw = {"ls": "look", "cd north": "go north", ...}
-  ```
-* **TW-to-Bash Dictionary**: Maps TW actions to Bash representations.
-  ```python
-  tw_to_bash = {"look": "ls", "go north": "cd north", ...}
-  ```
+*   **Bash-to-TW Dictionary**: Maps Bash inputs to standard TW actions.
+    ```python
+    bash_to_tw = {"ls": "look", "cd north": "go north", "mv ~": "take", ...}
+    ```
+*   **TW-to-Bash Dictionary**: Maps TW actions to Bash representations.
+    ```python
+    tw_to_bash = {"look": "ls", "go north": "cd north", "take": "mv ~", ...}
+    ```
+
+### Integrating New Mappings
+
+Adding a new mapping like `{"tw": "take", "bash": "mv ~"}` is seamless. The `BashCommandMappingWrapper` automatically loads new entries from the `tw_bash_command_mapping.json` file during its initialization. These entries then populate the `self.bash_to_tw` and `self.tw_to_bash` dictionaries, enabling bidirectional translation for the new command pair within the existing algorithm.
 
 ### Step 2: Translate Input Commands (Bash -> TW)
 Before sending the command to the underlying environment:
@@ -163,4 +167,16 @@ The proposed algorithm has been fully implemented and integrated into the reposi
   * Translation of terminal inputs (e.g., `ls` -> `look`).
   * Translation of outputs (`admissible_commands`, `policy_commands`, and `last_command`).
   * Seamless pass-through of unmapped commands.
+
+# 5 Особливості запуску
+1. Згенеруйте тестову гру:
+    export PYTHONPATH="."
+    python scripts/tw-make custom --world-size 2 --nb-objects 3 --quest-length 2 --output test_game.z8
+  (Примітка: Ім'я файлу повинно закінчуватися на .z8, щоб компілятор Inform7 зміг його успішно зібрати).
+2. Запустіть гру з підтримкою Bash-команд (за замовчуванням):
+    python scripts/tw-play test_game.z8
+  Переконайтеся, що автодоповнення пропонує Bash-команди (наприклад, ls, cd north), а введення ls та cd north викликає виконання look та go north відповідно.
+3. Запустіть гру зі стандартними командами TextWorld:
+    python scripts/tw-play test_game.z8 --no-bash
+  Переконайтеся, що гра та автодоповнення повернулися до стандартних команд TextWorld (look, go north тощо).
 
