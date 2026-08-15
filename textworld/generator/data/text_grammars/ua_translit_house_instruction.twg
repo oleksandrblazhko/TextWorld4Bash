@@ -16,14 +16,14 @@ on_var:#on_types#;#on_types# #in_the_(r)#
 in_the_(r):u (r);vseredyni (r);v (r)
 make_syn_u:Perekonaisia;Perevir;Zroby tak, shchob;Perekonaisia v tsomu;Perevir i perekonaisia;Perekonaisia neodminno
 make_syn_v:perekonaisia;perevir;zroby tak, shchob;perekonaisia v tsomu;perevir i perekonaisia;perekonaisia neodminno
-by_the_syn:za dopomohoiu
+by_the_syn:za dopomohoyu
 init_syn:u nomu;vseredyni;rozmishchenyi useredyni
 into_syn:u;vseredynu
 
 #actions
 ##actions should start with a verb (ie:ensure, make sure, etc (these could probably just be a tag))
-look:ozyrnysia v (r).
-examine:ohlian (o|k|f|d|c|s|t).
+look:ozyrsia v (r).
+examine:ohlyan (o|k|f|d|c|s|t).
 inventory:perevir svii inventar.
 take:#take_synonym_1# #obj_types# u (r).;#take_synonym_1# #obj_types# z (r).;#take_synonym_1# #obj_types#, shcho znakhodytsia u (r).
 take_synonym_1:vizmy;otrymai;zabery;pidbery
@@ -45,9 +45,9 @@ drop:#drop_syn_v# #obj_types# na pidlohu v (r).
 drop_syn_u:Poklady
 drop_syn_v:poklady;kyn;zalysh;kyn;rozmisty
 eat:#eat_syn_1# #eat_var#.
-eat_syn_u:Zyizh
-eat_syn_1:zyizh
-eat_syn_v:zyidenyi
+eat_syn_u:Zizhd
+eat_syn_1:zizhd
+eat_syn_v:zidenyi
 open:vidkryi #lock_type_var#.;perekonaisia, shcho #lock_type_var# vidkrytyi.;#make_syn_v#, shcho #lock_type_var# #open_syn#.
 open_syn:vidkrytyi;vidkryto;navstizh;prochynenyi
 close:zakryi #lock_type_var#.;#make_syn_v#, shcho #lock_type_var# #closed_syn#.
@@ -55,7 +55,7 @@ closed_syn:zakrytyi;zachynenyi
 eat_var:#eat_types#;#eat_types#
 on_var:#on_types#;#on_types# #in_the_(r)#
 unlock:#unlock_key#;#unlock_no_key#
-unlock_key:vidkryi #lock_type_var# #by_the_syn# (k).;perevir, shcho #lock_type_var# rozblokovanyi #by_the_syn# (k).;#make_syn_v#, shcho #lock_type_var# rozblokovanyi #by_the_syn# (k).;vstav (k) u zamok #lock_type_var#, shchob rozblokuvaty yoho.
+unlock_key:vidkryi zamknenyi #lock_type_var# #by_the_syn# (k).;perevir, shcho #lock_type_var# rozblokovanyi #by_the_syn# (k).;#make_syn_v#, shcho #lock_type_var# rozblokovanyi #by_the_syn# (k).;vstav (k) u zamok #lock_type_var#, shchob rozblokuvaty yoho.
 unlock_no_key:rozblokui #lock_type_var#.;#make_syn_v#, shcho #lock_type_var# rozblokovanyi.
 lock:#lock_key#;#lock_no_key#
 lock_key:zamkny #lock_type_var# #by_the_syn# (k).;#make_syn_v#, shcho #lock_type_var# zamknenyi #by_the_syn# (k).;#insert_syn_u# (k) u #lock_type_var#, shchob zamknuty yoho.
@@ -68,8 +68,8 @@ go/north/d:#go_syn_l# cherez pivnichnyi (d).;#tryto# #go_syn_l# cherez pivnichny
 go/south/d:#go_syn_l# cherez pivdennyi (d).;#tryto# #go_syn_l# cherez pivdennyi (d).
 go/east/d:#go_syn_l# cherez skhidnyi (d).;#tryto# #go_syn_l# cherez skhidnyi (d).
 go/west/d:#go_syn_l# cherez zakhidnyi (d).;#tryto# #go_syn_l# cherez zakhidnyi (d).
-go_syn_u:Ydy;Rushai;Vyrushai;Podorozhui;Rukhaisia;Ydy do;Zdiisny podorozh
-go_syn_l:ydy;rushai;vyrushai;podorozhui;rukhaisia;ydy do;zdiisny podorozh
+go_syn_u:Idy;Rushai;Vyrushai;Podorozhui;Rukhaysia;Idy do;Zdiisny podorozh
+go_syn_l:idy;rushai;vyrushai;podorozhui;rukhaysia;idy do;zdiisny podorozh
 go_syn_v:vidvidav;podorozhuvav;rukhavsia;vyrushyv;pishov
 tryto:sprobui;doklady zusyl, shchob;zroby sprobu;sprobui vykonaty
 wait:Zachekai.
@@ -78,28 +78,28 @@ wait:Zachekai.
 #---------------
 #Compound Command Description Functions
 #----------------
-ig_unlock_open:vidkryi zamknenyi #lock_types# za dopomohoiu (k).;rozblokui i vidkryi #lock_types#.;rozblokui i vidkryi #lock_types# za dopomohoiu (k).;vidkryi #lock_types# za dopomohoiu (k).
-ig_unlock_open_take:vidkryi zamknenyi #lock_types# za dopomohoiu (k) i vizmy #obj_types_no_key#.;rozblokui #lock_types# i vizmy #obj_types_no_key#.;rozblokui #lock_types# za dopomohoiu (k) i vizmy #obj_types_no_key#.;vizmy #obj_types_no_key# iz zamknenoho #lock_types#.
+ig_unlock_open:vidkryi zamknenyi #lock_types# za dopomohoyu (k).;rozblokui i vidkryi #lock_types#.;rozblokui i vidkryi #lock_types# za dopomohoyu (k).;vidkryi #lock_types# za dopomohoyu (k).
+ig_unlock_open_take:vidkryi zamknenyi #lock_types# za dopomohoyu (k) i vizmy #obj_types_no_key#.;rozblokui #lock_types# i vizmy #obj_types_no_key#.;rozblokui #lock_types# za dopomohoyu (k) i vizmy #obj_types_no_key#.;vizmy #obj_types_no_key# iz zamknenoho #lock_types#.
 ig_open_take:vizmy #obj_types# z (c).;vidkryi (c) i vizmy #obj_types#.;vizmy #obj_types# iz zakrytoho (c).
-ig_take/c_unlock:vizmy (k) i vykorystai yoho, shchob rozblokuvaty #lock_types#.;rozblokui #lock_types# za dopomohoiu (k).
-ig_take/s_unlock:vizmy (k) i vykorystai yoho, shchob rozblokuvaty #lock_types#.;rozblokui #lock_types# za dopomohoiu (k).
-ig_take_unlock:#pick-up_synonym_1# (k) i vykorystai yoho, shchob rozblokuvaty #lock_types#.;rozblokui #lock_types# za dopomohoiu (k).
+ig_take/c_unlock:vizmy (k) i vykorystai yoho, shchob rozblokuvaty #lock_types#.;rozblokui #lock_types# za dopomohoyu (k).
+ig_take/s_unlock:vizmy (k) i vykorystai yoho, shchob rozblokuvaty #lock_types#.;rozblokui #lock_types# za dopomohoyu (k).
+ig_take_unlock:#pick-up_synonym_1# (k) i vykorystai yoho, shchob rozblokuvaty #lock_types#.;rozblokui #lock_types# za dopomohoyu (k).
 ig_open_insert:vidkryi (c) i poklady #obj_types# u noho.;poklady #obj_types# u zakrytyi (c).
 ig_insert_close:poklady #obj_types# u (c) i zakryi yoho.;zakryi (c) pislia toho, yak pokladesh u noho #obj_types#.
-ig_close_lock:zakryi #lock_types# i zamkny yoho.;zakryi #lock_types# i zamkny yoho za dopomohoiu (k).
+ig_close_lock:zakryi #lock_types# i zamkny yoho.;zakryi #lock_types# i zamkny yoho za dopomohoyu (k).
 
 #Flavour Text
 #----------------
 quest:#prologue# (list_of_actions) #epilogue#
 quest_one_action:#prologue_one_action# (action)
 prologue:#welcome#! Os tvoie zavdannia na sohodni. #newsentence#;#welcome#! Os yak hraty! #newsentence#;#welcome#! #newsentence#;Hei, diakuiu, shcho zavitav do TextWorld! Ye deshcho, shcho ya khochu, shchob ty zrobyv.
-prologue_one_action:#welcome#! Tvoie zavdannia na sohodni —;#welcome#!;Tvoia meta —;Hei, diakuiu, shcho zavitav do TextWorld! Bud laska,
-newsentence:Persh za vse,;Nasampered,;Pershyi krok —;Spochatku,;Tvoia persha meta —;Pershe, shcho ya khochu, shchob ty zrobyv, —;Persh za vse, yakshcho tse ne nadto skladno, ya khochu, shchob ty;Nasampered ty mozhesh;Spochatku bulo b #begood#, yakby ty
-action_separator: Potim, ; Dali, ; Pislia tsoho, ; Yakshcho tobi vdastsia #do# tse, ; Koly ty #do# tse, ; Zrobyvshy tse, ; Pislia tsoho, ; Koly z tsym bude pokincheno, ; Koly tse bude vykonano, ; Pislia zavershennia tsoho, ; Harazd, a potim, ; A potim, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
-epilogue:Koly z usim tsym bude pokincheno, mozhesh zupynytysia!;I koly ty tse zrobysh, ty peremozhesh!;Yakshcho ty tse zrobysh, ty stanesh peremozhtsem!;Os i vse!;Zrozumiv? Chudovo!;Harazd, diakuiu!
-do:vykonaty;zrobyty;vykonaty uspishno;distatysia do vykonannia;zavershyty;dosiahty uspikhu;vporatysia
-welcome:Laskavo prosymo do TextWorld;Ty zaraz hraiesh u #exciting# #game# TextWorld;Laskavo prosymo do cherhovoi #exciting# #game# TextWorld;Chas doslidzhuvaty dyvovyzhnyi svit TextWorld;Pryhotuisia pidbyraty predmety y klasty yikh u rizni mistsia, adzhe ty shchoino potrapyv do TextWorld;Spodivaiusia, ty hotovyi zakhodyty do kimnat i vzaiemodiiaty z predmetamy, adzhe ty shchoino potrapyv do TextWorld;Khto maie virtualnu mashynu i zaraz zbyraietsia zihraty v #exciting# raund TextWorld? Ty!
-exciting:zakhoplyvyi;dynamichnyi;dyvovyzhnyi;tsikavyi
+prologue_one_action:#welcome#! Tvoie zavdannia na sohodni —;#welcome#!;Tvoja meta —;Hei, diakuiu, shcho zavitav do TextWorld! Bud laska,
+newsentence:Persh za vse,;Nasampered,;Pershyi krok —;Spochatku,;Tvoja persha meta —;Pershe, shcho ya khochu, shchob ty zrobyv, —;Persh za vse, yakshcho tse ne nadto skladno, ya khochu, shchob ty;Nasampered ty mozhesh;Spochatku bulo b #begood#, yakby ty
+action_separator: Potim, ; Dali, ; Pislia tsoho, ; Yakshcho tobi vdadastsia #do# tse, ; Koly ty #do# tse, ; Zrobyvshy tse, ; Pislia tsoho, ; Koly z tsym bude pokincheno, ; Koly tse bude vykonano, ; Pislia zavershennia tsoho, ; Harazd, a potim, ; A potim, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+epilogue:Koly z usim tsym bude pokincheno, mozhesh zupynytysia!;I koly ty tse zrobish, ty peremozhesh!;Yakshcho ty tse zrobish, ty stanesh peremozhtsem!;Os i vse!;Zrozumiv? Chudovo!;Harazd, diakuiu!
+do:vykonaty;zrobyty;vykonaty uspishno;distatysia do vykonannia;zavershyty;dosiagty uspikhu;vporatysia
+welcome:Laskavo prosymo do TextWorld;Ty zaraz hraiiesh u #exciting# #game# TextWorld;Laskavo prosymo do cherhovoho #exciting# #game# TextWorld;Chas doslidzhyvaty dyvovyznyi svit TextWorld;Pryhotuisia pidbyraty predmety y klasty yikh u rizni mistsia, adzhe ty shchoino potrapyv do TextWorld;Spodivaiusia, ty hotovyi zakhodyty do kimnat i vzaiemodiiaty z predmetamy, adzhe ty shchoino potrapyv do TextWorld;Khto maie virtualnu mashynu i zaraz zbyraietsia zihraaty v #exciting# raund TextWorld? Ty!
+exciting:zakhoplyvyi;dynamichnyi;dyvovyznyi;tsikavyi
 game:hra;raund;seans;epizod
 
 ##Action separators
