@@ -1,0 +1,155 @@
+#-------------------------
+#Instructions Grammar
+#-------------------------
+obj_types:(o|k|f)
+obj_types_no_key:(o|f)
+on_types:(c|s)
+lock_types:(c|d)
+eat_types:(f)
+close_open_types:(d|c)
+lock_type_var:#lock_types#;#lock_types# #in_the_(r)#
+(s)_var:(s);(s) #in_the_(r)#
+(c)_var:(c);(c) #in_the_(r)#
+on_var:#on_types#;#on_types# #in_the_(r)#
+in_the_(r):u (r);vseredyni (r);v (r)
+make_syn_u:Perekonaisia;Perevir;Zroby tak, shchob;Perekonaisia v tsomu;Perevir i perekonaisia;Perekonaisia neodminno
+make_syn_v:perekonaisia;perevir;zroby tak, shchob;perekonaisia v tsomu;perevir i perekonaisia;perekonaisia neodminno
+by_the_syn:za dopomohoiu
+init_syn:u nomu;vseredyni;rozmishchenyi useredyni
+into_syn:u;vseredynu
+
+#actions
+##actions should start with a verb (ie:ensure, make sure, etc (these could probably just be a tag))
+look:ozyrnysia v (r).
+examine:ohlian (o|k|f|d|c|s|t).
+inventory:perevir svii inventar.
+take:#take_synonym_1# #obj_types# u (r).;#take_synonym_1# #obj_types# z (r).;#take_synonym_1# #obj_types#, shcho znakhodytsia u (r).
+take_synonym_1:vizmy;otrymai;zabery;pidbery
+take/s:#take_synonym_1# #obj_types# z #on_var#.
+take/c:#take_synonym_1# #obj_types# z #on_var#.
+take:#pick-up_synonym_1# #obj_types# z pidlohy (r).
+pick-up_synonym_1:pidbery;otrymai;zabery;pidnimy;vizmy
+pick-up_synonym_v:Pidbery;Otrymai;Zabery;Pidnimy;Vizmy
+insert:#insert_syn_1# #obj_types# #into_syn# #(c)_var#.;ty mozhesh #insert_syn_1# #obj_types# #into_syn# #(c)_var#.
+insert_syn_u:Vstav;Poklady;Pomisty;Rozmisty
+insert_syn_1:vstav;poklady;pomisty;rozmisty
+insert_syn_v:vstavlenyi;pokladenyi;pomishchenyi;rozmishchenyi
+begood:dobre;chudovo;fantastychno;chudova ideia
+put:#put_syn_v# #obj_types# na #(s)_var#.
+put_syn_u:Poklady;Rozmisty;Postav;Pomisty
+put_syn_v:poklady;rozmisty;postav;pomisty
+on_it_syn:na nomu;na noho
+drop:#drop_syn_v# #obj_types# na pidlohu (r).
+drop_syn_u:Poklady
+drop_syn_v:poklady;kyn;zalysh;kyn;rozmisty
+eat:#eat_syn_1# #eat_var#.
+eat_syn_u:Z'yizh
+eat_syn_1:z'yizh
+eat_syn_v:z'yidenyi
+open:vidkryi #lock_type_var#.;perekonaisia, shcho #lock_type_var# vidkrytyi.;#make_syn_v#, shcho #lock_type_var# #open_syn#.
+open_syn:vidkrytyi;vidkryto;navstizh;prochynenyi
+close:zakryi #lock_type_var#.;#make_syn_v#, shcho #lock_type_var# #closed_syn#.
+closed_syn:zakrytyi;zachynenyi
+eat_var:#eat_types#;#eat_types#
+on_var:#on_types#;#on_types# #in_the_(r)#
+unlock:#unlock_key#;#unlock_no_key#
+unlock_key:vidkryi #lock_type_var# #by_the_syn# (k).;perevir, shcho #lock_type_var# rozblokovanyi #by_the_syn# (k).;#make_syn_v#, shcho #lock_type_var# rozblokovanyi #by_the_syn# (k).;vstav (k) u zamok #lock_type_var#, shchob rozblokuvaty yoho.
+unlock_no_key:rozblokui #lock_type_var#.;#make_syn_v#, shcho #lock_type_var# rozblokovanyi.
+lock:#lock_key#;#lock_no_key#
+lock_key:zamkny #lock_type_var# #by_the_syn# (k).;#make_syn_v#, shcho #lock_type_var# zamknenyi #by_the_syn# (k).;#insert_syn_u# (k) u #lock_type_var#, shchob zamknuty yoho.
+lock_no_key:zamkny #lock_type_var#.;#make_syn_v# #lock_type_var# zamknenyi.;#make_syn_v#, shcho #lock_type_var# zamknenyi.
+go/north:#go_syn_l# na pivnich.;#tryto# #go_syn_l# na pivnich.
+go/south:#go_syn_l# na pivden.;#tryto# #go_syn_l# na pivden.
+go/east:#go_syn_l# na skhid.;#tryto# #go_syn_l# na skhid.
+go/west:#go_syn_l# na zakhid.;#tryto# #go_syn_l# na zakhid.
+go/north/d:#go_syn_l# cherez pivnichnyi (d).;#tryto# #go_syn_l# cherez pivnichnyi (d).
+go/south/d:#go_syn_l# cherez pivdennyi (d).;#tryto# #go_syn_l# cherez pivdennyi (d).
+go/east/d:#go_syn_l# cherez skhidnyi (d).;#tryto# #go_syn_l# cherez skhidnyi (d).
+go/west/d:#go_syn_l# cherez zakhidnyi (d).;#tryto# #go_syn_l# cherez zakhidnyi (d).
+go_syn_u:Ydy;Rushai;Vyrushai;Podorozhui;Rukhaisia;Ydy do;Zdiisny podorozh
+go_syn_l:ydy;rushai;vyrushai;podorozhui;rukhaisia;ydy do;zdiisny podorozh
+go_syn_v:vidvidav;podorozhuvav;rukhavsia;vyrushyv;pishov
+tryto:sprobui;doklady zusyl, shchob;zroby sprobu;sprobui vykonaty
+wait:Zachekai.
+
+#action expandables
+#---------------
+#Compound Command Description Functions
+#----------------
+ig_unlock_open:vidkryi zamknenyi #lock_types# za dopomohoiu (k).;rozblokui i vidkryi #lock_types#.;rozblokui i vidkryi #lock_types# za dopomohoiu (k).;vidkryi #lock_types# za dopomohoiu (k).
+ig_unlock_open_take:vidkryi zamknenyi #lock_types# za dopomohoiu (k) i vizmy #obj_types_no_key#.;rozblokui #lock_types# i vizmy #obj_types_no_key#.;rozblokui #lock_types# za dopomohoiu (k) i vizmy #obj_types_no_key#.;vizmy #obj_types_no_key# iz zamknenoho #lock_types#.
+ig_open_take:vizmy #obj_types# z (c).;vidkryi (c) i vizmy #obj_types#.;vizmy #obj_types# iz zakrytoho (c).
+ig_take/c_unlock:vizmy (k) i vykorystai yoho, shchob rozblokuvaty #lock_types#.;rozblokui #lock_types# za dopomohoiu (k).
+ig_take/s_unlock:vizmy (k) i vykorystai yoho, shchob rozblokuvaty #lock_types#.;rozblokui #lock_types# za dopomohoiu (k).
+ig_take_unlock:#pick-up_synonym_1# (k) i vykorystai yoho, shchob rozblokuvaty #lock_types#.;rozblokui #lock_types# za dopomohoiu (k).
+ig_open_insert:vidkryi (c) i poklady #obj_types# u noho.;poklady #obj_types# u zakrytyi (c).
+ig_insert_close:poklady #obj_types# u (c) i zakryi yoho.;zakryi (c) pislia toho, yak pokladesh u noho #obj_types#.
+ig_close_lock:zakryi #lock_types# i zamkny yoho.;zakryi #lock_types# i zamkny yoho za dopomohoiu (k).
+
+#Flavour Text
+#----------------
+quest:#prologue# (list_of_actions) #epilogue#
+quest_one_action:#prologue_one_action# (action)
+prologue:#welcome#! Os tvoie zavdannia na sohodni. #newsentence#;#welcome#! Os yak hraty! #newsentence#;#welcome#! #newsentence#;Hei, diakuiu, shcho zavitav do TextWorld! Ye deshcho, shcho ya khochu, shchob ty zrobyv.
+prologue_one_action:#welcome#! Tvoie zavdannia na sohodni —;#welcome#!;Tvoia meta —;Hei, diakuiu, shcho zavitav do TextWorld! Bud laska,
+newsentence:Persh za vse,;Nasampered,;Pershyi krok —;Spochatku,;Tvoia persha meta —;Pershe, shcho ya khochu, shchob ty zrobyv, —;Persh za vse, yakshcho tse ne nadto skladno, ya khochu, shchob ty;Nasampered ty mozhesh;Spochatku bulo b #begood#, yakby ty
+action_separator: Potim, ; Dali, ; Pislia tsoho, ; Yakshcho tobi vdastsia #do# tse, ; Koly ty #do# tse, ; Zrobyvshy tse, ; Pislia tsoho, ; Koly z tsym bude pokincheno, ; Koly tse bude vykonano, ; Pislia zavershennia tsoho, ; Harazd, a potim, ; A potim, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+epilogue:Koly z usim tsym bude pokincheno, mozhesh zupynytysia!;I koly ty tse zrobysh, ty peremozhesh!;Yakshcho ty tse zrobysh, ty stanesh peremozhtsem!;Os i vse!;Zrozumiv? Chudovo!;Harazd, diakuiu!
+do:vykonaty;zrobyty;vykonaty uspishno;distatysia do vykonannia;zavershyty;dosiahty uspikhu;vporatysia
+welcome:Laskavo prosymo do TextWorld;Ty zaraz hraiesh u #exciting# #game# TextWorld;Laskavo prosymo do cherhovoi #exciting# #game# TextWorld;Chas doslidzhuvaty dyvovyzhnyi svit TextWorld;Pryhotuisia pidbyraty predmety y klasty yikh u rizni mistsia, adzhe ty shchoino potrapyv do TextWorld;Spodivaiusia, ty hotovyi zakhodyty do kimnat i vzaiemodiiaty z predmetamy, adzhe ty shchoino potrapyv do TextWorld;Khto maie virtualnu mashynu i zaraz zbyraietsia zihraty v #exciting# raund TextWorld? Ty!
+exciting:zakhoplyvyi;dynamichnyi;dyvovyzhnyi;tsikavyi
+game:hru;raund;seans;epizod
+
+##Action separators
+##Need at least 5 for each action type
+action_separator_take: #afterhave# #havetaken# #obj_types#, ; #after# #taking# #obj_types#, ; Z #obj_types#, ; Yakshcho ty zmozhesh distaty #obj_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_take/s: #afterhave# #havetaken# #obj_types#, ; #after# #taking# #obj_types#, ; Z #obj_types#, ; Yakshcho ty zmozhesh distaty #obj_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_take/c: #afterhave# #havetaken# #obj_types#, ; #after# #taking# #obj_types#, ; Z #obj_types#, ; Yakshcho ty zmozhesh distaty #obj_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_eat: #afterhave# #ate# #eat_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_insert: #afterhave# #inserted# #obj_types# u (c), ; #after# #inserting# #obj_types# u (c), ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_put: #afterhave# #put_v# #obj_types# na (s), ; #after# #putting# #obj_types# na (s), ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_open: #afterhave# #opened# #close_open_types#, ; #after# #opening# #close_open_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_unlock: #afterhave# #unlocked# #lock_types#, ; #after# #unlocking# #lock_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_lock: #afterhave# #locked# #lock_types#, ; #after# #locking# #lock_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go: #afterhave# #gone# (dir), ; #after# #getting# (dir), ; koly ty (dir), ; koly ty v (dir), ; Yakshcho tobi vdastsia pity (dir), ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go/south: #afterhave# pishov na pivden, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go/north: #afterhave# pishov na pivnich, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go/east: #afterhave# pishov na skhid, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go/west: #afterhave# pishov na zakhid, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_close: #afterhave# #closed# #close_open_types#, ; #after# #closing# #close_open_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_separator_drop: #afterhave# #dropped# #obj_types#, ; #after# #dropping# #obj_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+
+#Separator Symbols
+afterhave:Pislia toho, yak ty;Vykonavshy;Koly ty;Yakshcho ty
+havetaken:vziav;otrymav;pidibrav
+havepicked-up:vziav;otrymav;pidibrav
+after:Pislia
+taking:beresh;otrymuiesh;pidbyraiesh;zabyraiesh
+picking-up:beresh;otrymuiesh;pidbyraiesh;zabyraiesh
+ate:z'yiv;spozhyv
+inserted:vstavyv;poklav
+inserting:vstavliaiesh;kladesh
+put_v:poklav;rozmistyv;postavyv;poklav
+putting:kladesh;rozmishchuiesh;stavysh;vstanovliuiesh
+opening:vidkryvaiesh;vidchyniaiesh
+opened:vidkryv;vidchynyv
+unlocked:rozblokuvav
+unlocking:rozblokovuiesh
+locked:zamknuv
+locking:zamykaiesh
+gone:pishov;pereishov
+getting:ydesh;peremishchaieshsia
+closed:zakryv;zachynyv
+closing:zakryvaiesh;zachyniaiesh
+dropped:poklav;kynuv;zalyshyv;vidkynuv
+dropping:kladesh;zalyshaiesh
+emptyinstruction1: A potim, ;
+emptyinstruction2: Potim, ;
+emptyinstruction3: Pislia tsoho, ;
+emptyinstruction4: A potim, ;
+emptyinstruction5: Pislia tsoho, ;
+emptyinstruction6: Potim, ;
+emptyinstruction7: A potim, ;
+emptyinstruction8: Pislia tsoho, ;
+emptyinstruction9: A potim, ;
+emptyinstruction10: Potim, ;
