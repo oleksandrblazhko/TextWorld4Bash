@@ -450,27 +450,25 @@ class Inform7Game:
         source += textwrap.dedent(r"""
         Rule for printing the banner text:
             say "[fixed letter spacing]";
-            say "                    ________  ________  __    __  ________        [line break]";
-            say "                   |        \|        \|  \  |  \|        \       [line break]";
-            say "                    \$$$$$$$$| $$$$$$$$| $$  | $$ \$$$$$$$$       [line break]";
-            say "                      | $$   | $$__     \$$\/  $$   | $$          [line break]";
-            say "                      | $$   | $$  \     >$$  $$    | $$          [line break]";
-            say "                      | $$   | $$$$$    /  $$$$\    | $$          [line break]";
-            say "                      | $$   | $$_____ |  $$ \$$\   | $$          [line break]";
-            say "                      | $$   | $$     \| $$  | $$   | $$          [line break]";
-            say "                       \$$    \$$$$$$$$ \$$   \$$    \$$          [line break]";
-            say "              __       __   ______   _______   __        _______  [line break]";
-            say "             |  \  _  |  \ /      \ |       \ |  \      |       \ [line break]";
-            say "             | $$ / \ | $$|  $$$$$$\| $$$$$$$\| $$      | $$$$$$$\[line break]";
-            say "             | $$/  $\| $$| $$  | $$| $$__| $$| $$      | $$  | $$[line break]";
-            say "             | $$  $$$\ $$| $$  | $$| $$    $$| $$      | $$  | $$[line break]";
-            say "             | $$ $$\$$\$$| $$  | $$| $$$$$$$\| $$      | $$  | $$[line break]";
-            say "             | $$$$  \$$$$| $$__/ $$| $$  | $$| $$_____ | $$__/ $$[line break]";
-            say "             | $$$    \$$$ \$$    $$| $$  | $$| $$     \| $$    $$[line break]";
-            say "              \$$      \$$  \$$$$$$  \$$   \$$ \$$$$$$$$ \$$$$$$$ [line break]";
+            say "                       |        \|        \|  \  |  \|        \       [line break]";
+            say "                        \$$$$$$$$| $$$$$$$$| $$  | $$ \$$$$$$$$       [line break]";
+            say "                          | $$   | $$__     \$$\/  $$   | $$          [line break]";
+            say "         ______ __     __ | $$   | $$  \     >$$  $$    | $$          [line break]";
+            say "        / ____ / /    / / | $$   | $$$$$    /  $$$$\    | $$          [line break]";
+            say "       / /    / /    / /  | $$   | $$_____ |  $$ \$$\   | $$          [line break]";
+            say "      / /___ / /___ / /   | $$   | $$     \| $$  | $$   | $$          [line break]";
+            say "      \____//_____//_/     \$$    \$$$$$$$$ \$$   \$$    \$$          [line break]";
+            say "        __       __   ______   _______   __        _______       [line break]";
+            say "       |  \  _  |  \ /      \ |       \ |  \      |       \      [line break]";
+            say "       | $$ / \ | $$|  $$$$$$\| $$$$$$$\| $$      | $$$$$$$\     [line break]";
+            say "       | $$/  $\| $$| $$  | $$| $$__| $$| $$      | $$  | $$     [line break]";
+            say "       | $$  $$$\ $$| $$  | $$| $$    $$| $$      | $$  | $$     [line break]";
+            say "       | $$ $$\$$\$$| $$  | $$| $$$$$$$\| $$      | $$  | $$     [line break]";
+            say "       | $$$$  \$$$$| $$__/ $$| $$  | $$| $$_____ | $$__/ $$     [line break]";
+            say "       | $$$    \$$$ \$$    $$| $$  | $$| $$     \| $$    $$     [line break]";
+            say "        \$$      \$$  \$$$$$$  \$$   \$$ \$$$$$$$$ \$$$$$$$      [line break]";
             say "[variable letter spacing][line break]";
             say "[objective][line break]".
-
         """).lstrip()
 
         # Simply display *** The End *** when game ends.
