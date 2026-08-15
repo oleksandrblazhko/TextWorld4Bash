@@ -175,7 +175,7 @@ c1:#it_is# (name-adj), і #contains# #i7_list_in#.
 c2:#it_is# (name-adj). Також у ньому #listwithis#.
 c3:#c1#
 c4:#c9#
-c5:тут [є|є] [список предметів у (obj)] у цій безглуздій (name-adj) штуці.
+c5:тут є [список предметів у (obj)] у цій безглуздій (name-adj) штуці.
 c6:#c9#
 c7:#c9#
 c8:Подивімося, що всередині — #i7_list_in#.
@@ -325,7 +325,7 @@ easy0b:Тут є (^), (name-indefinite) відкритих дверей;Погл
 
 # 1 #
 
-easy1:Там [є #unblocked# вихід|є #unblocked# виходи] до (dir);Там [є #unblocked# вихід|є [вихід|виходи] до (dir). І не хвилюйтеся, [він є|вони є] #unblocked#
+easy1:Там [є #unblocked# вихід|є #unblocked# виходи] до (dir);Там [є #unblocked# вихід|є #unblocked# виходи] до (dir). І не хвилюйтеся, [він є|вони є] #unblocked#
 
 medium1:[Вихід|Виходи] #unblocked# [веде|ведуть] до (dir);Звідси можна піти (dir), не маючи справи з жодними дверима
 
