@@ -1,3 +1,5 @@
+# Ukrainian translation of house_instruction.twg.
+# Inform 7/TextWorld control references are preserved.
 #-------------------------
 #Instructions Grammar
 #-------------------------
@@ -39,13 +41,13 @@ put:#put_syn_v# #obj_types# na #(s)_var#.
 put_syn_u:Poklady;Rozmisty;Postav;Pomisty
 put_syn_v:poklady;rozmisty;postav;pomisty
 on_it_syn:na nomu;na noho
-drop:#drop_syn_v# #obj_types# na pidlohu (r).
+drop:#drop_syn_v# #obj_types# na pidlohu v (r).
 drop_syn_u:Poklady
 drop_syn_v:poklady;kyn;zalysh;kyn;rozmisty
 eat:#eat_syn_1# #eat_var#.
-eat_syn_u:Z'yizh
-eat_syn_1:z'yizh
-eat_syn_v:z'yidenyi
+eat_syn_u:Zyizh
+eat_syn_1:zyizh
+eat_syn_v:zyidenyi
 open:vidkryi #lock_type_var#.;perekonaisia, shcho #lock_type_var# vidkrytyi.;#make_syn_v#, shcho #lock_type_var# #open_syn#.
 open_syn:vidkrytyi;vidkryto;navstizh;prochynenyi
 close:zakryi #lock_type_var#.;#make_syn_v#, shcho #lock_type_var# #closed_syn#.
@@ -98,7 +100,7 @@ epilogue:Koly z usim tsym bude pokincheno, mozhesh zupynytysia!;I koly ty tse zr
 do:vykonaty;zrobyty;vykonaty uspishno;distatysia do vykonannia;zavershyty;dosiahty uspikhu;vporatysia
 welcome:Laskavo prosymo do TextWorld;Ty zaraz hraiesh u #exciting# #game# TextWorld;Laskavo prosymo do cherhovoi #exciting# #game# TextWorld;Chas doslidzhuvaty dyvovyzhnyi svit TextWorld;Pryhotuisia pidbyraty predmety y klasty yikh u rizni mistsia, adzhe ty shchoino potrapyv do TextWorld;Spodivaiusia, ty hotovyi zakhodyty do kimnat i vzaiemodiiaty z predmetamy, adzhe ty shchoino potrapyv do TextWorld;Khto maie virtualnu mashynu i zaraz zbyraietsia zihraty v #exciting# raund TextWorld? Ty!
 exciting:zakhoplyvyi;dynamichnyi;dyvovyzhnyi;tsikavyi
-game:hru;raund;seans;epizod
+game:hra;raund;seans;epizod
 
 ##Action separators
 ##Need at least 5 for each action type
@@ -111,11 +113,11 @@ action_separator_put: #afterhave# #put_v# #obj_types# na (s), ; #after# #putting
 action_separator_open: #afterhave# #opened# #close_open_types#, ; #after# #opening# #close_open_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
 action_separator_unlock: #afterhave# #unlocked# #lock_types#, ; #after# #unlocking# #lock_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
 action_separator_lock: #afterhave# #locked# #lock_types#, ; #after# #locking# #lock_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
-action_separator_go: #afterhave# #gone# (dir), ; #after# #getting# (dir), ; koly ty (dir), ; koly ty v (dir), ; Yakshcho tobi vdastsia pity (dir), ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
-action_separator_go/south: #afterhave# pishov na pivden, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
-action_separator_go/north: #afterhave# pishov na pivnich, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
-action_separator_go/east: #afterhave# pishov na skhid, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
-action_separator_go/west: #afterhave# pishov na zakhid, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go: #afterhave# #gone# (dir), ; #after# #getting# (dir), ; koly ty (dir), ; koly ty v (dir), ; Yakshcho tobi vdastsia pity (dir), ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go/south: #afterhave# pishov na pivden, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go/north: #afterhave# pishov na pivnich, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go/east: #afterhave# pishov na skhid, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
+action_seperator_go/west: #afterhave# pishov na zakhid, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
 action_separator_close: #afterhave# #closed# #close_open_types#, ; #after# #closing# #close_open_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
 action_separator_drop: #afterhave# #dropped# #obj_types#, ; #after# #dropping# #obj_types#, ;#emptyinstruction1#;#emptyinstruction2#;#emptyinstruction3#;#emptyinstruction4#;#emptyinstruction5#;#emptyinstruction6#;#emptyinstruction7#;#emptyinstruction8#;#emptyinstruction9#;#emptyinstruction10#
 
@@ -126,7 +128,7 @@ havepicked-up:vziav;otrymav;pidibrav
 after:Pislia
 taking:beresh;otrymuiesh;pidbyraiesh;zabyraiesh
 picking-up:beresh;otrymuiesh;pidbyraiesh;zabyraiesh
-ate:z'yiv;spozhyv
+ate:zyiv;spozhyv
 inserted:vstavyv;poklav
 inserting:vstavliaiesh;kladesh
 put_v:poklav;rozmistyv;postavyv;poklav
@@ -139,7 +141,7 @@ locked:zamknuv
 locking:zamykaiesh
 gone:pishov;pereishov
 getting:ydesh;peremishchaieshsia
-closed:zakryv;zachynyv
+closed:zakrytyi;zachynenyi
 closing:zakryvaiesh;zachyniaiesh
 dropped:poklav;kynuv;zalyshyv;vidkynuv
 dropping:kladesh;zalyshaiesh

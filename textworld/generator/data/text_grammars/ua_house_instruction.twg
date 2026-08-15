@@ -1,3 +1,5 @@
+# Ukrainian translation of house_instruction.twg.
+# Inform 7/TextWorld control references are preserved.
 #-------------------------
 #Instructions Grammar
 #-------------------------
@@ -39,7 +41,7 @@ put:#put_syn_v# #obj_types# на #(s)_var#.
 put_syn_u:Поклади;Розмісти;Постав;Помісти
 put_syn_v:поклади;розмісти;постав;помісти
 on_it_syn:на ньому;на нього
-drop:#drop_syn_v# #obj_types# на підлогу (r).
+drop:#drop_syn_v# #obj_types# на підлогу в (r).
 drop_syn_u:Поклади
 drop_syn_v:поклади;кинь;залиш;кинь;розмісти
 eat:#eat_syn_1# #eat_var#.
@@ -98,7 +100,7 @@ epilogue:Коли з усім цим буде покінчено, можеш з�
 do:виконати;зробити;виконати успішно;дістатися до виконання;завершити;досягти успіху;впоратися
 welcome:Ласкаво просимо до TextWorld;Ти зараз граєш у #exciting# #game# TextWorld;Ласкаво просимо до чергової #exciting# #game# TextWorld;Час досліджувати дивовижний світ TextWorld;Приготуйся підбирати предмети й класти їх у різні місця, адже ти щойно потрапив до TextWorld;Сподіваюся, ти готовий заходити до кімнат і взаємодіяти з предметами, адже ти щойно потрапив до TextWorld;Хто має віртуальну машину і зараз збирається зіграти в #exciting# раунд TextWorld? Ти!
 exciting:захопливий;динамічний;дивовижний;цікавий
-game:гру;раунд;сеанс;епізод
+game:гра;раунд;сеанс;епізод
 
 ##Action separators
 ##Need at least 5 for each action type
@@ -139,7 +141,7 @@ locked:замкнув
 locking:замикаєш
 gone:пішов;перейшов
 getting:йдеш;переміщаєшся
-closed:закрив;зачинив
+closed:закритий;зачинений
 closing:закриваєш;зачиняєш
 dropped:поклав;кинув;залишив;відкинув
 dropping:кладеш;залишаєш

@@ -264,7 +264,7 @@ candy:chocolate bar;gummy bear;candy bar;licorice strip;cookie
 (k)_noun:key;keycard;latchkey;passkey
 #Object Descriptor Functions
 #---------------------------
-(P)_desc:It's you.
+(P)_desc:Its you.
 (c)_desc:The (name) looks strong, and impossible to #force_open#.
 force_open:break;crack;destroy
 (s)_desc:The (name) is #supp_stable#.
@@ -276,16 +276,16 @@ looks_seems:looks;seems;appears;appears to be;would seem to be
 out_in_place:out of place;to fit in;well matched to everything else
 restaurant:Burger#place#
 place:town;village;hamlet;burg;ville;City
-(f)_desc:The (name) looks #food_what#.;that's a (name-adj) (name-n)!;You couldn't pay me to eat that (name-adj) thing.
+(f)_desc:The (name) looks #food_what#.;thats a (name-adj) (name-n)!;You couldnt pay me to eat that (name-adj) thing.
 food_what:appetizing;delicious;tasty;appealing;delectable;heavenly;inviting;savory;tantalizing;tempting
 (k)_desc:The (name) is cold to the touch;The (name) is #key_weight#.;The metal of the (name) is #key_metal#.;The (name) looks useful
 key_weight:heavy;light;weighty;surprisingly heavy;heavier than it looks
 key_metal:antiqued;brushed;hammered;polished;satin;rusty
-(d)_desc:The (name) looks #door_what_is#.;it's a #door_what_is# (name-n);it is what it is, a (name)
+(d)_desc:The (name) looks #door_what_is#.;its a #door_what_is# (name-n);it is what it is, a (name)
 door_what_is:imposing;sturdy;well-built;durable;robust;rugged;hefty;commanding;grand;noble;ominous;towering;manageable;solid;stuffy
 #State descriptors
 #-----------------
-openable_desc:[if open]It is open.[else if closed]It is closed.[otherwise]It is locked.[end if];[if open]You can see inside it.[else if closed]You can't see inside it because the lid's in your way.[otherwise]There is a lock on it.[end if]
+openable_desc:[if open]It is open.[else if closed]It is closed.[otherwise]It is locked.[end if];[if open]You can see inside it.[else if closed]You cant see inside it because the lids in your way.[otherwise]There is a lock on it.[end if]
 on_desc:On the (name), is [a list of things on the (obj)].;You can see [list of things on the (obj)] on the (name);this (name) has the following upon it, [list of things on the (obj)];you gaze in terror at the [list of things on the (obj)] that lie upon this very (name)!; "now why" you think, "am I looking at [list of things on the (obj)] on this (name)?"
 #Key Match Adjectives
 #These adjectives CANNOT be used elsewhere!
@@ -293,7 +293,7 @@ on_desc:On the (name), is [a list of things on the (obj)].;You can see [list of 
 letter:A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z
 clearancelevel:type #number#;type #letter#;#brand#;#brand#;#brand#;#shape#;#shape#;#shape#;#smell# scented;
 brand:#brandname# style;#brandname# limited edition;#brandname#
-brandname:Microsoft;American;Canadian;Henderson's;TextWorld
+brandname:Microsoft;American;Canadian;Hendersons;TextWorld
 shape:rectangular;cuboid;spherical;formless;non-euclidean
 colour:red;blue;chartreuse;purple;violet;orange;yellow;green;brown;teal;cyan
 smell:vanilla;lavender;cake;fudge;fresh laundry;soap
