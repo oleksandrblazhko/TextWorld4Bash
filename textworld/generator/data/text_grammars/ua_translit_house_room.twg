@@ -1,28 +1,29 @@
-# Ukrainian translation based on house_room.twg; Inform 7 substitutions preserved.
 #-------------------------
-#Room Descriptor Grammar
+# Граматика опису кімнати
 #-------------------------
 
-# Inform7 snippets
+# Фрагменти Inform7
 #-----------------
-#Shouldn't need to be messed with. These are shortcuts for when you need to use i7 code. Probably a bad idea to include symbols or tokens inside these
-i7_closed/open:[if (obj) is open]vidkrytyi[otherwise]zakrytyi[end if]
-i7_list_in:[spysok predmetiv u (obj)]
-i7_list_on:[spysok predmetiv na (obj)]
-i7_empty:[if (obj) contains nothing]porozhnii[otherwise]neporozhnii[end if]
-inform7:[if (obj) is locked]zamknenyi[else if (obj) is open]vidkrytyi[otherwise]zakrytyi[end if]
-inform7A:[if (obj) is locked]Zamknenyi[else if (obj) is open]Vidkrytyi[otherwise]Zakrytyi[end if]
-inform7noa:[if (obj) is locked]zamknenyi[else if (obj) is open]vidkrytyi[otherwise]zakrytyi[end if]
-inform7noun:[if (obj) is locked]zamknenyi[else if (obj) is open]vidkrytyi[otherwise]zakrytyi[end if]
-inform7nounnoa:[if (obj) is locked]zamknenyi[else if (obj) is open]vidkrytyi[otherwise]zakrytyi[end if]
+# Не повинні потребувати змін. Це скорочення для випадків, коли потрібно використовувати код i7.
+# Ймовірно, не варто включати символи або токени всередину цих фрагментів.
+i7_closed/open:[if (obj) is open]an open[otherwise]a closed[end if]
+i7_list_in:[a list of things in the (obj)]
+i7_list_on:[a list of things on the (obj)]
+i7_empty:[if (obj) contains nothing]an empty[otherwise]a[end if]
+inform7:[if (obj) is locked]a locked[else if (obj) is open]an open[otherwise]a closed[end if]
+inform7A:[if (obj) is locked]A locked[else if (obj) is open]An open[otherwise]A closed[end if]
+inform7noa:[if (obj) is locked]a locked[else if (obj) is open]an open[otherwise]a closed[end if]
+inform7noun:[if (obj) is locked]locked[else if (obj) is open]open[otherwise]closed[end if]
+inform7nounnoa:[if (obj) is locked]locked[else if (obj) is open]open[otherwise]closed[end if]
 
-#Room Intro#
+# Вступ до кімнати
 #----------
-#Text for introducing the room. ex: "Greetings, you are now in the hot kitchen"
-# dec:[if unvisited]#GREETING!# #dec_type##suffix_(r)#[otherwise]#revisit#[end if];[if unvisited]#dec_type##suffix_(r)#[otherwise]#revisit#[end if]
+
+# Текст для представлення кімнати. Наприклад:
+# «Вітаю, тепер ти перебуваєш у затишній кухні»
 dec:#dec_type##suffix_(r)#
 
-### First time in room ###
+### Перше відвідування кімнати ###
 dec_type:#reg-0#;#normal-0#;#difficult-0#;#moredifficult-0#;#playful-0#
 reg-0:#04#;#05#;#06#
 normal-0:#07#
@@ -30,79 +31,83 @@ difficult-0:#016#
 moredifficult-0:#017#
 playful-0:#01#;#02#;#03#;#08#;#09#;#010#;#011#;#012#;#013#;#014#;#015#;#018#;#019#;#020#;#021#;#022#;#023#;#024#;#025#;#026#;#027#;#028#
 
-### Revisiting room ###
-revisit:Vy znovu uviishly do (name).;Vy znovu vkhodyte do (name). Vy taki rozghubleni, shcho vam potribno nahadaty, shcho ye v kimnati, khocha vy buly tut lyshe kilka sekund tomu.;Shcho, vy dumaly, shcho yakshcho pidete kudys i povernetesia, tse mistse perestane buty (name)?;A, (name). U vas bahato chudovykh spohadiv pro tse mistse. Svizhykh spohadiv. Vy buly tut lyshe sekundu tomu.;Nu os vy y povernulysia do (name).;Shchoino vy podumaly, shcho bilshe nikoly ne pobachyte (name), yak znovu povertaietesia siudy.;Laskavo prosymo nazad do (name).
+### Повторне відвідування кімнати ###
+revisit:Ty znovu uviishov do (name).;Ty znovu zakhodysh do (name). Ty nastilky rozghubyvsia, shcho tobi potribno nahadaty, shcho tut ye, khocha ty buv tut lyshe kilka sekund tomu.;Shcho, ty dumav, shcho yakshcho pidesh kudys i poverneshsia, tse mistse perestane buty (name)?;A, (name). Tut u tebe stilky chudovykh spohadiv. Svizhykh spohadiv. Ty buv tut bukvalno sekundu tomu.;Nu os ty y povernuvsia do (name).;Tilky-no ty podumav, shcho bilshe nikoly ne pobachysh (name), yak znovu opynyvsia v nomu.;Z povernenniam do (name).
 
-#Room Intro Templates
+# Шаблони вступу до кімнати
 #-------------------
 
-01:Meni shkoda povidomliaty, ale teper vy perebuvaiete v (name)
-02:A, (name-n). Tse yakyis (name-n), spravdi chudova atmosfera (name-adj) u tsomu mistsi, chudova (name-adj) atmosfera. I teper, nu, vy v nomu
-03:Harazd, otzhe, vy v (name-n), kruto, ale chy vin (name-adj)? Shche b pak
+01:Mushu povidomyty, shcho teper ty perebuvaiesh u (name)
+02:A, (name-n). Tse yakyis (name-n), spravdi chudova (name-adj) atmosfera, neimovirni (name-adj) vidchuttia. I teper, nu shcho zh, ty same tut
+03:Harazd, otzhe, ty v (name-n), kruto, ale chy vin (name-adj)? Shche b pak
 04:#dec_find-yourself# u (name);#dec_guess-what# (name)
 05:Nu os my y opynylysia v #dec_a_the# (name)
-06:Teper vy v #dec_a_the# (name)
-07:Vy uviishly do (name);Vy shchoino #dec_walked_into# (name)
-08:Tse mozhe staty dlia vas shokom, ale vy shchoino #dec_entered# (name)
-09:Ya #announce_mood# povidomyty, shcho teper vy perebuvaiete v (name)
-010:A, (name-n). Tse yakyis (name-n), spravdi chudova atmosfera (name-adj) u tsomu mistsi, chudova (name-adj) atmosfera
-011:Vy #dec_entered# do nai(name-adj)nishoho z usikh mozhlyvykh (name-n)
-012:Z usikh (name-n), do yakykh vy mohly #dec_walked_into#, vam dovelosia #dec_walk_into# same do (name-adj)
-013:Vy #dec_entered# do (name-n). Ne do toho (name-n), yakoho vy ochikuvaly. Ni, tse (name)
-014:Vy perebuvaiete v (name-n). Skhozhe, tut dosyt (name-adj)
-015:Vy #dec_what# u mistsi, yake mozhna nazvaty (name-adj). Tobto vy perebuvaiete v (name-n)
+06:Teper ty v #dec_a_the# (name)
+07:Ty uviishov u (name);Ty shchoino #dec_walked_into# (name)
+08:Mozhlyvo, tse tebe zdyvuie, ale ty shchoino #dec_entered# (name)
+09:Ya #announce_mood#, shcho teper ty perebuvaiesh u (name)
+010:A, (name-n). Tse yakyis (name-n), spravdi chudova (name-adj) atmosfera, neimovirni (name-adj) vidchuttia
+011:Ty #dec_entered# u naibilsh (name-adj) z usikh mozhlyvykh (name-n)
+012:Z usikh (name-n), u yaki ty mih #dec_walked_into#, tobi neodminno treba bulo #dec_walk_into# same v (name-adj)
+013:Ty #dec_entered# u (name-n). Ne takyi (name-n), yakoho ty ochikuvav. Ni, tse (name)
+014:Ty perebuvaiesh u (name-n). Tut, zdaietsia, dosyt (name-adj)
+015:Ty #dec_what# u yakomus (name-adj) mistsi. Inakshe kazhuchy, ty perebuvaiesh u (name-n)
 016:#dec_find-yourself# u (name-n). Dosyt (name-adj)
-017:#dec_find-yourself# u (name-n). Take sobi (name-adj) mistse
+017:#dec_find-yourself# u (name-n). U yakomus (name-adj) mistsi
 018:#017#
-019:Vy #dec_entered# do (name-adj) kimnaty. Vash rozum hariachkovo namahaietsia prydumaty, yaka kimnata mohla b buty (name-adj). I tut vas osiaiuie. Zvychaino. Vy v (name)
-020:Yakshcho vam tsikavo, chomu raptom use zdaietsia takym (name-adj), tse tomu, shcho vy shchoino #dec_walked_into# do (name)
-021:Yaka nespodivana zustrich. Tut, do rechi, — tse (name);Ya nikoly ne vvazhav vas liudynoiu, yaka zyavytsia v (name), ale, skhozhe, ya pomyliavsia
-022:Tse zvuchatyme neimovirno, ale vy shchoino uviishly do (name);Vy ne poviryte, ale vy shchoino uviishly do (name)
-023:Vy robyte hrandioznyi ekstsentrychnyi vkhid do (name);Vy robyte shche odyn zi svoikh hrandioznykh ekstsentrychnykh vkhodiv do (name)
-024:Podyvitsia na sebe, velykyi bos, yakyi zakhodyt u (name), niby tse ne yakas velychezna podiia
-025:Ozyrnitsia navkolo. Otsinit use tse. Ne shchodnia komus vypadaie pobuvaty v (name)
-026:Vy bachyly y krashchi (name-n), ale prynaimni tsei zdaietsia dosyt (name-adj);Ya prosto vvazhaiu chudovym, shcho vy zaraz u (name);Ya prosto vvazhaiu chudovym, shcho vy shchoino uviishly do (name)
-027:#signquality# #sign# povidomliaie vam, shcho teper vy perebuvaiete v (name);Pohliante na tsei #sign#! Shcho tam napysano? Tam napysano «Laskavo prosymo do (name)»? Nu, tse kruto
-028:Shchoino nadiishla novyna — vy, u (name);Laskavo prosymo do (name);Oho! Vy v (name);Nu os my y u (name);Vy uviishly do (name);Tsei (name-n), do yakoho vy shchoino uviishly, bezumovno ye (name-adj)
-#Expandables for Room Symbols
+019:Ty #dec_entered# u (name-adj) kimnatu. Tvii mozok hariachkovo namahaietsia prydumaty, yakoiu mozhe buty (name-adj) kimnata. I tut tebe osiaiuie. Zvychaino. Ty v (name)
+020:Yakshcho ty dyvuieshsia, chomu vse raptom stalo takym (name-adj), to tse tomu, shcho ty shchoino #dec_walked_into# (name)
+021:Yaka nespodivana zustrich. Tut, do rechi, oznachaie v (name);Ya nikoly ne vvazhav tebe liudynoiu, yaka zyavytsia v (name), ale, skhozhe, pomyliavsia
+022:Tse zvuchatyme neimovirno, ale ty shchoino uviishov u (name);Ty ne povirysh, ale ty shchoino uviishov u (name)
+023:Ty efektno y ekstsentrychno vkhodysh u (name);Ty znovu efektno y ekstsentrychno vkhodysh u (name)
+024:Podyvys na sebe, velykyi bos, zakhodysh u (name), niby tse yakas dribnytsia
+025:Ozyrnysia navkolo. Uvazhno vse rozghlian. Ne shchodnia komus vypadaie pobuvaty v (name)
+026:Ty bachyv i krashchi (name-n), ale tsei, zdaietsia, dosyt (name-adj);Ya prosto v zakhvati vid toho, shcho ty zaraz u (name);Ya prosto vvazhaiu chudovym, shcho ty shchoino uviishov u (name)
+027:Tablychka #signquality# #sign# povidomliaie tobi, shcho teper ty v (name);Podyvys na tsiu #sign#! Shcho tam napysano? «Laskavo prosymo do (name)»? Nu, tse kruto
+028:Ostannia novyna — ty v (name);Laskavo prosymo do (name);Oho! Ty v (name);Nu os my y u (name);Ty uviishov u (name);Tsei (name-n), do yakoho ty shchoino uviishov, bezperechno (name-adj)
+
+# Додаткові елементи для символів кімнати
 #----------
 
-GREETING!:VITAIeMO!;VITAIu!;PRYVIT!;OTZhE, POChNEMO!
-dec_entered:uviishly;zaishly;vpaly;peremistylysia;vvalylysia;potrapyly
-dec_find-yourself:Vy #dec_what#
-dec_guess-what:#dec_well-guess#, vy perebuvaiete v #dec_a_the# mistsi, yake my nazyvaiemo #dec_a_the#
-dec_well-guess:Vhadaite shcho;Nu os yak;Nu, khto b mih podumaty
-dec_what:ye;opyniaietes;prybuvaiete
-dec_a_the:a;tse
+GREETING!:VITAIu!;VITAIeMO!;PRYVIT!;OTZhE!
+dec_entered:uviishov;zaishov;potrapyv;pereishov;zabriv;opynyvsia
+dec_find-yourself:Ty #dec_what#
+dec_guess-what:#dec_well-guess#, ty perebuvaiesh u #dec_a_the# mistsi, yake my nazyvaiemo #dec_a_the#
+dec_well-guess:Vhadai shcho;Nu y nu;Os vono yak
+dec_what:perebuvaiesh;opyniaieshsia;prybuvaiesh
+dec_a_the:u;v
 dec_in_at:u;v
-dec_walk_into:uviity;zaity;proity;prohuliatysia do
-dec_walked_into:uviishly;zaishly;proishly
-announce_mood:shkoda;radyi;skhvylovanyi;u zakhvati;duzhe shchaslyvyi;maiu chest;zmushenyi;zobovyazanyi
-signquality:zanedbanyi;irzhavyi;laminovanyi;kryvyi;dobre obramlenyi
-sign:znak;plakat;oholoshennia;tablychka;doshka
-#Description Separators
+dec_walk_into:zakhodysh do;zyavliaieshsia v;zakhodysh u;prykhodysh do
+dec_walked_into:zaishov do;zyavyvsia v;zaishov u
+announce_mood:shkoduiu;radyi;skhvylovanyi;u zakhvati;duzhe radyi;vvazhaiu za chest;zmushenyi;zobovyazanyi
+signquality:starovynna;irzhava;laminovana;kryva;dobre oformlena
+sign:tablychka;plakat;oholoshennia;vyviska;doshka
+
+# Роздільники описів
 #-------
-#Used to separate the description of different object types
+
+# Використовуються для розділення описів різних типів об'єктів
 
 #First
-#first:First, you look for (next object type);First, you scan the room for (next object type);You first scan the room for (next object type)
+#first:Спочатку ти шукаєш (next object type);Спочатку ти оглядаєш кімнату в пошуках (next object type);Спочатку ти оглядаєш кімнату, шукаючи (next object type)
 #Middle
-#middle:After that, you look for (next object type);Once you've ascertained the amount of (previous object type), you start looking for (next object type);
+#middle:Після цього ти шукаєш (next object type);З'ясувавши кількість (previous object type), ти починаєш шукати (next object type);
 #Last
-#last:and lastly, you check for (next object type)
+#last:і, нарешті, ти перевіряєш наявність (next object type)
 
-#Container Descriptions
+# Описи контейнерів
 #----------------------
-#Rules for Container Descriptions
-#Good idea to subdivide these into difficulty levels
-#room_desc_(c): generates all container descriptions
-#containerdescription: contains all physical exterior descriptions of containers
-#room_desc_(c)_1_name: describes the container as an adj+noun
-#room_dec_(c)_1_noun: describes the container as a noun
-#room_desc_(c)_content: decides if we append a description of the container's contents depending on if the container is open or closed
-#opencontainer:what is appended if the container is open
-#room_desc_(c)_2_adj: adds an adjective and a list of contents (creates doubled adjectives?)
-#room_desc_(c)_2: list of contents without an adjective
+
+# Правила опису контейнерів
+# Доцільно розділити їх за рівнями складності
+# room_desc_(c): генерує всі описи контейнерів
+# containerdescription: містить усі описи зовнішнього вигляду контейнерів
+# room_desc_(c)_1_name: описує контейнер як прикметник + іменник
+# room_dec_(c)_1_noun: описує контейнер як іменник
+# room_desc_(c)_content: визначає, чи додавати опис вмісту контейнера залежно від того, відкритий він чи закритий
+# opencontainer: текст, який додається, якщо контейнер відкритий
+# room_desc_(c)_2_adj: додає прикметник і список вмісту
+# room_desc_(c)_2: список вмісту без прикметника
 
 room_desc_(c):#containerdescription##room_desc_(c)_content#
 #special_container#.
@@ -110,7 +115,7 @@ containerdescription:#room_desc_(c)_1_name#;#room_desc_(c)_1_noun#
 room_desc_(c)_content:[if (obj) is open and there is something in the (obj)] #opencontainer##suffix#[end if][if (obj) is open and the (obj) contains nothing] #emptyreaction#[end if]
 opencontainer:(name) mistyt #i7_list_in#
 #room_desc_(c)_2_adj#;#room_desc_(c)_2#
-emptyreaction:(name-n) porozhnii, yakyi zhakhlyvyi den!;(name-n) porozhnii! Yaka vtrata dnia!;(name-n) porozhnii! Tse naihirshe, shcho vzahali mohlo statysia!;Porozhno! Yakyi zhe tse koshmarnyi TextWorld?;Yake rozcharuvannia! (name-n) porozhnii!
+emptyreaction:(name-n) porozhnii — yakyi zhakhlyvyi den!;(name-n) porozhnii! Yaka marna trata dnia!;(name-n) porozhnii! Tse naihirshe, shcho vzahali mohlo statysia!;Porozhno! Shcho tse za koshmarnyi TextWorld?;Yake rozcharuvannia! (name-n) porozhnii!
 room_desc_(c)_1_name:#reg-a#;#normal-a#;#difficult-a#;#moredifficult-a#;#playful-a#
 
 reg-a:#a1#;#a2#
@@ -138,15 +143,14 @@ room_desc_(c)_multi_adj:#g1#
 room_desc_(c)_multi_open_adj:#h1#;#h2#;#h3#;#h4#
 
 
-
-#Container Description Templates
+# Шаблони опису контейнерів
 #-----------------------------
 
 # A #
 
 a1:#how_see# #inform7# (name).;#a6#
 a2:#how_see# #inform7# #name_var# #here_alt#.;#a6#
-a3:#inform7A# #name_var# ye #here_alt#.;#a6#
+a3:#inform7A# #name_var# #here_alt#.;#a6#
 a4:#a1#;#a6#
 a5:#a2#;#a6#
 a6:#prefix# (name)#suffix#
@@ -155,7 +159,7 @@ a6:#prefix# (name)#suffix#
 
 b1:#how_see# #inform7# (name-n).;#b5#
 b2:#how_see# #inform7# (name-n) #here_alt#.;#b5#
-b3:#inform7A# (name-n) ye #here_alt#.;#b5#
+b3:#inform7A# (name-n) #here_alt#.;#b5#
 b4:#b1#;#b5#
 b5:#prefix# (name-n)#suffix#
 
@@ -164,19 +168,20 @@ b5:#prefix# (name-n)#suffix#
 c1:#it_is# (name-adj), i #contains# #i7_list_in#.
 c2:#it_is# (name-adj). Takozh u nomu #listwithis#.
 c3:#c1#
-c4:#c9#
-c5:tut ye [spysok predmetiv u (obj)] u tsii bezghluzdii (name-adj) shtutsi.
+c4:#ContentsC-# [list of things in the (obj)].
+c5:tut [is|are] [a list of things in the (obj)] u tsii bezghluzdii (name-adj) shtutsi.
 c6:#c9#
 c7:#c9#
 c8:Podyvimosia, shcho vseredyni — #i7_list_in#.
-c9:#it# #reminds_you# pro konteinery #ofyouryouth#. O, yak zhe vony takozh mistyly #i7_list_in#.
+c9:#it# #reminds_you# #ofyouryouth#. O, yak bahato rechei vony takozh mistyly: #i7_list_in#.
 
 # D #
+
 d0:(name) mistyt #i7_list_in#.
 d1:Vin #contains# #i7_list_in#.;U nomu ye #i7_list_in#.
 d2:Tam #listwithis# #foundin# nomu.
-d3:Vy mozhete pobachyty #i7_list_in# u (name-n).
-d4:U nomu vy mozhete pobachyty #i7_list_in#.
+d3:Ty mozhesh pobachyty #i7_list_in# u (name-n).
+d4:U nomu ty bachysh #i7_list_in#.
 
 # E #
 
@@ -186,49 +191,50 @@ e1:[if (obj) is open]#room_desc_(c)_multi_open_noun#.[else if (obj) is locked](n
 
 f1:(name-n) #contains# #i7_list_in#
 f2:Tam #listwithis# #foundin# (name-n)
-f3:Vy mozhete pobachyty #i7_list_in# u (name-n)
+f3:Ty mozhesh pobachyty #i7_list_in# u (name-n)
 f4:#f5#;#f6#
 f5:#f6#
-f6:(name-n) #reminds_you# pro konteinery #ofyouryouth#. O, yak zhe vony takozh mistyly #i7_list_in#
+f6:(name-n) #reminds_you# #ofyouryouth#. O, yak bahato rechei vony takozh mistyly: #i7_list_in#
 
 # G #
 
-g1:[if (obj) is open]#room_desc_(c)_multi_open_adj#.[else if (obj) is locked](name-adj) zamknenyi.[otherwise](name-adj) zakrytyi.[end if]
+g1:[if (obj) is open]#room_desc_(c)_multi_open_adj#.[else if (obj) is locked](name-adj) variant zamknenyi.[otherwise](name-adj) variant zakrytyi.[end if]
 
 # H #
 
-h1:(name-adj) #contains# #i7_list_in#
-h2:Tam #i7_list_in# #foundin# (name-adj)
-h3:Vy mozhete pobachyty #i7_list_in# u (name)
-h4:U (name-adj) vy mozhete pobachyty #i7_list_in#
+h1:(name-adj) variant #contains# #i7_list_in#
+h2:Tam #i7_list_in# #foundin# (name-adj) varianti
+h3:Ty mozhesh pobachyty #i7_list_in# u (name)
+h4:U (name-adj) varianti ty bachysh #i7_list_in#
 
-#Expandables for Container Symbols
+# Додаткові елементи для символів контейнерів
 #---------------------------------
 
 it:Vin;Shchos u nomu
-reminds_you:nahaduie vam pro;skhozhyi na;napovniuie vash rozum spohadamy pro;nahaduie;tochnisinko takyi, yak
-ofyouryouth:vashoho dytynstva;yaki vy znaly v dytynstvi;yaki vy znaly tak davno;yaki vy znaly tak davno, u dytynstvi
-contains:mistyt;maie;zapovnenyi;vidkryvaie vseredyni;utrymuie;zberihaie;proponuie vam;vidkryvaie pered vamy
-foundin:u;znakhodytsia v
-it_is:Vin ye;Vy mozhete pobachyty, shcho vin ye;Pry uvazhnomu ohliadi vy bachyte, shcho vin ye
-name_var:(name);(name-n), yakyi vyhliadaie (name-adj);(name-adj) (name-n)
-contained:mistyvsia;utrymuvavsia;mav;mav u sobi;vidkryvav;prykhovuvav;zberihav;proponuvav vam;vidkryvav;okhoroniav;zakhyshchav
-inform7:[if (obj) is locked]zamknenyi[else if (obj) is open]vidkrytyi[otherwise]zakrytyi[end if]
-inform7noa:[if (obj) is locked]zamknenyi[else if (obj) is open]vidkrytyi[otherwise]zakrytyi[end if]
-inform7noun:[if (obj) is locked]zamknenyi[else if (obj) is open]vidkrytyi[otherwise]zakrytyi[end if]
-inform7nounnoa:[if (obj) is locked]zamknenyi[else if (obj) is open]vidkrytyi[otherwise]zakrytyi[end if]
-listwithis: [ye spysok predmetiv u (obj)]
-lookthere:Pohliante tudy;Oho! Podyvitsia na tse
-ContentsC-:Vmist-;Mistytsia vseredyni-;Useredyni znakhodiatsia taki predmety-;Inventar takyi-;Os shcho vseredyni
+reminds_you:nahaduie tobi pro;skhozhyi na;vyklykaie v pamyati spohady pro;nahaduie;tochnisinko yak
+ofyouryouth:tvoiu yunist;te, shcho ty znav u yunosti;te, shcho ty znav tak davno;te, shcho ty znav tak davno, u svoii yunosti
+contains:mistyt;maie;napovnenyi;vidkryvaie vseredyni;zberihaie;zakhyshchaie;proponuie tobi;pokazuie tobi
+foundin:u;znaideno v
+it_is:Vin;Ty mozhesh pobachyty, shcho vin;Uvazhno rozghlianuvshy, ty bachysh, shcho vin
+name_var:(name);(name-n), yakyi vyhliadaie (name-adj);(name-adj) na vyhliad (name-n)
+contained:mistyvsia;zberihavsia;mav;mistyv u sobi;buv vidkrytyi;buv prykhovanyi;zakhyshchav;proponuvav tobi;pokazuvav tobi;okhoroniav;zberihav
+inform7:[if (obj) is locked]a locked[else if (obj) is open]an opened[otherwise]a closed[end if]
+inform7noa:[if (obj) is locked]a locked[else if (obj) is open]an opened[otherwise]a closed[end if]
+inform7noun:[if (obj) is locked]locked[else if (obj) is open]opened[otherwise]closed[end if]
+inform7nounnoa:[if (obj) is locked]locked[else if (obj) is open]opened[otherwise]closed[end if]
+listwithis: [is-are a list of things in the (obj)]
+lookthere:Pohlian tudy;Oho! Podyvys na tse
+ContentsC-:Vmist —;Useredyni mistytsia —;Vseredyni ye take —;Vmist takyi —;Os shcho vseredyni —
 
-#Supporter Descriptions
+# Описи опор
 #----------------------
-#Similar to Container descriptions, but without open/close or lock/unlock
-#room_desc_(s): hub
-#room_desc_(s)_1_noun : description of supporter without adjective. Paired with--> room_desc_(s)_2_adj
-#room_desc_(s)_1_name : same as above, but with an adjective
-#room_desc_(s)_2_adj : adjective for supporter plus a list of things on it
-#room_desc_(s)_2:
+
+# Подібні до описів контейнерів, але без відкриття/закриття та блокування/розблокування
+# room_desc_(s): головний вузол
+# room_desc_(s)_1_noun : опис опори без прикметника. Поєднується з room_desc_(s)_2_adj
+# room_desc_(s)_1_name : те саме, але з прикметником
+# room_desc_(s)_2_adj : прикметник для опори плюс список предметів на ній
+# room_desc_(s)_2:
 
 room_desc_(s):#room_desc_(s)_1_noun# #room_desc_(s)_2_adj#;#room_desc_(s)_1_name# #room_desc_(s)_2#
 
@@ -237,156 +243,179 @@ room_desc_(s)_1_noun:#prefix# (name-n)#suffix_(s)_mid#
 room_desc_(s)_1_name:#prefix# (name)#suffix_(s)_mid#
 
 room_desc_(s)_2_adj:(name-n) ye (name-adj).[if there is something on the (obj)] Na (name) #how_see_u# #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)] #emptysupporter##suffix_(s)_end_angry#[end if]
-#;The (name-n) is (name-adj) [if name has something on it] on the (name) #i7_list_on#[else if the (name) is empty]#emptysupporter#[end if]
 
-room_desc_(s)_2:[if there is something on the (obj)]Na (name) #how_see_u# #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter##suffix_(s)_end_angry#[end if];[if there is something on the (obj)]Vy bachyte #i7_list_on# na (name-n)#suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter##suffix_(s)_end_angry#[end if]
-#[if name has something on it] on the (name) #i7_list_on#[else if the (name) is empty]#emptysupporter#[end if]
+#;(name-n) є (name-adj) [if name has something on it] на (name) #i7_list_on#[else if the (name) is empty]#emptysupporter#[end if]
 
-room_desc_(s)_multi_noun:[if there is something on the (obj)]Na (name-n) vy bachyte #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter_multi##suffix_(s)_end_angry#[end if]
-room_desc_(s)_multi_adj:[if there is something on the (obj)]Na (name-adj) vy bachyte #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter_multi##suffix_(s)_end_angry#[end if]
-emptysupporter:Ale na nomu nichoho nemaie;Na zhal, na nomu nichoho nemaie;Ale vin porozhnii;Ale vin, na zhal, porozhnii;Ale na tsii shtutsi nichoho nemaie;O ni! Na tsomu shmatku #trash# nichoho nemaie;(name-n), zdaietsia, porozhnii;Skhozhe, khtos uzhe tut pobuvav i vse z noho zabrav, khocha;(name-n), yak porozhnii (name-n), nichoho na sobi ne maie;
-emptysupporter_multi:Na (name-n) nichoho nemaie;(name-n) porozhnii;Pohliante na (name-n). Na tsomu shmatku #trash# nichoho nemaie;Ale na (name-n) nichoho nemaie;Yake rozcharuvannia, tut nichoho nemaie;
-#Supporter Description Templates
+room_desc_(s)_2:[if there is something on the (obj)]Na (name) #how_see_u# #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter##suffix_(s)_end_angry#[end if];[if there is something on the (obj)]Ty bachysh #i7_list_on# na (name-n)#suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter##suffix_(s)_end_angry#[end if]
+
+#[if name has something on it] на (name) #i7_list_on#[else if the (name) is empty]#emptysupporter#[end if]
+
+room_desc_(s)_multi_noun:[if there is something on the (obj)]Na (name-n) ty bachysh #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter_multi##suffix_(s)_end_angry#[end if]
+
+room_desc_(s)_multi_adj:[if there is something on the (obj)]Na (name-adj) varianti ty bachysh #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter_multi##suffix_(s)_end_angry#[end if]
+
+emptysupporter:Ale na nomu nichoho nemaie;Na zhal, na nomu nichoho nemaie;Ale tsia rich porozhnia;Ale tsia rich, na zhal, porozhnia;Ale na tsii rechi nichoho nemaie;O ni! Na tsomu shmatku #trash# nichoho nemaie;Skhozhe, (name-n) porozhnii;Skhozhe, tut uzhe khtos pobuvav i vse z noho zabrav;Prote (name-n), yak i porozhnii (name-n), ne maie na sobi nichoho;
+emptysupporter_multi:Na (name-n) nichoho nemaie;(name-n) porozhnii;Pohlian na (name-n). Na tsomu shmatku #trash# nichoho nemaie;Ale na (name-n) nichoho nemaie;Yake rozcharuvannia, tut nichoho nemaie;
+
+# Шаблони опису опор
 #-------------------------------
 
 
-
-#Expandables for Supporter Symbols
+# Додаткові елементи для символів опор
 #--------------------------------
 
-on_it:na nomu;lezhyt na nomu;spochyvaie na nomu;na nomu
-ContentsS-:Vmist-;Na nomu predstavleni taki predmety-;Na nomu vy mozhete pobachyty taki predmety-;Na nomu lezhat taki predmety-;Na (name-n) predstavleni taki predmety-;Na (name-n) vy mozhete pobachyty taki predmety-;Na (name-n) lezhat taki predmety-
-held:utrymuvavsia;perenosyvsia;mav;buv predstavlenyi;utrymuvavsia pidniatym;vykorystovuvavsia yak opora
+on_it:na nomu;lezhyt na nomu;spochyvaie na nomu;na yoho poverkhni
+ContentsS-:Vmist —;Na nomu rozmishcheno take —;Na nomu mozhna pobachyty take —;Na nomu lezhyt take —;Na (name-n) rozmishcheno take —;Na (name-n) mozhna pobachyty take —;Na (name-n) lezhyt take —
+held:utrymuvavsia;perenosyvsia;buv;buv predstavlenyi;pidtrymuvavsia;vykorystovuvavsia yak opora
 trash:smittia;motlokh;nepotrib
-#Group Descriptions
-#------------------
-room_desc_group:Vy mozhete pobachyty (^) (val), (name), tut#suffix-multi#;Vasha uvaha pryvertaietsia do (^) (val), (name)#suffix-multi#
 
-#Expandables for Group Description Symbols
+# Описи груп
+#------------------
+room_desc_group:Ty bachysh (^) (val), (name), tut#suffix-multi#;Tvoiu uvahu pryvertaie (^) (val), (name)#suffix-multi#
+
+# Додаткові елементи для символів опису груп
 #--------------------------------
 
-this_the:tsei;toi
+this_the:tsei;tsei
 room:kimnata;mistse;chastyna hry;zona;prymishchennia;oblast;sektor
 
-#Exit Descriptions
+# Описи виходів
 #----------------
 
-#room_desc_(d): describes a single door in the room
-#room_desc_(dir): describes a single unblocked exit in the room
-#room_exit_desc: describes multiple unlocked exits in the room
-#room_desc_exits: possible unnecessary
-#room_desc_doors_closed: describes a group of closed doors in the room
-#room_desc_doors_open: describes a group of open doors in the room
+# room_desc_(d): описує одні двері в кімнаті
+# room_desc_(dir): описує один незаблокований вихід у кімнаті
+# room_exit_desc: описує кілька незаблокованих виходів у кімнаті
+# room_desc_exits: можливо, не потрібен
+# room_desc_doors_closed: описує групу закритих дверей у кімнаті
+# room_desc_doors_open: описує групу відкритих дверей у кімнаті
 
 room_desc_(d):Ye #i7_closed/open# (name), shcho vedut (dir).
-room_desc_(dir):Ye #unblocked# vykhid do (dir).;Ye vykhid do (dir). Ne khvyliuitesia, vin #unblocked#.;Potriben #unblocked# vykhid? Sprobuite pity (dir).;Vy ne liubyte dveri? Todi chomu b ne pity (dir), tsei vkhid #unblocked#.
+room_desc_(dir):Ye #unblocked# vykhid na (dir).;Ye vykhid na (dir). Ne khvyliuisia, vin #unblocked#.;Potriben #unblocked# vykhid? Sprobui pity (dir).;Ne liubysh dveri? Chomu b ne pity (dir), tsei prokhid #unblocked#.
 room_exit_desc:#easy1#.;#medium1#.;#hard1#.
-room_desc_exits:Tam [ye|ye] #unblocked# [vykhid|vykhody] do (dir).
+room_desc_exits:Tam [is an|are] #unblocked# [exit|exits] do (dir).
 room_desc_doors_closed:#easy0a#.
 room_desc_doors_open:#easy0b#.
 #[if (name) is open]#room_desc_doors_open#[else if (name) is closed]#room_desc_doors_open#[end if]
 #room_(d)_exit_desc_alt:[If (name) is open]#easy2#[else if (name) closed] closed [end if];[If (name) is open]#medium2#[else if (name) is closed] closed [end if];[If (name) is open]#hard2#[else if (name) is closed] closed [end if]
 #room_(d)_exit_desc:[if (name) is open]#easy3#[else if (name) is closed] closed [end if];[If (name) is open]#medium3#[else if (name) is closed] closed [end if];[If (name) is open]#hard3#[else if (name) is closed]closed[end if]
 
-#Templates for Exit Descriptions
+# Шаблони опису виходів
 
 # 0a #
 
-easy0a:Tut ye (^), (name-indefinite) zakrytykh dverei;Pohlianmo, skilky tut zakrytykh dverei. Skhozhe, (^), (name-indefinite);Tut ye (^), (name-indefinite) zakrytykh dverei;
+easy0a:Tut ye (^) zakrytykh dverei, (name-indefinite);Podyvimosia, skilky tut zakrytykh dverei. Skhozhe, tse (^), (name-indefinite);Tut ye (^) zakrytykh dverei, (name-indefinite);
 
 # 0b #
 
-easy0b:Tut ye (^), (name-indefinite) vidkrytykh dverei;Pohlianmo, skilky tut vidkrytykh dverei. Skhozhe, (^), (name-indefinite)
+easy0b:Tut ye (^) vidkrytykh dverei, (name-indefinite);Podyvimosia, skilky tut vidkrytykh dverei. Skhozhe, tse (^), (name-indefinite)
 
 # 1 #
 
-easy1:Tam [ye #unblocked# vykhid|ye #unblocked# vykhody] do (dir);Tam [ye #unblocked# vykhid|ye #unblocked# vykhody] do (dir). I ne khvyliuitesia, [vin ye|vony ye] #unblocked#
-medium1:[Vykhid|Vykhody] #unblocked# [vede|vedut] do (dir);Zvidsy mozhna pity (dir), ne maiuchy spravy z zhodnymy dveryma
-hard1:skhozhe, vy mozhete vyity do (dir), yakshcho dveri — ne zovsim vasha #yourthing#;yakshcho vy khochete pity, a dveri spravdi ne vasha #yourthing#, mozhete sprobuvaty pity (dir);Yakshcho vy ne duzhe liubyte dveri, mozhete vyity cherez (dir);Yakshcho vy ne fanat dverei, mozhete vyity cherez (dir);ne liubyte dveri? Todi chomu b ne pity (dir);Korysna porada — yakshcho pidete (dir), vam ne dovedetsia maty spravu z dveryma
+easy1:Ye [is an|are] #unblocked# [exit|exits] do (dir);Ye [is an|are] [exit|exits] do (dir). I ne khvyliuisia, [they are|its] #unblocked#
+medium1:[An exit|Exits] #unblocked# [lies|lie] u napriamku (dir);Zvidsy mozhna pity (dir), ne maiuchy spravy z zhodnymy dveryma
+hard1:skhozhe, mozhna vyity v napriamku (dir), yakshcho dveri — ne zovsim tvoie #yourthing#;yakshcho khochesh vyity, a dveri — zovsim ne tvoie #yourthing#, mozhesh sprobuvaty pity (dir);yakshcho ty ne liubysh dveri, mozhesh vyity cherez (dir);yakshcho ty ne fanat dverei, mozhesh vyity cherez (dir);ne liubysh dveri? Chomu b ne pity (dir);Korysna porada: yakshcho pidesh (dir), tobi ne dovedetsia maty spravu z dveryma
 
 
 # 2 #
 
 easy2:#easy21#;#easy22#
-easy21:Tam [ye dveri|ye dveri], #looks# (name-adj), shcho vedut (dir);(name) vede (dir)
+easy21:Tam ye [a door|are doors], #looks# (name-adj), shcho vedut (dir);(name) vede (dir)
 easy22:Tam ye (name-indefinite), shcho vede (dir)
-medium2:Vy #canshould# bachyty [dveri|dveri] [bilia|shcho blokuiut] (dir) [vykhid|vykhody]
-hard2:Yak vam vyity? Nu, tam [ye dveri|ye dveri] u napriamku (dir) vid vas
+medium2:Ty #canshould# bachyty [the door|a door] [at the|blocking the] (dir) [exit|exits]
+hard2:Yak zhe vybratysia? Nu, tam [is a door|are doors] u napriamku (dir) vid tebe
 
 # 3 #
 
-easy3:[Vykhid|Vykhody] do (dir) [prokhodyt|prokhodiat] cherez (name)
-medium3:(dir) [vykhid|vykhody] [maie|maiut] (name-indefinite), shcho [blokuie yoho|blokuie yikh]
-hard3:(dir) [vykhid|vykhody] [maie|maiut] (name-n-indefinite), shcho [blokuie yoho|blokuie yikh]. (name-n) [ye|ye] (name-adj)
+easy3:[exit|exits] u napriamku (dir) [is|are] vede cherez (name)
+medium3:(dir) [exit|exits] [has|have] (name-indefinite), shcho yoho blokuie
+hard3:(dir) [exit|exits] [has|have] (name-n-indefinite), shcho yoho blokuie. (name-n) [is|are] (name-adj)
 
-#Expandables for Exit Symbols
+# Додаткові елементи для символів виходів
 #----------------------------
-yourthing:rich;sumka;styl;chashka chaiu
-door_what:vede;spriamovanyi;napravlenyi
-unblocked:nezablokovanyi;neokhoroniuvanyi
 
-#prefixes
+yourthing:rich;sumka;styl;chashka chaiu
+door_what:veduchyi;spriamovanyi;oriientovanyi
+unblocked:vilnyi;nezablokovanyi
+
+# Префікси
 #-----------
-#To be affixed before object descriptions. Keep away from doors. Prefixes start with a uppercase letter and end with "a"
-prefix:Vy bachyte vidblysk des u kutku, de mozhna pobachyty;Shcho tse tam? Skhozhe, tse;Vy ohliadaiete kimnatu i bachyte;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;Vy vidchuvaiete #smelltype# zapakh i ydete za nym do;Vy shukaly (name-n)? Bo pohliante tudy, tse;Vy spyraietesia rukoiu na stinu, ale promakhuietesia i padaiete na;Vy ohliadaiete kimnatu v poshukakh (name-n) i znakhodyte;Vy chuiete shum pozadu sebe y obertaietesia, ale ne bachyte nichoho, krim;Oberezhno! Tse — o, ni, tse lyshe;Pohliante tudy!;O, chudovo. Os;Hei, khochete pobachyty (name-n)? Pohliante tudy, tam;Yakshcho vy shche tsoho ne pomityly, skhozhe, bilia stiny ye shchos, i tse;Vy nakhyliaietesia, shchob zavyazaty shnurok. Koly pidvodytesia, pomichaiete;Oho! Tse te, pro shcho ya dumaiu? Tak! Tse;Vy prytuliaietesia do stiny y vypadkovo natyskaiete taiemnu knopku. Stina vidkryvaietsia, pokazuiuchy;Vy bachyte;Niby vsoho inshoho bulo nedostatno, vy shche y mozhete pobachyty;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#
-prefix-multi:Vy bachyte vidblysk des u kutku, de mozhna pobachyty;Shcho tse tam? Skhozhe, tse;Vy ohliadaiete kimnatu i bachyte;#how_see#;Vy nakhyliaietesia, shchob zavyazaty shnurok. Koly pidvodytesia, pomichaiete;Vy vidchuvaiete #smelltype# zapakh i ydete za nym do;Vy raptom bachyte;
+# Додаються перед описами об'єктів. Не використовувати для дверей.
+# Префікси починаються з великої літери та закінчуються на "a".
+
+prefix:Ty bachysh blysk u kutku, de znakhodytsia;Shcho tse tam? Skhozhe, tse;Ty ohliadaiesh kimnatu y bachysh;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;Ty vidchuvaiesh #smelltype# zapakh i priamuiesh do;Ty shukav (name-n)? Bo pohlian tudy — os;Ty spyraieshsia rukoiu na stinu, ale promakhuieshsia i padaiesh na;Ty ohliadaiesh kimnatu v poshukakh (name-n) i znakhodysh;Ty chuiesh shum pozadu y obertaieshsia, ale ne bachysh nichoho, krim;Oberezhno! Tse — oi, ni, tse prosto;Pohlian tudy!;O, chudovo. Os;Hei, khochesh pobachyty (name-n)? Pohlian tudy;Yakshcho ty shche ne pomityv, skhozhe, bilia stiny shchos ye — tse;Ty nakhyliaieshsia, shchob zavyazaty shnurok. Koly vypriamliaieshsia, pomichaiesh;Oho! Tse te, shcho ya dumaiu? Tak! Tse;Ty prykhyliaieshsia do stiny y vypadkovo natyskaiesh taiemnu knopku. Stina vidkryvaietsia, pokazuiuchy;Ty bachysh;Niby vsoho tsoho bulo nedostatno, ty navit mozhesh pobachyty;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a
+prefix-multi:Ty bachysh blysk u kutku, de znakhodytsia;Shcho tse tam? Skhozhe, tse;Ty ohliadaiesh kimnatu y bachysh;#how_see#;Ty nakhyliaieshsia, shchob zavyazaty shnurok. Koly vypriamliaieshsia, pomichaiesh;Ty vidchuvaiesh #smelltype# zapakh i priamuiesh do;Ty raptom bachysh;
+
 prefix_(c):#prefix#
 prefix_(s):#prefix#
 
-#suffixes
+# Суфікси
 #-----------
-#To be affixed after object descriptions. Keep away from doors. Keep in mind a suffix is usually (but not always) followed by a prefix. Suffixes start with punctuation and end with a period (or exclamation/question mark).
-suffix_meta:. Ye shchos take v obyekti v kimnati, shcho prosto... TextWorld.;. Vy ne mozhete naspravdi opysaty (name-n), krim toho, shcho tse (name-adj).;. Tse skhozhe na shchos, shcho zghaduvalosia v instruktsiiakh?;. Yake chudove poiednannia prykmetnykiv ta imennykiv!;. Zapamyataite tse, mozhlyvo, piznishe vam dovedetsia poklasty shchos na noho abo vseredynu noho.;. Zapamyataite tse, mozhlyvo, piznishe vam dovedetsia poklasty shchos na noho abo vseredynu noho.;. Zapamyataite tse, mozhlyvo, piznishe vam dovedetsia poklasty shchos na noho abo vseredynu noho.;. Zapamyataite tse, mozhlyvo, piznishe vam dovedetsia poklasty shchos na noho abo vseredynu noho.;. Zapamyataite tse, mozhlyvo, piznishe vam dovedetsia poklasty shchos na noho abo vseredynu noho.;. Zapamyataite tse, mozhlyvo, piznishe vam dovedetsia poklasty shchos na noho abo vseredynu noho.;. Zapamyataite tse, mozhlyvo, piznishe vam dovedetsia poklasty shchos na noho abo vseredynu noho.;. Zapamyataite tse, mozhlyvo, piznishe vam dovedetsia poklasty shchos na noho abo vseredynu noho.;. Zapamyataite tse, mozhlyvo, piznishe vam dovedetsia poklasty shchos na noho abo vseredynu noho.;. Zapamyataite tse, mozhlyvo, piznishe vam dovedetsia poklasty shchos na noho abo vseredynu noho.;. Zapamyataite tse, mozhlyvo, piznishe vam dovedetsia poklasty shchos na noho abo vseredynu noho.;. Zapamyataite tse, mozhlyvo, piznishe vam dovedetsia poklasty shchos na noho abo vseredynu noho.
-suffix_fulfillment:. A (name-n)... Nevzhe tse spravdi te, shcho vy shukaly?;. Tse vono? Nevzhe tse te, zarady choho vy pryishly do TextWorld? (name-n)?;. Khmm. Vy zavzhdy dumaly, shcho budete bilshe radi pobachyty (name-n) u kimnati.;. Nevzhe same zarady tsoho vy pryishly do TextWorld? Tse... (name-n)?;. Vy ozyraietesia navkolo, na vsi konteinery y opory, dveri ta obyekty, i dumaiete: navishcho? Navishcho isnuie TextWorld?
-suffix_price_schtick:. Vy pereviriaiete tsinnyk #pricetagexplain#. #pricebad#?! Tse bezghluzdia! #youknow# mii #friendtype#, #myfriend#? Ya vpevnenyi, shcho mii druh mih by distaty vam takyi za #pricegood#!;. Vy pereviriaiete tsinnyk #pricetagexplain#. #pricebad#?! Tse bezghluzdia! #Iknow# #afriend#, yakyi mih by distaty vam takyi za #pricegood#!;. Vy dyvytesia na tsinnyk #pricetagexplain#. #pricebad#?! De vony kupyly tsei (name-n), #expensiveplace#?;. Vy pereviriaiete tsinnyk #pricetagexplain#. #pricegood#? Yaka vyhidna propozytsiia! Treba bude zapytaty, de tse kupyly!;. Oho, pohliante na tsinnyk #pricetagexplain#! #pricebad#!;#emptymain#;#emptymainperiod#
-suffix_(r):. Harazd, prosto pamyataite, navishcho vy tut, i vse bude chudovo.;. Vy namahaietesia otrymaty informatsiiu pro navkolyshnie seredovyshche za dopomohoiu tekhniky, yaku nazyvaiete «dyvytysia».;. Vy ledve mozhete strymaty svoie zakhoplennia.;. Kimnata zdaietsia dyvno znaiomoiu, niby vona lyshe poverkhovo vidrizniaietsia vid inshykh kimnat u budivli.;. Vy vyrishuiete prosto perelichyty absoliutno vse, shcho bachyte v kimnati, bo chomu b i ni?;. Napevno, krashche prosto pity y perelichyty vse, shcho tut ye.;. Vy pochynaiete zanotovuvaty, shcho ye v kimnati.;. Vy vyrishuiete pochaty perelichuvaty vse, shcho bachyte v kimnati, niby vy v tekstovii pryhodnytskii hri.;. Kimnata dobre osvitlena.;. Vy pochynaiete otsiniuvaty, shcho tut ye.;. Vy pochynaiete otsiniuvaty, shcho ye v kimnati.;. Vy pochynaiete shukaty rechi.;. Podyvimosia, shcho tut ye.;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#
-### Cut for length ###
-suffix:.;. Vy zdryhaietesia, ale prodovzhuiete ohliadaty kimnatu.;. Vy baiduzhe dumaiete, khto zalyshyv tse tut.;. Tsikavo, navishcho khtos zalyshyv tse tut?;. Ye shchos dyvne v tomu, shcho tse tut, ale vy ne mozhete zrozumity, shcho same.;. Ye shchos dyvne v tomu, shcho tsia rich tut, ale zaraz u vas nemaie chasu pro tse khvyliuvatysia.;. Khm, dyvno.;, ot i vse.;!;. Khmmm... shcho shche, shcho shche?;. Oho, khiba TextWorld ne naikrashchyi?;. Ya maiu na uvazi, prosto vau! Khiba TextWorld ne naikrashchyi?;. Vam ne terpytsia rozpovisty liudiam udoma pro tse!;. Shchos promainulo priamo v kutochku vashoho oka. Napevno, nichoho vazhlyvoho.;. Vy baiduzhe dumaiete, yak vony prydumaly nazvu TextWorld dlia tsoho mistsia. Vona dosyt vluchna.;. Raptom vy vdariaietesia holovoiu ob steliu, ale udar ne nastilky sylnyi, shchob zavadyty vam dyvytysia na obyekty y navit na rechi.;. Os tse ya nazyvaiu TextWorld!;. Klasychnyi TextWorld.;. Svitlo na sekundu merekhtyt, ale bilshe nichoho ne vidbuvaietsia.;.;.;.;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty30#;#empty31#;#empty32#;#suffix_price_schtick#;#suffix_fulfillment#;#suffix_meta#
+# Додаються після описів об'єктів. Не використовувати для дверей.
+# Пам'ятай, що після суфікса зазвичай, але не завжди, йде префікс.
+# Суфікси починаються з розділового знака і закінчуються крапкою
+# (або знаком оклику/питання).
 
-###Multi suffixes need to be more flexible than normal ones###
-suffix-multi:.;. Vy zdryhaietesia, ale prodovzhuiete ohliadaty kimnatu.;. Vy baiduzhe dumaiete, khto poklav tsi rechi siudy.;. Ye shchos dyvne v tomu, shcho tsi rechi tut, ale vy ne mozhete zrozumity, shcho same.;. Ye shchos dyvne v tomu, shcho tsi rechi tut, ale u vas nemaie chasu pro tse khvyliuvatysia.;. Khm, dyvno.;, ot i vse.;, to chomu b ne sfotohrafuvaty, tse zalyshytsia z vamy nazavzhdy!;. Nishcho ne mozhe buty bilsh TextWorld, nizh tse!;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#;#empty41#;#empty42#;#empty43#;#empty44#;#empty45#
-suffix_(s)_mid:.;. Vy zdryhaietesia, ale prodovzhuiete ohliadaty (name-n).;. Vy baiduzhe dumaiete, khto zalyshyv tse tut.;. Tsikavo, navishcho khtos zalyshyv tse tut?;#suffix_meta#;. Chomu b vam ne sfotohrafuvaty tse, tse zalyshytsia z vamy nazavzhdy!;!;. Oho, khiba TextWorld ne naikrashchyi?;. Napevno, pravda v tomu, shcho yakshcho vy shukaiete (name-n), vam slid ity do TextWorld.;. Yakyi zbih, khiba vy shchoino ne dumaly pro (name-n)?;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#
-suffix_(s)_end:.;. Vy zdryhaietesia, ale prodovzhuiete ohliadaty kimnatu.;. Ye shchos dyvne v tomu, shcho tse tut, ale vy ne mozhete zrozumity, shcho same.;. Ye shchos dyvne v tomu, shcho tsia rich tut, ale u vas nemaie chasu pro tse khvyliuvatysia.;. Khm, dyvno.;, ot i vse.;. Khmmm... shcho shche, shcho shche?;. Ya maiu na uvazi, prosto vau! Khiba TextWorld ne naikrashchyi?;. Vam ne terpytsia rozpovisty liudiam udoma pro tse!;. Shchos promainulo priamo v kutochku vashoho oka. Napevno, nichoho vazhlyvoho.;. Vy baiduzhe dumaiete, yak vony prydumaly nazvu TextWorld dlia tsoho mistsia. Vona dosyt vluchna.;. Raptom vy vdariaietesia holovoiu ob steliu, ale udar ne nastilky sylnyi, shchob zavadyty vam dyvytysia na obyekty y navit na rechi.;. Oho! Priamo yak u kino!;. Nishcho ne mozhe buty bilsh TextWorld, nizh tse!;. Os tse ya nazyvaiu TextWorld!;. Klasychnyi TextWorld.;#suffix#;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#
-suffix_(s)_end_angry:. Vy rukhaietesia dali, yavno #upsetwith# TextWorld.;. Vy rukhaietesia dali, yavno #upsetwith# svii dosvid u TextWorld.;. Inodi, lyshe inodi, TextWorld mozhe buty prosto naihirshym.;. Yakyi sens u porozhnomu (name-n)?;. Spodivaiemosia, tse vas ne nadto zasmutyt.;. Vy podumky vyrishuiete ne nadto radity nastupnoho razu, koly pobachyte (name-n) u kimnati.;. ;. Spodivaiemosia, tse vidkryttia ne zipsuie vash dosvid u TextWorld!;. Vy holosno laietesia.;. Tse zavzhdy trapliaietsia!;. Tse zavzhdy trapliaietsia tut, u TextWorld!;. Durnyi (name-n), durnyi, porozhnii, ni na shcho ne zdatnyi (name-n).;. Vy dumaiete pro te, shchob rozbyty (name-n) na druzky, vykynuty yikh #intheblank#, toshcho, doky vam ne nabrydne.;. Okh, a vy tak radily, spodivaiuchys, shcho na nomu budut rechi!;. O! Chomu zh na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, vy dumaiete, shcho v TextWorld na vsomu maiut buty rechi?;. Bulo b tak kruto, yakby na (name-n) buly rechi! Nu harazd.;. Okh, a vy tak radily, spodivaiuchys, shcho na nomu budut rechi!;. O! Chomu zh na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, vy dumaiete, shcho v TextWorld na vsomu maiut buty rechi?;. Bulo b tak kruto, yakby na (name-n) buly rechi. Nu harazd.;. Okh, a vy tak radily, spodivaiuchys, shcho na nomu budut rechi!;. O! Chomu zh na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, vy dumaiete, shcho v TextWorld na vsomu maiut buty rechi?;. Bulo b tak kruto, yakby na (name-n) buly rechi. Nu harazd.;. Okh, a vy tak radily, spodivaiuchys, shcho na nomu budut rechi!;. O! Chomu zh na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, vy dumaiete, shcho v TextWorld na vsomu maiut buty rechi?;. Bulo b tak kruto, yakby na (name-n) buly rechi. Nu harazd.;. Okh, a vy tak radily, spodivaiuchys, shcho na nomu budut rechi!;. O! Chomu zh na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, vy dumaiete, shcho v TextWorld na vsomu maiut buty rechi?;. Bulo b tak kruto, yakby na (name-n) buly rechi.;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#;#empty41#;#empty42#;#empty43#;#empty44#;#empty45#;#empty46#;#empty47#;#empty48#;#empty49#;#empty50#
-#fix expandables in
+suffix_meta:. Ye shchos take v obyekti kimnaty, shcho prosto... po-TextWorld.;. Ty ne mozhesh tolkom opysaty (name-n), krim toho, shcho vin (name-adj).;. Tse vypadkovo ne zghaduvalosia v instruktsiiakh?;. Yake chudove poiednannia prykmetnykiv ta imennykiv!;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.;. Zapamyatai tse, mozhlyvo, piznishe tobi dovedetsia poklasty shchos na noho abo vseredynu.
+suffix_fulfillment:. (name-n)... Tse spravdi te, shcho ty shukav?;. Tse vono? Ty same zarady tsoho pryishov u TextWorld? (name-n)?;. Khm. Ty zavzhdy dumav, shcho bilshe zradiiesh, pobachyvshy (name-n) u kimnati.;. Ty same zarady tsoho pryishov u TextWorld? Tse... (name-n)?;. Ty ozyraieshsia navkolo, dyvyshsia na vsi konteinery, opory, dveri ta predmety y dumaiesh: navishcho? Navishcho TextWorld?
+suffix_price_schtick:. Ty pereviriaiesh tsinnyk #pricetagexplain#. #pricebad#?! Tse zh bezghluzdia! #youknow# mii #friendtype#, #myfriend#? Ya vpevnenyi, shcho mii druh mih by distaty tobi takyi za #pricegood#!;. Ty pereviriaiesh tsinnyk #pricetagexplain#. #pricebad#?! Tse zh bezghluzdia! #Iknow# #afriend#, yakyi distav by tobi takyi za #pricegood#!;. Ty dyvyshsia na tsinnyk #pricetagexplain#. #pricebad#?! De vony kupyly tsei (name-n), #expensiveplace#?;. Ty pereviriaiesh tsinnyk #pricetagexplain#. #pricegood#? Yaka vyhidna propozytsiia! Treba bude zapytaty, de vony tse vzialy!;. Oho, pohlian na tsinnyk #pricetagexplain#! #pricebad#!;#emptymain#;#emptymainperiod#
+
+suffix_(r):. Harazd, prosto pamyatai, navishcho ty tut, i vse bude dobre.;. Ty namahaieshsia otrymaty informatsiiu pro svoie otochennia za dopomohoiu tekhniky, yaku nazyvaiesh «ohliadom».;. Ty ledve strymuiesh svoie zakhoplennia.;. Kimnata zdaietsia dyvno znaiomoiu, niby vid inshykh kimnat u budivli yii vidrizniaie lyshe poverkhneva riznytsia.;. Ty vyrishuiesh prosto perelichyty vse, shcho bachysh u kimnati, bo chomu b i ni?;. Mabut, tobi krashche prosto perelichyty vse, shcho ty tut bachysh.;. Ty pochynaiesh pomichaty, shcho ye v kimnati.;. Ty vyrishuiesh pochaty perelichuvaty vse, shcho bachysh u kimnati, niby ty v tekstovii pryhodnytskii hri.;. Kimnata dobre osvitlena.;. Ty pochynaiesh ohliadaty, shcho tut ye.;. Ty pochynaiesh ohliadaty, shcho ye v kimnati.;. Ty pochynaiesh shukaty rechi.;. Podyvimosia, shcho tut ye.;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#
+
+### Скорочено для зменшення довжини ###
+
+suffix:.;. Ty zdryhaieshsia, ale prodovzhuiesh ohliadaty kimnatu.;. Ty mymokhid dumaiesh, khto zalyshyv tse tut.;. Tsikavo, navishcho khtos zalyshyv tse tut?;. U tomu, shcho tse tut ye, ye shchos dyvne, ale ty ne mozhesh zrozumity, shcho same.;. U tomu, shcho tsia rich tut ye, ye shchos dyvne, ale zaraz u tebe nemaie chasu pro tse turbuvatysia.;. Khm, dyvno.;, nu y take.;!;. Khmmm... shcho shche, shcho shche?;. Oho, khiba TextWorld ne naikrashchyi?;. Ya prosto ne mozhu poviryty! Khiba TextWorld ne naikrashchyi?;. Ty ne mozhesh dochekatysia, shchob rozpovisty domashnim pro tse!;. Shchos promainulo v kutochku tvoho oka. Napevno, nichoho vazhlyvoho.;. Ty mymokhid dyvuieshsia, yak vony prydumaly nazvu TextWorld dlia tsoho mistsia. Vona duzhe vluchna.;. Raptom ty vdariaieshsia holovoiu ob steliu, ale udar ne nastilky sylnyi, shchob zavadyty tobi rozghliadaty predmety y navit rechi.;. Os tse ya nazyvaiu TextWorld!;. Klasychnyi TextWorld.;. Svitlo na sekundu merekhtyt, ale bilshe nichoho ne vidbuvaietsia.;.;.;.;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty30#;#empty31#;#empty32#;#suffix_price_schtick#;#suffix_fulfillment#;#suffix_meta#
+
+### Багаторечові суфікси мають бути гнучкішими за звичайні ###
+
+suffix-multi:.;. Ty zdryhaieshsia, ale prodovzhuiesh ohliadaty kimnatu.;. Ty mymokhid dumaiesh, khto poklav siudy vsi tsi rechi.;. U tomu, shcho vsi tsi rechi tut ye, ye shchos dyvne, ale ty ne mozhesh zrozumity, shcho same.;. U tomu, shcho vsi tsi rechi tut ye, ye shchos dyvne, ale zaraz u tebe nemaie chasu pro tse turbuvatysia.;. Khm, dyvno.;, nu y take.;, to chomu b ne sfotohrafuvaty, adzhe fotohrafiia zalyshytsia nazavzhdy!;. Bilsh TextWorld, nizh tse, vzhe ne buvaie!;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#;#empty41#;#empty42#;#empty43#;#empty44#;#empty45#
+
+suffix_(s)_mid:.;. Ty zdryhaieshsia, ale prodovzhuiesh ohliadaty (name-n).;. Ty mymokhid dumaiesh, khto zalyshyv tse tut.;. Tsikavo, navishcho khtos zalyshyv tse tut?;#suffix_meta#;. Chomu b ne sfotohrafuvaty tse, adzhe fotohrafiia zalyshytsia nazavzhdy!;!;. Oho, khiba TextWorld ne naikrashchyi?;. Skhozhe, liudy maiut ratsiiu: yakshcho shukaiesh (name-n), idy do TextWorld.;. Yakyi zbih — khiba ty shchoino ne dumav pro (name-n)?;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#
+
+suffix_(s)_end:.;. Ty zdryhaieshsia, ale prodovzhuiesh ohliadaty kimnatu.;. U tomu, shcho tse tut ye, ye shchos dyvne, ale ty ne mozhesh zrozumity, shcho same.;. U tomu, shcho tsia rich tut ye, ye shchos dyvne, ale zaraz u tebe nemaie chasu pro tse turbuvatysia.;. Khm, dyvno.;, nu y take.;. Khmmm... shcho shche, shcho shche?;. Ya prosto ne mozhu poviryty! Khiba TextWorld ne naikrashchyi?;. Ty ne mozhesh dochekatysia, shchob rozpovisty domashnim pro tse!;. Shchos promaine v kutochku tvoho oka. Napevno, nichoho vazhlyvoho.;. Ty mymokhid dyvuieshsia, yak vony prydumaly nazvu TextWorld dlia tsoho mistsia. Vona duzhe vluchna.;. Raptom ty vdariaieshsia holovoiu ob steliu, ale udar ne nastilky sylnyi, shchob zavadyty tobi rozghliadaty predmety y navit rechi.;. Oho! Priamo yak u kino!;. Bilsh TextWorld, nizh tse, vzhe ne buvaie!;. Os tse ya nazyvaiu TextWorld!;. Klasychnyi TextWorld.;#suffix#;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#
+
+suffix_(s)_end_angry:. Ty ydesh dali, yavno #upsetwith# TextWorld.;. Ty ydesh dali, yavno #upsetwith# svii dosvid u TextWorld.;. Inodi, lyshe inodi, TextWorld mozhe buty prosto zhakhlyvym.;. Yakyi sens u porozhnomu (name-n)?;. Spodivaiemosia, tse tebe ne nadto zasmutyt.;. Ty podumky vyrishuiesh nastupnoho razu ne nadto spodivatysia, koly pobachysh (name-n) u kimnati.;. ;. Spodivaiemosia, tse vidkryttia ne zipsuie tobi vrazhennia vid TextWorld!;. Ty holosno laieshsia.;. Tak zavzhdy buvaie!;. Tak zavzhdy buvaie tut, u TextWorld!;. Durnyi (name-n), durnyi, porozhnii, nikomu ne potribnyi (name-n).;. Ty uiavliaiesh, yak rozbyvaiesh (name-n) na druzky, vykydaiesh ulamky #intheblank#, toshcho, doky tobi tse ne nabrydaie.;. Ekh, a ty tak radiv, shcho na nomu shchos bude!;. O! Chomu na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, ty dumaiesh, shcho v TextWorld na vsomu obovyazkovo maiut buty yakis rechi?;. Bulo b tak kruto, yakby na (name-n) shchos bulo! Nu harazd.;. Ekh, a ty tak radiv, shcho na nomu shchos bude!;. O! Chomu na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, ty dumaiesh, shcho v TextWorld na vsomu obovyazkovo maiut buty yakis rechi?;. Bulo b tak kruto, yakby na (name-n) shchos bulo.;. Ekh, a ty tak radiv, shcho na nomu shchos bude!;. O! Chomu na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, ty dumaiesh, shcho v TextWorld na vsomu obovyazkovo maiut buty yakis rechi?;. Bulo b tak kruto, yakby na (name-n) shchos bulo.;. Ekh, a ty tak radiv, shcho na nomu shchos bude!;. O! Chomu na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, ty dumaiesh, shcho v TextWorld na vsomu obovyazkovo maiut buty yakis rechi?;. Bulo b tak kruto, yakby na (name-n) shchos bulo.;. Ekh, a ty tak radiv, shcho na nomu shchos bude!;. O! Chomu na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, ty dumaiesh, shcho v TextWorld na vsomu obovyazkovo maiut buty yakis rechi?;. Bulo b tak kruto, yakby na (name-n) shchos bulo.;. Ekh, a ty tak radiv, shcho na nomu shchos bude!;. O! Chomu na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, ty dumaiesh, shcho v TextWorld na vsomu obovyazkovo maiut buty yakis rechi?;. Bulo b tak kruto, yakby na (name-n) shchos bulo.;. Ekh, a ty tak radiv, shcho na nomu shchos bude!;. O! Chomu na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, ty dumaiesh, shcho v TextWorld na vsomu obovyazkovo maiut buty yakis rechi?;. Bulo b tak kruto, yakby na (name-n) shchos bulo.;. Ekh, a ty tak radiv, shcho na nomu shchos bude!;. O! Chomu na nomu prosto ne mohlo buty yakykhos rechei?;. Khm. Nu harazd.;. Shcho, ty dumaiesh, shcho v TextWorld na vsomu obovyazkovo maiut buty yakis rechi?;. Bulo b tak kruto, yakby na (name-n) shchos bulo.;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#;#empty41#;#empty42#;#empty43#;#empty44#;#empty45#;#empty46#;#empty47#;#empty48#;#empty49#;#empty50#
+
+# Виправлення додаткових елементів
 #-----------
-smelltype:zapakh #ansmell#;zapakh #asmell#
+
+smelltype:an #ansmell#;a #asmell#
 ansmell:tsikavyi;zhakhlyvyi;intryhuiuchyi
-asmell:ohydnyi;rizkyi;nudotnyi;zhakhlyvyi;vidrazlyvyi;pryiemnyi;chudovyi;harnyi;
+asmell:merzotnyi;rizkyi;nudotnyi;zhakhlyvyi;ohydnyi;pryiemnyi;chudovyi;normalnyi;
 
-upsetwith:zasmuchenyi cherez;rozliuchenyi cherez;rozliuchenyi na;pryhnichenyi cherez;vtomlenyi vid;zasmuchenyi cherez;liutyi na
-pricetagexplain:yakyi dosi prykriplenyi do (name-n);yakyi vlasnyk (name-n) dosi ne zniav;shcho vysyt na (name-n);na (name-n);prykleienyi do (name-n)
+upsetwith:zasmuchenyi cherez;zlyi cherez;rozliuchenyi cherez;pryhnichenyi cherez;vtomyvsia vid;zasmuchenyi cherez;liutyi na
+pricetagexplain:shcho vse shche prykriplenyi do (name-n);yakyi vlasnyk (name-n) dosi ne zniav;shcho vysyt na (name-n);na (name-n);prykleienyi do (name-n)
 pricebad:#bignumber# dolariv;#bignumber# baksiv;#bignumber# velykykh kupiur
 resourcenumber:10;15;20;25;30;35;40;45;50;55;60;65;70;75;80;85;90;95;100
 bignumber:Trydtsiat;Sorok;Pyatdesiat;Shistdesiat;Simdesiat;Visimdesiat;Devyanosto;Sto;Dvisti;Trysta
-Iknow:Ya znaiu odnoho;U mene ye odyn;Ya maiu odnoho;Znaiete, ya znaiu odnoho;Znaiete, u mene ye odyn;Znaiete shcho, u mene ye odyn
-youknow:Znaiete;Vy znaiete;Vy koly-nebud zustrichaly;Vy koly-nebud zustrichaly
-afriend:liudyna, vony pratsiuiut u #friendplace#;liudyna;druh;liudyna, yaka pratsiuie na #friendcompany#;liudyna, chyi #inlaw# pratsiuie yak #cooljob#,
-inlaw:diadko;titka;zolovka;shuryn;dvoiuridnyi brat;inshyi druh;pryiatel;tovarysh;susid po kimnati;tato;mama;brat;sestra;susid
-myfriend:vony pratsiuiut na #friendcompany#
-cooljob:mahazyn;#friendcompany#;mer;prezydent;premyer-ministr;internet
-friendplace:bank;velyke misto;meriia
-friendcompany:uriad;poshtove viddilennia;mer;kompaniia
-friendtype:pryiatel;druzhban;druh;khoroshyi druh;
-pricefriend:polovyna tsiiei sumy;polovyna tsoho;shist baksiv;maizhe nichoho
+Iknow:Ya znaiu odnoho;U mene ye znaiomyi;Ya maiu znaiomoho;Znaiesh, ya znaiu odnoho;Znaiesh, u mene ye znaiomyi;Znaiesh shcho, u mene ye
+youknow:Znaiesh;Ty znaiesh;Ty koly-nebud zustrichav;Ty koly-nebud zustrichav
+afriend:liudynu, vony pratsiuiut u #friendplace#;liudynu;druha;liudynu, yaka pratsiuie v #friendcompany#;liudynu, chyi #inlaw# pratsiuie v #cooljob#,
+inlaw:diadko;titka;zolovka;shuryn;dvoiuridnyi brat;inshyi druh;pryiatel;tovarysh;susid po kimnati;batko;maty;brat;sestra;susid
+myfriend:vony pratsiuiut u #friendcompany#
+cooljob:mahazyni;#friendcompany#;mera;prezydenta;premyer-ministra;interneti
+friendplace:banku;velykomu misti;merii
+friendcompany:uriadi;poshti;merii;kompanii
+friendtype:pryiatel;tovarysh;druh;khoroshyi druh;
+pricefriend:polovynu tsiiei sumy;polovynu vid tsoho;shist baksiv;maizhe nichoho
 pricegood:#resourcenumber# baksiv
 expensiveplace:yakomus dorohomu mistsi;yakomus dorohomu mahazyni
-intheblank:na zvalyshchi;u vohon;u yamu;u smittia
-#General Expandables
+intheblank:na zvalyshche;u vohon;u yamu;u smittia
+
+# Загальні додаткові елементи
 #------------------
 
-canshould:mozhete;povynni;maiete buty spromozhni;mozhlyvo, mozhete
-looks:zdaietsia;vyhliadaie;zdaietsia;vyhliadaie tak, niby
-here_alt:tut;u kimnati;poblyzu;nepodalik;u kutku;priamo bilia vas
-here_alt_u:Tut;U kimnati;Poblyzu;Nepodalik;U kutku;Priamo bilia vas
-how_see:Vy #you_what#;Vy mozhete #you_what#
-how_see_u:vy #you_what#;vy mozhete #you_what#
+canshould:mozhesh;maiesh;maiesh buty zdatnym;mozhlyvo
+looks:zdaietsia;vyhliadaie;skhozhe;maie vyhliad
+here_alt:tut;u kimnati;poblyzu;poruch;u kutku;priamo bilia tebe
+here_alt_u:Tut;U kimnati;Poblyzu;Poruch;U kutku;Priamo bilia tebe
+how_see:Ty #you_what#;Ty mozhesh #you_what#
+how_see_u:ty #you_what#;ty mozhesh #you_what#
 there_what:ye;zdaietsia, ye
-you_what:bachyte;rozrizniaiete
-
+you_what:bachysh;rozrizniaiesh
 
 emptymainperiod:#emptymain#
 emptymain:#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#;#empty41#;#empty42#;#empty43#;#empty44#;#empty45#;#empty46#;#empty47#;#empty48#;#empty49#;#empty50#;#empty51#;#empty52#;#empty53#;#empty54#;#empty55#;#empty56#;#empty57#;#empty58#;#empty59#;#empty60#;#empty61#;#empty62#;#empty63#
+
 empty1:.;
 empty2:.;
 empty3:.;
