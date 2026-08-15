@@ -197,10 +197,10 @@ storage_(o)_noun_type_1:sorochka;shkarpetka;cherevyk;rukavychka;kapeliukh;sharf;
 storage_(o)_adj_type_1:novyi;staryi;vzhyvanyi;zapylenyi;chystyi;velykyi;malyi;vyshukanyi;prostyi;suchasnyi;novitnii;brudnyi;elehantnyi;bezdohannyi;prostyi;skromnyi;yaskravyi;modnyi;nesmakovytyi
 
 # побутові предмети
-storage_(o)_noun_type_2:lampochka;mitla;trost;navushnyky;abazhur;frizbi;holf #гольф#
+storage_(o)_noun_type_2:lampochka;mitla;trost;navushnyky;abazhur;frizbi;holf #golf#
 storage_(o)_adj_type_2:novyi;staryi;vzhyvanyi;zapylenyi;chystyi;velykyi;malyi;vyshukanyi;prostyi;ozdoblenyi;starovynnyi;suchasnyi;brudnyi;elehantnyi;bezdohannyi;prostyi;vazhkyi;skromnyi;nebrendovyi;nepotribnyi;zlamanyi
 
-golf:kliuchka;ti;myach
+golf:kliuchka;holfovyi kilochok;myach
 
 # комахи
 bugobject:#storage_(o)_adj_type_4# | #storage_(o)_noun_type_4#
