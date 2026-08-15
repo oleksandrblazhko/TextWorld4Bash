@@ -1,27 +1,32 @@
 #-------------------------
-#Room Descriptor Grammar
+# Граматика опису кімнати
 #-------------------------
 
-# Inform7 snippets
-#-----------------
-#Shouldn't need to be messed з. These are shortcuts for when you need to use i7 code. Probably a bad idea to include symbols or tokens inside these
-i7_closed/open:[if (obj) is open]an open[otherwise]a closed[end if]
-i7_list_in:[a list of things in the (obj)]
-i7_list_on:[a list of things on the (obj)]
-i7_empty:[if (obj) contains nothing]an empty[otherwise]a[end if]
-inform7:[if (obj) is locked]a locked[else if (obj) is open]an open[otherwise]a closed[end if]
-inform7A:[if (obj) is locked]A locked[else if (obj) is open]An open[otherwise]A closed[end if]
-inform7noa:[if (obj) is locked]a locked[else if (obj) is open]an open[otherwise]a closed[end if]
-inform7noun:[if (obj) is locked]locked[else if (obj) is open]open[otherwise]closed[end if]
-inform7nounnoa:[if (obj) is locked]locked[else if (obj) is open]open[otherwise]closed[end if]
+# Фрагменти Inform7
+#-------------------
+# Не повинно виникати потреби змінювати це. Це скорочення для випадків,
+# коли потрібно використати код i7. Ймовірно, погана ідея включати сюди
+# символи або токени.
+i7_closed/open:[if (obj) is open]відкритий[otherwise]закритий[end if]
+i7_list_in:[список предметів у (obj)]
+i7_list_on:[список предметів на (obj)]
+i7_empty:[if (obj) contains nothing]порожній[otherwise]непорожній[end if]
+inform7:[if (obj) is locked]замкнений[else if (obj) is open]відкритий[otherwise]закритий[end if]
+inform7A:[if (obj) is locked]Замкнений[else if (obj) is open]Відкритий[otherwise]Закритий[end if]
+inform7noa:[if (obj) is locked]замкнений[else if (obj) is open]відкритий[otherwise]закритий[end if]
+inform7noun:[if (obj) is locked]замкнений[else if (obj) is open]відкритий[otherwise]закритий[end if]
+inform7nounnoa:[if (obj) is locked]замкнений[else if (obj) is open]відкритий[otherwise]закритий[end if]
 
-#Room Intro#
-#----------
-#Text for introducing the room. ex: "Greetings, you are now in the hot kitchen"
-# dec:[if unvisited]#GREETING!# #dec_type##suffix_(r)#[otherwise]#revisit#[end if];[if unvisited]#dec_type##suffix_(r)#[otherwise]#revisit#[end if]
+# Вступ до кімнати
+#----------------
+# Текст для представлення кімнати. Наприклад:
+# "Вітаємо, ви зараз у гарячій кухні"
+# dec:[if unvisited]#GREETING!# #dec_type##suffix_(r)#[otherwise]#revisit#[end if];
+# [if unvisited]#dec_type##suffix_(r)#[otherwise]#revisit#[end if]
 dec:#dec_type##suffix_(r)#
 
-### First time in room ###
+### Перший раз у кімнаті ###
+
 dec_type:#reg-0#;#normal-0#;#difficult-0#;#moredifficult-0#;#playful-0#
 reg-0:#04#;#05#;#06#
 normal-0:#07#
@@ -29,87 +34,95 @@ difficult-0:#016#
 moredifficult-0:#017#
 playful-0:#01#;#02#;#03#;#08#;#09#;#010#;#011#;#012#;#013#;#014#;#015#;#018#;#019#;#020#;#021#;#022#;#023#;#024#;#025#;#026#;#027#;#028#
 
-### Revisiting room ###
-revisit:You have re-entered the (name).;You re-enter the (name). You're so confused, you need to be reminded what is in the room, even though you were просто here seconds ago.;What, you thought if you went somewhere і came back this place would stop being the (name)?;Ah, the (name). You have lots of great memories of this place. Fresh memories. You were просто here a second ago.;Well here you are, back in the (name).;Just when you thought you'd never have to see the (name) again, you walk right back into it.;Welcome back to the (name).
+### Повторний вхід до кімнати ###
 
-#Room Intro Templates
-#-------------------
+revisit:Ви знову увійшли до (name).;Ви знову входите до (name). Ви такі розгублені, що вам потрібно нагадати, що є в кімнаті, хоча ви були тут лише кілька секунд тому.;Що, ви думали, що якщо підете кудись і повернетеся, це місце перестане бути (name)?;А, (name). У вас багато чудових спогадів про це місце. Свіжих спогадів. Ви були тут лише секунду тому.;Ну ось ви й повернулися до (name).;Щойно ви подумали, що більше ніколи не побачите (name), як знову повертаєтеся сюди.;Ласкаво просимо назад до (name).
 
-01:I am sorry to announce that you are now in the (name)
-02:Ah, the (name-n). This is some kind of (name-n), really great (name-adj) vibes in this place, a wonderful (name-adj) atmosphere. And now, well, you're in it
-03:Okay, so you're in a (name-n), cool, але is it (name-adj)? You better believe it is
-04:#dec_find-yourself# in a (name);#dec_guess-what# (name)
-05:Well, here we are in #dec_a_the# (name)
-06:You're now in #dec_a_the# (name)
-07:You've entered a (name);You've просто #dec_walked_into# a (name)
-08:This might come as a shock to you, але you've просто #dec_entered# a (name)
-09:I am #announce_mood# to announce that you are now in the (name)
-010:Ah, the (name-n). This is some kind of (name-n), really great (name-adj) vibes in this place, a wonderful (name-adj) atmosphere
-011:You have #dec_entered# the most (name-adj) of all possible (name-n)s
-012:Of every (name-n) you could have #dec_walked_into#, you had to #dec_walk_into# a (name-adj) one
-013:You have #dec_entered# a (name-n). Not the (name-n) you'd expect. No, this is a (name)
-014:Ви перебуваєте в a (name-n). It seems to be pretty (name-adj) here
-015:You #dec_what# in a (name-adj) kind of place. That is to say, you're in a (name-n)
-016:#dec_find-yourself# in a (name-n). A (name-adj) one
-017:#dec_find-yourself# in a (name-n). A (name-adj) kind of place
+# Шаблони вступу до кімнати
+#--------------------------
+
+01:Мені шкода повідомляти, але тепер ви перебуваєте в (name)
+02:А, (name-n). Це якийсь (name-n), справді чудова атмосфера (name-adj) у цьому місці, чудова (name-adj) атмосфера. І тепер, ну, ви в ньому
+03:Гаразд, отже, ви в (name-n), круто, але чи він (name-adj)? Ще б пак
+04:#dec_find-yourself# у (name);#dec_guess-what# (name)
+05:Ну ось ми й опинилися в #dec_a_the# (name)
+06:Тепер ви в #dec_a_the# (name)
+07:Ви увійшли до (name);Ви щойно #dec_walked_into# (name)
+08:Це може стати для вас шоком, але ви щойно #dec_entered# (name)
+09:Я #announce_mood# повідомити, що тепер ви перебуваєте в (name)
+010:А, (name-n). Це якийсь (name-n), справді чудова атмосфера (name-adj) у цьому місці, чудова (name-adj) атмосфера
+011:Ви #dec_entered# до най(name-adj)нішого з усіх можливих (name-n)
+012:З усіх (name-n), до яких ви могли #dec_walked_into#, вам довелося #dec_walk_into# саме до (name-adj)
+013:Ви #dec_entered# до (name-n). Не до того (name-n), якого ви очікували. Ні, це (name)
+014:Ви перебуваєте в (name-n). Схоже, тут досить (name-adj)
+015:Ви #dec_what# у місці, яке можна назвати (name-adj). Тобто ви перебуваєте в (name-n)
+016:#dec_find-yourself# у (name-n). Досить (name-adj)
+017:#dec_find-yourself# у (name-n). Таке собі (name-adj) місце
 018:#017#
-019:You've #dec_entered# a (name-adj) room. Your mind races to think of what kind of room would be (name-adj). And then it hits you. Of course. You're in the (name)
-020:If you're wondering why everything seems so (name-adj) all of a sudden, it's because you've просто #dec_walked_into# the (name)
-021:Fancy seeing you here. Here, біля way, being the (name);I never took you for the sort of person who would show up in a (name), але I guess I was wrong
-022:This is going to sound unbelievable, але you've просто entered a (name);You're not going to believe this, але you've просто entered a (name)
-023:You make a grand eccentric entrance into a (name);You make another one of your grand eccentric entrances into a (name)
-024:Look at you, bigshot, walking into a (name) like it isn't some huge deal
-025:Look around you. Take it all in. It's not every day someone gets to be in a (name)
-026:You've seen better (name-n)s, але at least this one seems pretty (name-adj);I просто think it's awesome that you're in a (name) now;I просто think it's great that you've просто entered a (name)
-027:A #signquality# #sign# tells you that you are now in the (name);Look at that #sign#! What does it say? It says Welcome to the (name)? Well that's cool
-028:This просто in- You, in the (name);Welcome to the (name);Wow! You're in a (name);Here we are in the (name);You've entered a (name);This (name-n) you have просто entered is definitely (name-adj)
-#Expandables for Room Symbols
-#----------
+019:Ви #dec_entered# до (name-adj) кімнати. Ваш розум гарячково намагається придумати, яка кімната могла б бути (name-adj). І тут вас осяює. Звичайно. Ви в (name)
+020:Якщо вам цікаво, чому раптом усе здається таким (name-adj), це тому, що ви щойно #dec_walked_into# до (name)
+021:Яка несподівана зустріч. Тут, до речі, — це (name);Я ніколи не вважав вас людиною, яка з'явиться в (name), але, схоже, я помилявся
+022:Це звучатиме неймовірно, але ви щойно увійшли до (name);Ви не повірите, але ви щойно увійшли до (name)
+023:Ви робите грандіозний ексцентричний вхід до (name);Ви робите ще один зі своїх грандіозних ексцентричних входів до (name)
+024:Подивіться на себе, великий бос, який заходить у (name), ніби це не якась величезна подія
+025:Озирніться навколо. Оцініть усе це. Не щодня комусь випадає побувати в (name)
+026:Ви бачили й кращі (name-n), але принаймні цей здається досить (name-adj);Я просто вважаю чудовим, що ви зараз у (name);Я просто вважаю чудовим, що ви щойно увійшли до (name)
+027:#signquality# #sign# повідомляє вам, що тепер ви перебуваєте в (name);Погляньте на цей #sign#! Що там написано? Там написано «Ласкаво просимо до (name)»? Ну, це круто
+028:Щойно надійшла новина — ви, у (name);Ласкаво просимо до (name);Ого! Ви в (name);Ну ось ми й у (name);Ви увійшли до (name);Цей (name-n), до якого ви щойно увійшли, безумовно є (name-adj)
 
-GREETING!:GREETING!;GREETINGS!;HELLO!;ALRIGHT THEN!
-dec_entered:entered;walked into;fallen into;moved into;stumbled into;come into
-dec_find-yourself:You #dec_what#
-dec_guess-what:#dec_well-guess#, you are in #dec_a_the# place we're calling #dec_a_the#
-dec_well-guess:Guess what;Well how about that;Well I'll be
-dec_what:are;find yourself;arrive
-dec_a_the:a;the
-dec_in_at:in;at
-dec_walk_into:walk into;show up in;saunter into;come round
-dec_walked_into:walked into;shown up in;sauntered into
-announce_mood:sorry;pleased;excited;stoked;so happy;honoured;required;obligated
-signquality:decrepit;rusty;laminated;crooked;well framed
-sign:sign;placard;notice;signboard;board
-#Description Separators
-#-------
-#Used to separate the description of different object types
+# Розширювані елементи для символів кімнати
+#------------------------------------------
+
+GREETING!:ВІТАЄМО!;ВІТАЮ!;ПРИВІТ!;ОТЖЕ, ПОЧНЕМО!
+dec_entered:увійшли;зайшли;впали;перемістилися;ввалилися;потрапили
+dec_find-yourself:Ви #dec_what#
+dec_guess-what:#dec_well-guess#, ви перебуваєте в #dec_a_the# місці, яке ми називаємо #dec_a_the#
+dec_well-guess:Вгадайте що;Ну ось як;Ну, хто б міг подумати
+dec_what:є;опиняєтесь;прибуваєте
+dec_a_the:а;це
+dec_in_at:у;в
+dec_walk_into:увійти;зайти;пройти;прогулятися до
+dec_walked_into:увійшли;зайшли;пройшли
+announce_mood:шкода;радий;схвильований;у захваті;дуже щасливий;маю честь;змушений;зобов'язаний
+signquality:занедбаний;іржавий;ламінований;кривий;добре обрамлений
+sign:знак;плакат;оголошення;табличка;дошка
+
+# Розділювачі описів
+#------------------
+# Використовуються для розділення описів різних типів об'єктів
 
 #First
-#first:First, you look for (next object type);First, you scan the room for (next object type);You first scan the room for (next object type)
+#first:Спочатку ви шукаєте (next object type);Спочатку ви оглядаєте кімнату в пошуках (next object type);Спочатку ви оглядаєте кімнату, шукаючи (next object type)
 #Middle
-#middle:After that, you look for (next object type);Once you've ascertained the amount of (previous object type), you start looking for (next object type);
+#middle:Після цього ви шукаєте (next object type);Після того як ви визначили кількість (previous object type), ви починаєте шукати (next object type);
 #Last
-#last:і lastly, you check for (next object type)
+#last:і нарешті ви перевіряєте (next object type)
 
-#Container Descriptions
-#----------------------
-#Rules for Container Descriptions
-#Good idea to subdivide these into difficulty levels
-#room_desc_(c): generates all container descriptions
-#containerdescription: contains all physical exterior descriptions of containers
-#room_desc_(c)_1_name: describes the container as an adj+noun
-#room_dec_(c)_1_noun: describes the container as a noun
-#room_desc_(c)_content: decides if we append a description of the container's contents depending on if the container is open or closed
-#opencontainer:what is appended if the container is open
-#room_desc_(c)_2_adj: adds an adjective і a list of contents (creates doubled adjectives?)
-#room_desc_(c)_2: list of contents без an adjective
+# Опис контейнерів
+#----------------
+# Правила опису контейнерів
+# room_desc_(c): генерує всі описи контейнерів
+# containerdescription: містить усі описи зовнішнього вигляду контейнерів
+# room_desc_(c)_1_name: описує контейнер як прикметник+іменник
+# room_dec_(c)_1_noun: описує контейнер як іменник
+# room_desc_(c)_content: визначає, чи потрібно додати опис вмісту контейнера залежно від того, чи він відкритий
+# opencontainer: те, що додається, якщо контейнер відкритий
+# room_desc_(c)_2_adj: додає прикметник і список вмісту
+# room_desc_(c)_2: список вмісту без прикметника
 
 room_desc_(c):#containerdescription##room_desc_(c)_content#
 #special_container#.
+
 containerdescription:#room_desc_(c)_1_name#;#room_desc_(c)_1_noun#
+
 room_desc_(c)_content:[if (obj) is open and there is something in the (obj)] #opencontainer##suffix#[end if][if (obj) is open and the (obj) contains nothing] #emptyreaction#[end if]
-opencontainer:Цей (name) contains #i7_list_in#
+
+opencontainer:(name) містить #i7_list_in#
+
 #room_desc_(c)_2_adj#;#room_desc_(c)_2#
-emptyreaction:Цей (name-n) is empty, what a horrible day!;Цей (name-n) is empty! What a waste of a day!;Цей (name-n) is empty! This is the worst thing that could possibly happen, ever!;Empty! What kind of nightmare TextWorld is this?;What a letdown! Цей (name-n) is empty!
+
+emptyreaction:(name-n) порожній, який жахливий день!;(name-n) порожній! Яка втрата дня!;(name-n) порожній! Це найгірше, що взагалі могло статися!;Порожньо! Який же це кошмарний TextWorld?;Яке розчарування! (name-n) порожній!
+
 room_desc_(c)_1_name:#reg-a#;#normal-a#;#difficult-a#;#moredifficult-a#;#playful-a#
 
 reg-a:#a1#;#a2#
@@ -136,16 +149,14 @@ room_desc_(c)_multi_open_noun:#f1#;#f2#;#f3#;#f4#;#f5#;#f6#
 room_desc_(c)_multi_adj:#g1#
 room_desc_(c)_multi_open_adj:#h1#;#h2#;#h3#;#h4#
 
-
-
-#Container Description Templates
-#-----------------------------
+# Шаблони опису контейнерів
+#--------------------------
 
 # A #
 
 a1:#how_see# #inform7# (name).;#a6#
 a2:#how_see# #inform7# #name_var# #here_alt#.;#a6#
-a3:#inform7A# #name_var# is #here_alt#.;#a6#
+a3:#inform7A# #name_var# є #here_alt#.;#a6#
 a4:#a1#;#a6#
 a5:#a2#;#a6#
 a6:#prefix# (name)#suffix#
@@ -154,80 +165,81 @@ a6:#prefix# (name)#suffix#
 
 b1:#how_see# #inform7# (name-n).;#b5#
 b2:#how_see# #inform7# (name-n) #here_alt#.;#b5#
-b3:#inform7A# (name-n) is #here_alt#.;#b5#
+b3:#inform7A# (name-n) є #here_alt#.;#b5#
 b4:#b1#;#b5#
 b5:#prefix# (name-n)#suffix#
 
 # C #
 
 c1:#it_is# (name-adj), і #contains# #i7_list_in#.
-c2:#it_is# (name-adj). Also, there #listwithis# in it.
+c2:#it_is# (name-adj). Також у ньому #listwithis#.
 c3:#c1#
-c4:#ContentsC-# [list of things in the (obj)].
-c5:there [is|are] [a list of things in the (obj)] in this silly (name-adj) thing.
+c4:#c9#
+c5:тут [є|є] [список предметів у (obj)] у цій безглуздій (name-adj) штуці.
 c6:#c9#
 c7:#c9#
-c8:Let's see what's inside - #i7_list_in#.
-c9:#it# #reminds_you# the containers #ofyouryouth#. Oh, how they також contained #i7_list_in#.
+c8:Подивімося, що всередині — #i7_list_in#.
+c9:#it# #reminds_you# про контейнери #ofyouryouth#. О, як же вони також містили #i7_list_in#.
 
 # D #
-d0:the (name) contains #i7_list_in#.
-d1:It #contains# #i7_list_in#.;Тут є #i7_list_in# in it.
-d2:Тут #listwithis# #foundin# it.
-d3:Ви бачите #i7_list_in# in the (name-n).
-d4:In it, you can see #i7_list_in#.
+
+d0:(name) містить #i7_list_in#.
+d1:Він #contains# #i7_list_in#.;У ньому є #i7_list_in#.
+d2:Там #listwithis# #foundin# ньому.
+d3:Ви можете побачити #i7_list_in# у (name-n).
+d4:У ньому ви можете побачити #i7_list_in#.
 
 # E #
 
-e1:[if (obj) is open]#room_desc_(c)_multi_open_noun#.[else if (obj) is locked]Цей (name-n) is locked.[otherwise]Цей (name-n) is closed.[end if]
+e1:[if (obj) is open]#room_desc_(c)_multi_open_noun#.[else if (obj) is locked](name-n) замкнений.[otherwise](name-n) закритий.[end if]
 
 # F #
 
-f1:Цей (name-n) #contains# #i7_list_in#
-f2:Тут #listwithis# #foundin# the (name-n)
-f3:Ви бачите #i7_list_in# in the (name-n)
+f1:(name-n) #contains# #i7_list_in#
+f2:Там #listwithis# #foundin# (name-n)
+f3:Ви можете побачити #i7_list_in# у (name-n)
 f4:#f5#;#f6#
 f5:#f6#
-f6:Цей (name-n) #reminds_you# the containers #ofyouryouth#. Oh, how they також contained #i7_list_in#
+f6:(name-n) #reminds_you# про контейнери #ofyouryouth#. О, як же вони також містили #i7_list_in#
 
 # G #
 
-g1:[if (obj) is open]#room_desc_(c)_multi_open_adj#.[else if (obj) is locked]Цей (name-adj) one is locked.[otherwise]Цей (name-adj) one is closed.[end if]
+g1:[if (obj) is open]#room_desc_(c)_multi_open_adj#.[else if (obj) is locked](name-adj) замкнений.[otherwise](name-adj) закритий.[end if]
 
 # H #
 
-h1:Цей (name-adj) one #contains# #i7_list_in#
-h2:Тут #i7_list_in# #foundin# the (name-adj) one
-h3:Ви бачите #i7_list_in# in the (name)
-h4:У (name-adj) one, you can see #i7_list_in#
+h1:(name-adj) #contains# #i7_list_in#
+h2:Там #i7_list_in# #foundin# (name-adj)
+h3:Ви можете побачити #i7_list_in# у (name)
+h4:У (name-adj) ви можете побачити #i7_list_in#
 
-#Expandables for Container Symbols
-#---------------------------------
+# Розширювані елементи для символів контейнерів
+#-----------------------------------------------
 
-it:It;Something about it
-reminds_you:reminds you of;looks like;floods your mind з memories of;is reminiscent of;is просто like
-ofyouryouth:of your youth;that you knew in your youth;that you knew so long ago;that you knew so long ago, in your youth
-contains:contains;has;is filled з;reveals inside it;holds;shelters;offers you;reveals to you
-foundin:in;found in
-it_is:It is;Ви бачите that it is;Upon examination, you see that it is
-name_var:(name);(name-n), which looks (name-adj),;(name-adj) looking (name-n)
-contained:contained;held;had;had in it;revealed;concealed;sheltered;offered you;revealed to you;guarded;protected
-inform7:[if (obj) is locked]a locked[else if (obj) is open]an opened[otherwise]a closed[end if]
-inform7noa:[if (obj) is locked]a locked[else if (obj) is open]an opened[otherwise]a closed[end if]
-inform7noun:[if (obj) is locked]locked[else if (obj) is open]opened[otherwise]closed[end if]
-inform7nounnoa:[if (obj) is locked]locked[else if (obj) is open]opened[otherwise]closed[end if]
-listwithis: [is-are a list of things in the (obj)]
-lookthere:Look over there;Wow! look at that
-ContentsC-:Contents-;Contained within-;Inside are the following-;Inventory is as follows-;Here's what's inside
+it:Він;Щось у ньому
+reminds_you:нагадує вам про;схожий на;наповнює ваш розум спогадами про;нагадує;точнісінько такий, як
+ofyouryouth:вашого дитинства;які ви знали в дитинстві;які ви знали так давно;які ви знали так давно, у дитинстві
+contains:містить;має;заповнений;відкриває всередині;утримує;зберігає;пропонує вам;відкриває перед вами
+foundin:у;знаходиться в
+it_is:Він є;Ви можете побачити, що він є;При уважному огляді ви бачите, що він є
+name_var:(name);(name-n), який виглядає (name-adj);(name-adj) (name-n)
+contained:містився;утримувався;мав;мав у собі;відкривав;приховував;зберігав;пропонував вам;відкривав;охороняв;захищав
+inform7:[if (obj) is locked]замкнений[else if (obj) is open]відкритий[otherwise]закритий[end if]
+inform7noa:[if (obj) is locked]замкнений[else if (obj) is open]відкритий[otherwise]закритий[end if]
+inform7noun:[if (obj) is locked]замкнений[else if (obj) is open]відкритий[otherwise]закритий[end if]
+inform7nounnoa:[if (obj) is locked]замкнений[else if (obj) is open]відкритий[otherwise]закритий[end if]
+listwithis: [є список предметів у (obj)]
+lookthere:Погляньте туди;Ого! Подивіться на це
+ContentsC-:Вміст-;Міститься всередині-;Усередині знаходяться такі предмети-;Інвентар такий-;Ось що всередині
 
-#Supporter Descriptions
-#----------------------
-#Similar to Container descriptions, але без open/close or lock/unlock
-#room_desc_(s): hub
-#room_desc_(s)_1_noun : description of supporter без adjective. Paired з--> room_desc_(s)_2_adj
-#room_desc_(s)_1_name : same as above, але з an adjective
-#room_desc_(s)_2_adj : adjective for supporter plus a list of things on it
-#room_desc_(s)_2:
+# Опис опорних поверхонь (Supporter)
+#------------------------------------
+# Подібно до описів контейнерів, але без відкриття/закриття або замикання/відмикання
+# room_desc_(s): головний елемент
+# room_desc_(s)_1_noun: опис опори без прикметника. Поєднується з --> room_desc_(s)_2_adj
+# room_desc_(s)_1_name: те саме, що вище, але з прикметником
+# room_desc_(s)_2_adj: прикметник для опори плюс список предметів на ній
+# room_desc_(s)_2:
 
 room_desc_(s):#room_desc_(s)_1_noun# #room_desc_(s)_2_adj#;#room_desc_(s)_1_name# #room_desc_(s)_2#
 
@@ -235,157 +247,224 @@ room_desc_(s)_1_noun:#prefix# (name-n)#suffix_(s)_mid#
 
 room_desc_(s)_1_name:#prefix# (name)#suffix_(s)_mid#
 
-room_desc_(s)_2_adj:Цей (name-n) is (name-adj).[if there is something on the (obj)] На (name) #how_see_u# #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)] #emptysupporter##suffix_(s)_end_angry#[end if]
-#;The (name-n) is (name-adj) [if name has something on it] on the (name) #i7_list_on#[else if the (name) is empty]#emptysupporter#[end if]
+room_desc_(s)_2_adj:(name-n) є (name-adj).[if there is something on the (obj)] На (name) #how_see_u# #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)] #emptysupporter##suffix_(s)_end_angry#[end if]
 
-room_desc_(s)_2:[if there is something on the (obj)]На (name) #how_see_u# #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter##suffix_(s)_end_angry#[end if];[if there is something on the (obj)]You see #i7_list_on# on the (name-n)#suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter##suffix_(s)_end_angry#[end if]
-#[if name has something on it] on the (name) #i7_list_on#[else if the (name) is empty]#emptysupporter#[end if]
+#;(name-n) є (name-adj) [if name has something on it] на (name) #i7_list_on#[else if the (name) is empty]#emptysupporter#[end if]
 
-room_desc_(s)_multi_noun:[if there is something on the (obj)]На (name-n), you see #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter_multi##suffix_(s)_end_angry#[end if]
-room_desc_(s)_multi_adj:[if there is something on the (obj)]На (name-adj) one, you see #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter_multi##suffix_(s)_end_angry#[end if]
-emptysupporter:But there isn't a thing on it;Unfortunately, there isn't a thing on it;But the thing is empty;But the thing is empty, unfortunately;But the thing hasn't got anything on it;But oh no! there's nothing on this piece of #trash#;Цей (name-n) appears to be empty;Looks like someone's already been here і taken everything off it, though;However, the (name-n), like an empty (name-n), has nothing on it;
-emptysupporter_multi:Тут isn't a thing on the (name-n);Цей (name-n) is empty;Look at the (name-n). Тут's nothing on this piece of #trash#;But the (name-n) hasn't got anything on it;What a letdown, there's nothing here;
-#Supporter Description Templates
-#-------------------------------
+room_desc_(s)_2:[if there is something on the (obj)]На (name) #how_see_u# #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter##suffix_(s)_end_angry#[end if];[if there is something on the (obj)]Ви бачите #i7_list_on# на (name-n)#suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter##suffix_(s)_end_angry#[end if]
 
+#[if name has something on it] на (name) #i7_list_on#[else if the (name) is empty]#emptysupporter#[end if]
 
+room_desc_(s)_multi_noun:[if there is something on the (obj)]На (name-n) ви бачите #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter_multi##suffix_(s)_end_angry#[end if]
 
-#Expandables for Supporter Symbols
+room_desc_(s)_multi_adj:[if there is something on the (obj)]На (name-adj) ви бачите #i7_list_on##suffix_(s)_end#[end if][if there is nothing on the (obj)]#emptysupporter_multi##suffix_(s)_end_angry#[end if]
+
+emptysupporter:Але на ньому нічого немає;На жаль, на ньому нічого немає;Але він порожній;Але він, на жаль, порожній;Але на цій штуці нічого немає;О ні! На цьому шматку #trash# нічого немає;(name-n), здається, порожній;Схоже, хтось уже тут побував і все з нього забрав, хоча;(name-n), як порожній (name-n), нічого на собі не має;
+
+emptysupporter_multi:На (name-n) нічого немає;(name-n) порожній;Погляньте на (name-n). На цьому шматку #trash# нічого немає;Але на (name-n) нічого немає;Яке розчарування, тут нічого немає;
+
+# Шаблони опису опорних поверхонь
 #--------------------------------
 
-on_it:on it;lying on it;resting on it;upon it
-ContentsS-:Contents-;Upon it are displayed the following-;Upon it you may see the following-;Upon it lie the following-;Upon the (name-n) are displayed the following-;Upon the (name-n) you may see the following-;Upon the (name-n) lie the following-
-held:held;carried;had;presented;held up;was used to support
-trash:trash;garbage;junk
-#Group Descriptions
-#------------------
-room_desc_group:Ви бачите (^) (val), (name), here#suffix-multi#;Your attention is drawn to (^) (val), (name)#suffix-multi#
 
-#Expandables for Group Description Symbols
-#--------------------------------
+# Розширювані елементи для символів опорних поверхонь
+#---------------------------------------------------
 
-this_the:this;the
-room:room;place;part of the game;zone;chamber;area;sector
+on_it:на ньому;лежить на ньому;спочиває на ньому;на ньому
+ContentsS-:Вміст-;На ньому представлені такі предмети-;На ньому ви можете побачити такі предмети-;На ньому лежать такі предмети-;На (name-n) представлені такі предмети-;На (name-n) ви можете побачити такі предмети-;На (name-n) лежать такі предмети-
+held:утримувався;переносився;мав;був представлений;утримувався піднятим;використовувався як опора
+trash:сміття;мотлох;непотріб
 
-#Exit Descriptions
-#----------------
+# Опис груп
+#-----------
+room_desc_group:Ви можете побачити (^) (val), (name), тут#suffix-multi#;Ваша увага привертається до (^) (val), (name)#suffix-multi#
 
-#room_desc_(d): describes a single door in the room
-#room_desc_(dir): describes a single unblocked exit in the room
-#room_exit_desc: describes multiple unlocked exits in the room
-#room_desc_exits: possible unnecessary
-#room_desc_doors_closed: describes a group of closed doors in the room
-#room_desc_doors_open: describes a group of open doors in the room
+# Розширювані елементи для символів опису груп
+#---------------------------------------------
 
-room_desc_(d):Тут є #i7_closed/open# (name) leading (dir).
-room_desc_(dir):Тут є #unblocked# exit to the (dir).;Тут є exit to the (dir). Don't worry, it is #unblocked#.;You need an #unblocked# exit? You should try going (dir).;You don't like doors? Why not try going (dir), that entranceway is #unblocked#.
+this_the:цей;той
+room:кімната;місце;частина гри;зона;приміщення;область;сектор
+
+# Описи виходів
+#--------------
+
+# room_desc_(d): описує одні двері в кімнаті
+# room_desc_(dir): описує один незаблокований вихід у кімнаті
+# room_exit_desc: описує кілька незаблокованих виходів у кімнаті
+# room_desc_exits: можливо, непотрібне
+# room_desc_doors_closed: описує групу закритих дверей у кімнаті
+# room_desc_doors_open: описує групу відкритих дверей у кімнаті
+
+room_desc_(d):Є #i7_closed/open# (name), що ведуть (dir).
+
+room_desc_(dir):Є #unblocked# вихід до (dir).;Є вихід до (dir). Не хвилюйтеся, він #unblocked#.;Потрібен #unblocked# вихід? Спробуйте піти (dir).;Ви не любите двері? Тоді чому б не піти (dir), цей вхід #unblocked#.
+
 room_exit_desc:#easy1#.;#medium1#.;#hard1#.
-room_desc_exits:Тут [is an|are] #unblocked# [exit|exits] to the (dir).
+
+room_desc_exits:Там [є|є] #unblocked# [вихід|виходи] до (dir).
+
 room_desc_doors_closed:#easy0a#.
 room_desc_doors_open:#easy0b#.
-#[if (name) is open]#room_desc_doors_open#[else if (name) is closed]#room_desc_doors_open#[end if]
-#room_(d)_exit_desc_alt:[If (name) is open]#easy2#[else if (name) closed] closed [end if];[If (name) is open]#medium2#[else if (name) is closed] closed [end if];[If (name) is open]#hard2#[else if (name) is closed] closed [end if]
-#room_(d)_exit_desc:[if (name) is open]#easy3#[else if (name) is closed] closed [end if];[If (name) is open]#medium3#[else if (name) is closed] closed [end if];[If (name) is open]#hard3#[else if (name) is closed]closed[end if]
 
-#Templates for Exit Descriptions
+#[if (name) is open]#room_desc_doors_open#[else if (name) is closed]#room_desc_doors_open#[end if]
+
+#room_(d)_exit_desc_alt:[If (name) is open]#easy2#[else if (name) closed] закритий [end if];[If (name) is open]#medium2#[else if (name) is closed] закритий [end if];[If (name) is open]#hard2#[else if (name) is closed] закритий [end if]
+
+#room_(d)_exit_desc:[if (name) is open]#easy3#[else if (name) is closed] закритий [end if];[If (name) is open]#medium3#[else if (name) is closed] закритий [end if];[If (name) is open]#hard3#[else if (name) is closed]закритий[end if]
+
+# Шаблони опису виходів
+#----------------------
 
 # 0a #
 
-easy0a:Тут є (^) closed doors, (name-indefinite), here;Let's see how many closed doors there are. Looks like (^), (name-indefinite);Тут є (^) closed doors here, (name-indefinite);
+easy0a:Тут є (^), (name-indefinite) закритих дверей;Погляньмо, скільки тут закритих дверей. Схоже, (^), (name-indefinite);Тут є (^), (name-indefinite) закритих дверей;
 
 # 0b #
 
-easy0b:Тут є (^) open doors, (name-indefinite), here;Let's see how many open doors there are. Looks like (^), (name-indefinite)
+easy0b:Тут є (^), (name-indefinite) відкритих дверей;Погляньмо, скільки тут відкритих дверей. Схоже, (^), (name-indefinite)
 
 # 1 #
 
-easy1:Тут [is an|are] #unblocked# [exit|exits] to the (dir);Тут [is an|are] [exit|exits] to the (dir). And hey, don't worry, [they are|it's] #unblocked#
-medium1:[An exit|Exits] #unblocked# [lies|lie] to the (dir);You can go (dir) from here без having to deal з any doors
-hard1:it looks like you can exit to the (dir), if doors aren't really your #yourthing#;if you want to leave, і doors really aren't your #yourthing# you could try going (dir);If you're not really a door person, you could leave біля (dir);If you're not really a doors fan, you could leave біля (dir);not a fan of the doors? Why not go (dir);Hot tip- if you go (dir), you won't have to deal з any doors
+easy1:Там [є #unblocked# вихід|є #unblocked# виходи] до (dir);Там [є #unblocked# вихід|є [вихід|виходи] до (dir). І не хвилюйтеся, [він є|вони є] #unblocked#
 
+medium1:[Вихід|Виходи] #unblocked# [веде|ведуть] до (dir);Звідси можна піти (dir), не маючи справи з жодними дверима
+
+hard1:схоже, ви можете вийти до (dir), якщо двері — не зовсім ваша #yourthing#;якщо ви хочете піти, а двері справді не ваша #yourthing#, можете спробувати піти (dir);Якщо ви не дуже любите двері, можете вийти через (dir);Якщо ви не фанат дверей, можете вийти через (dir);не любите двері? Тоді чому б не піти (dir);Корисна порада — якщо підете (dir), вам не доведеться мати справу з дверима
 
 # 2 #
 
 easy2:#easy21#;#easy22#
-easy21:Тут [is a door|are doors], #looks# (name-adj), leading (dir);a (name) leads (dir)
-easy22:Тут є (name-indefinite) leading (dir)
-medium2:You #canshould# see [the door|a door] [at the|blocking the] (dir) [exit|exits]
-hard2:How do you get out? Well, there [is a door|are doors] to the (dir) of you
+
+easy21:Там [є двері|є двері], #looks# (name-adj), що ведуть (dir);(name) веде (dir)
+
+easy22:Там є (name-indefinite), що веде (dir)
+
+medium2:Ви #canshould# бачити [двері|двері] [біля|що блокують] (dir) [вихід|виходи]
+
+hard2:Як вам вийти? Ну, там [є двері|є двері] у напрямку (dir) від вас
 
 # 3 #
 
-easy3:Цей [exit|exits] to the (dir) [is|are] going through (name)
-medium3:Цей (dir) [exit|exits] [has|have] (name-indefinite) blocking [it|them]
-hard3:Цей (dir) [exit|exits] [has|have] (name-n-indefinite) blocking [it|them]. the (name-n) [is|are] (name-adj)
+easy3:[Вихід|Виходи] до (dir) [проходить|проходять] через (name)
 
-#Expandables for Exit Symbols
-#----------------------------
-yourthing:thing;bag;style;cup of tea
-door_what:leading;facing;heading
-unblocked:unblocked;unguarded
+medium3:(dir) [вихід|виходи] [має|мають] (name-indefinite), що [блокує його|блокує їх]
 
-#prefixes
-#-----------
-#To be affixed before object descriptions. Keep away from doors. Prefixes start з a uppercase letter і end з "a"
-prefix:You see a gleam over in a corner, where you can see a;What's that over there? It looks like it's a;You scan the room, seeing a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;Ви відчуваєте запах #smelltype# smell, і follow it to a;Were you looking for a (name-n)? Because look over there, it's a;You rest your hand against a wall, але you miss the wall і fall onto a;You scan the room for a (name-n), і you find a;Ви чуєте a noise behind you і spin around, але you can't see anything other than a;Look out! It's a- oh, never mind, it's просто a;Look over there! a;Oh, great. Here's a;Hey, want to see a (name-n)? Look over there, a;If you haven't noticed it already, there seems to be something there біля wall, it's a;You bend down to tie your shoe. When you stand up, you notice a;Oh wow! Is that what I think it is? It is! It's a;You lean біля wall, inadvertently pressing a secret button. Цей wall opens up to reveal a;You see a;As if things weren't amazing enough already, you can even see a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a;#how_see# a
-prefix-multi:You see a gleam over in a corner, where you can see ;What's that over there? It looks like it's ;You scan the room, seeing ;#how_see# ;You bend down to tie your shoe. When you stand up, you notice ;Ви відчуваєте запах #smelltype# smell, і follow it to ;You can suddenly see ;
+hard3:(dir) [вихід|виходи] [має|мають] (name-n-indefinite), що [блокує його|блокує їх]. (name-n) [є|є] (name-adj)
+
+# Розширювані елементи для символів виходів
+#------------------------------------------
+
+yourthing:річ;сумка;стиль;чашка чаю
+door_what:веде;спрямований;направлений
+unblocked:незаблокований;неохоронюваний
+
+# Префікси
+#---------
+# Додаються перед описами об'єктів. Не використовувати для дверей.
+# Префікси починаються з великої літери та закінчуються на "a"
+
+prefix:Ви бачите відблиск десь у кутку, де можна побачити;Що це там? Схоже, це;Ви оглядаєте кімнату і бачите;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;Ви відчуваєте #smelltype# запах і йдете за ним до;Ви шукали (name-n)? Бо погляньте туди, це;Ви спираєтеся рукою на стіну, але промахуєтеся і падаєте на;Ви оглядаєте кімнату в пошуках (name-n) і знаходите;Ви чуєте шум позаду себе й обертаєтеся, але не бачите нічого, крім;Обережно! Це — о, ні, це лише;Погляньте туди!;О, чудово. Ось;Гей, хочете побачити (name-n)? Погляньте туди, там;Якщо ви ще цього не помітили, схоже, біля стіни є щось, і це;Ви нахиляєтеся, щоб зав'язати шнурок. Коли підводитеся, помічаєте;Ого! Це те, про що я думаю? Так! Це;Ви притуляєтеся до стіни й випадково натискаєте таємну кнопку. Стіна відкривається, показуючи;Ви бачите;Ніби всього іншого було недостатньо, ви ще й можете побачити;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#;#how_see#
+
+prefix-multi:Ви бачите відблиск десь у кутку, де можна побачити;Що це там? Схоже, це;Ви оглядаєте кімнату і бачите;#how_see#;Ви нахиляєтеся, щоб зав'язати шнурок. Коли підводитеся, помічаєте;Ви відчуваєте #smelltype# запах і йдете за ним до;Ви раптом бачите;
+
 prefix_(c):#prefix#
 prefix_(s):#prefix#
 
-#suffixes
-#-----------
-#To be affixed after object descriptions. Keep away from doors. Keep in mind a suffix is usually (but not always) followed by a prefix. Suffixes start з punctuation і end з a period (or exclamation/question mark).
-suffix_meta:. Тут's something about an object in a room that's просто so... TextWorld.;. You can't really describe the (name-n) besides that it's (name-adj).;. Does this look like anything mentioned in the instructions?;. What a great pairing of adjectives і nouns!;. Make a note of this, you might have to put stuff on or in it later on.;. Make a note of this, you might have to put stuff on or in it later on.;. Make a note of this, you might have to put stuff on or in it later on.;. Make a note of this, you might have to put stuff on or in it later on.;. Make a note of this, you might have to put stuff on or in it later on.;. Make a note of this, you might have to put stuff on or in it later on.;. Make a note of this, you might have to put stuff on or in it later on.;. Make a note of this, you might have to put stuff on or in it later on.;. Make a note of this, you might have to put stuff on or in it later on.;. Make a note of this, you might have to put stuff on or in it later on.;. Make a note of this, you might have to put stuff on or in it later on.;. Make a note of this, you might have to put stuff on or in it later on.
-suffix_fulfillment:. A (name-n)... Is that really what you were looking for?;. Is this it? Is this what you came to TextWorld to see? a (name-n)?;. Hmm. You always thought you'd be more excited to see a (name-n) in a room.;. Is this what you came to TextWorld for? This... (name-n)?;. You look around you, at all the containers і supporters, doors і objects, і you think to yourself. Why? Why Textworld?
-suffix_price_schtick:. You check the price tag #pricetagexplain#. #pricebad#?! That's ridiculous! #youknow# my #friendtype#, #myfriend#? I'm sure my friend could get you one of those for #pricegood#!;. You check the price tag #pricetagexplain#. #pricebad#?! That's ridiculous! #Iknow# #afriend# who could get you one of those for #pricegood#!;. You look at the price tag #pricetagexplain#. #pricebad#?! Where'd they buy this (name-n), #expensiveplace#?;. You check the price tag #pricetagexplain#. #pricegood#? What a deal! You'll have to ask where they got this!;. Wow, check out the price tag #pricetagexplain#! #pricebad#!;#emptymain#;#emptymainperiod#
-suffix_(r):. Okay, просто remember what you're here to do, і everything will go great.;. You try to gain information on your surroundings by using a technique you call 'looking.';. You can barely contain your excitement.;. Цей room seems oddly familiar, as though it were only superficially different from the other rooms in the building.;. You decide to просто list off a complete list of everything you see in the room, because hey, why not?;. I guess you better просто go і list everything you see here.;. You start to take note of what's in the room.;. You decide to start listing off everything you see in the room, as if you were in a text adventure.;. Кімната well lit.;. You begin to take stock of what's here.;. You begin to take stock of what's in the room.;. You begin looking for stuff.;. Let's see what's in here.;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#
-### Cut for length ###
-suffix:.;. You shudder, але continue examining the room.;. You wonder idly who left that here.;. Now why would someone leave that there?;. Тут's something strange about this being here, але you can't put your finger on it.;. Тут's something strange about this thing being here, але you don't have time to worry about that now.;. Huh, weird.;, so there's that.;!;. Hmmm... what else, what else?;. Wow, isn't TextWorld просто the best?;. I mean, просто wow! Isn't TextWorld просто the best?;. You can't wait to tell the folks at home about this!;. Something scurries by right in the corner of your eye. Probably nothing.;. You idly wonder how they came up з the name TextWorld for this place. It's pretty fitting.;. Suddenly, you bump your head on the ceiling, але it's not such a bad bump that it's going to prevent you from looking at objects і even things.;. Now that's what I call TextWorld!;. Classic TextWorld.;. Цей light flickers for a second, але nothing else happens.;.;.;.;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty30#;#empty31#;#empty32#;#suffix_price_schtick#;#suffix_fulfillment#;#suffix_meta#
+# Суфікси
+#--------
+# Додаються після описів об'єктів. Не використовувати для дверей.
+# Майте на увазі, що суфікс зазвичай (але не завжди) супроводжується префіксом.
+# Суфікси починаються з розділового знака і закінчуються крапкою
+# (або знаком оклику/питання).
 
-###Multi suffixes need to be more flexible than normal ones###
-suffix-multi:.;. You shudder, але continue examining the room.;. You wonder idly who put this stuff here.;. Тут's something strange about this stuff being here, але you can't put your finger on it.;. Тут's something strange about this stuff being here, але you don't have time to worry about that now.;. Huh, weird.;, so there's that.;, so why not take a picture, it'll last longer!;. It doesn't get any more TextWorld than this!;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#;#empty41#;#empty42#;#empty43#;#empty44#;#empty45#;
-suffix_(s)_mid:.;. You shudder, але continue examining the (name-n).;. You wonder idly who left that here.;. Now why would someone leave that there?;#suffix_meta#;. Why don't you take a picture of it, it'll last longer!;!;. Wow, isn't TextWorld просто the best?;. I guess it's true what they say, if you're looking for a (name-n), go to TextWorld.;. What a coincidence, weren't you просто thinking about a (name-n)?;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#;
-suffix_(s)_end:.;. You shudder, але continue examining the room.;. Тут's something strange about this being here, але you can't put your finger on it.;. Тут's something strange about this thing being here, але you don't have time to worry about that now.;. Huh, weird.;, so there's that.;. Hmmm... what else, what else?;. I mean, просто wow! Isn't TextWorld просто the best?;. You can't wait to tell the folks at home about this!;. Something scurries by right in the corner of your eye. Probably nothing.;. You idly wonder how they came up з the name TextWorld for this place. It's pretty fitting.;. Suddenly, you bump your head on the ceiling, але it's not such a bad bump that it's going to prevent you from looking at objects і even things.;. Wow! Just like in the movies!;. It doesn't get more TextWorld than this!;. Now that's what I call TextWorld!;. Classic TextWorld.;#suffix#;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#;
-suffix_(s)_end_angry:. You move on, clearly #upsetwith# TextWorld.;. You move on, clearly #upsetwith# your TextWorld experience.;. Sometimes, просто sometimes, TextWorld can просто be the worst.;. What's the point of an empty (name-n)?;. Hopefully this doesn't make you too upset.;. You make a mental note to not get your hopes up the next time you see a (name-n) in a room.;. ;. Hopefully, this discovery doesn't ruin your TextWorld experience!;. You swear loudly.;. This always happens!;. This always happens, here in TextWorld!;. Silly (name-n), silly, empty, good for nothing (name-n).;. You think about smashing the (name-n) to bits, throwing the bits #intheblank#, etc, until you get bored.;. Aw, here you were, all excited for there to be things on it!;. Oh! Why couldn't there просто be stuff on it?;. Hm. Oh well;. What, you think everything in TextWorld should have stuff on it?;. It would have been so cool if there was stuff on the (name-n)! oh well.;. Aw, here you were, all excited for there to be things on it!;. Oh! Why couldn't there просто be stuff on it?;. Hm. Oh well;. What, you think everything in TextWorld should have stuff on it?;. It would have been so cool if there was stuff on the (name-n).;. Aw, here you were, all excited for there to be things on it!;. Oh! Why couldn't there просто be stuff on it?;. Hm. Oh well;. What, you think everything in TextWorld should have stuff on it?;. It would have been so cool if there was stuff on the (name-n).;. Aw, here you were, all excited for there to be things on it!;. Oh! Why couldn't there просто be stuff on it?;. Hm. Oh well;. What, you think everything in TextWorld should have stuff on it?;. It would have been so cool if there was stuff on the (name-n).;. Aw, here you were, all excited for there to be things on it!;. Oh! Why couldn't there просто be stuff on it?;. Hm. Oh well;. What, you think everything in TextWorld should have stuff on it?;. It would have been so cool if there was stuff on the (name-n).;. Aw, і here you were, all excited for there to be things on it!;. Oh! Why couldn't there просто be stuff on it?;. Hm. Oh well;. What, you think everything in TextWorld should have stuff on it?;. It would have been so cool if there was stuff on the (name-n).;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#;#empty41#;#empty42#;#empty43#;#empty44#;#empty45#;#empty46#;#empty47#;#empty48#;#empty49#;#empty50#;
-#fix expandables in
-#-----------
-smelltype:an #ansmell#;a #asmell#
-ansmell:interesting;awful;intriguing
-asmell:hideous;pungent;sickening;terrible;wretched;lovely;great;fine;
+suffix_meta:. Є щось таке в об'єкті в кімнаті, що просто... TextWorld.;. Ви не можете насправді описати (name-n), крім того, що це (name-adj).;. Це схоже на щось, що згадувалося в інструкціях?;. Яке чудове поєднання прикметників та іменників!;. Запам'ятайте це, можливо, пізніше вам доведеться покласти щось на нього або всередину нього.;. Запам'ятайте це, можливо, пізніше вам доведеться покласти щось на нього або всередину нього.;. Запам'ятайте це, можливо, пізніше вам доведеться покласти щось на нього або всередину нього.;. Запам'ятайте це, можливо, пізніше вам доведеться покласти щось на нього або всередину нього.;. Запам'ятайте це, можливо, пізніше вам доведеться покласти щось на нього або всередину нього.;. Запам'ятайте це, можливо, пізніше вам доведеться покласти щось на нього або всередину нього.;. Запам'ятайте це, можливо, пізніше вам доведеться покласти щось на нього або всередину нього.;. Запам'ятайте це, можливо, пізніше вам доведеться покласти щось на нього або всередину нього.;. Запам'ятайте це, можливо, пізніше вам доведеться покласти щось на нього або всередину нього.;. Запам'ятайте це, можливо, пізніше вам доведеться покласти щось на нього або всередину нього.;. Запам'ятайте це, можливо, пізніше вам доведеться покласти щось на нього або всередину нього.;. Запам'ятайте це, можливо, пізніше вам доведеться покласти щось на нього або всередину нього.
 
-upsetwith:upset з;angry about;infuriated by;depressed by;done caring about;upset by;furious з
-pricetagexplain:that's still affixed to the (name-n);that the (name-n)'s owner still hasn't taken off;that hangs off the (name-n);on the (name-n);glued to the (name-n)
-pricebad:#bignumber# dollars;#bignumber# bucks;#bignumber# велика ones
+suffix_fulfillment:. А (name-n)... Невже це справді те, що ви шукали?;. Це воно? Невже це те, заради чого ви прийшли до TextWorld? (name-n)?;. Хмм. Ви завжди думали, що будете більше раді побачити (name-n) у кімнаті.;. Невже саме заради цього ви прийшли до TextWorld? Це... (name-n)?;. Ви озираєтеся навколо, на всі контейнери й опори, двері та об'єкти, і думаєте: навіщо? Навіщо існує TextWorld?
+
+suffix_price_schtick:. Ви перевіряєте цінник #pricetagexplain#. #pricebad#?! Це безглуздя! #youknow# мій #friendtype#, #myfriend#? Я впевнений, що мій друг міг би дістати вам такий за #pricegood#!;. Ви перевіряєте цінник #pricetagexplain#. #pricebad#?! Це безглуздя! #Iknow# #afriend#, який міг би дістати вам такий за #pricegood#!;. Ви дивитеся на цінник #pricetagexplain#. #pricebad#?! Де вони купили цей (name-n), #expensiveplace#?;. Ви перевіряєте цінник #pricetagexplain#. #pricegood#? Яка вигідна пропозиція! Треба буде запитати, де це купили!;. Ого, погляньте на цінник #pricetagexplain#! #pricebad#!;#emptymain#;#emptymainperiod#
+
+suffix_(r):. Гаразд, просто пам'ятайте, навіщо ви тут, і все буде чудово.;. Ви намагаєтеся отримати інформацію про навколишнє середовище за допомогою техніки, яку називаєте «дивитися».;. Ви ледве можете стримати своє захоплення.;. Кімната здається дивно знайомою, ніби вона лише поверхово відрізняється від інших кімнат у будівлі.;. Ви вирішуєте просто перелічити абсолютно все, що бачите в кімнаті, бо чому б і ні?;. Напевно, краще просто піти й перелічити все, що тут є.;. Ви починаєте занотовувати, що є в кімнаті.;. Ви вирішуєте почати перелічувати все, що бачите в кімнаті, ніби ви в текстовій пригодницькій грі.;. Кімната добре освітлена.;. Ви починаєте оцінювати, що тут є.;. Ви починаєте оцінювати, що є в кімнаті.;. Ви починаєте шукати речі.;. Подивімося, що тут є.;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#
+
+### Скорочено для зменшення довжини ###
+
+suffix:.;. Ви здригаєтеся, але продовжуєте оглядати кімнату.;. Ви байдуже думаєте, хто залишив це тут.;. Цікаво, навіщо хтось залишив це тут?;. Є щось дивне в тому, що це тут, але ви не можете зрозуміти, що саме.;. Є щось дивне в тому, що ця річ тут, але зараз у вас немає часу про це хвилюватися.;. Хм, дивно.;, от і все.;!;. Хммм... що ще, що ще?;. Ого, хіба TextWorld не найкращий?;. Я маю на увазі, просто вау! Хіба TextWorld не найкращий?;. Вам не терпиться розповісти людям удома про це!;. Щось промайнуло прямо в куточку вашого ока. Напевно, нічого важливого.;. Ви байдуже думаєте, як вони придумали назву TextWorld для цього місця. Вона досить влучна.;. Раптом ви вдаряєтеся головою об стелю, але удар не настільки сильний, щоб завадити вам дивитися на об'єкти й навіть на речі.;. Ось це я називаю TextWorld!;. Класичний TextWorld.;. Світло на секунду мерехтить, але більше нічого не відбувається.;.;.;.;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty30#;#empty31#;#empty32#;#suffix_price_schtick#;#suffix_fulfillment#;#suffix_meta#
+
+### Багатоелементні суфікси мають бути гнучкішими за звичайні ###
+
+suffix-multi:.;. Ви здригаєтеся, але продовжуєте оглядати кімнату.;. Ви байдуже думаєте, хто поклав ці речі сюди.;. Є щось дивне в тому, що ці речі тут, але ви не можете зрозуміти, що саме.;. Є щось дивне в тому, що ці речі тут, але у вас немає часу про це хвилюватися.;. Хм, дивно.;, от і все.;, то чому б не сфотографувати, це залишиться з вами назавжди!;. Ніщо не може бути більш TextWorld, ніж це!;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#;#empty41#;#empty42#;#empty43#;#empty44#;#empty45#
+
+suffix_(s)_mid:.;. Ви здригаєтеся, але продовжуєте оглядати (name-n).;. Ви байдуже думаєте, хто залишив це тут.;. Цікаво, навіщо хтось залишив це тут?;#suffix_meta#;. Чому б вам не сфотографувати це, це залишиться з вами назавжди!;!;. Ого, хіба TextWorld не найкращий?;. Напевно, правда в тому, що якщо ви шукаєте (name-n), вам слід іти до TextWorld.;. Який збіг, хіба ви щойно не думали про (name-n)?;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#
+
+suffix_(s)_end:.;. Ви здригаєтеся, але продовжуєте оглядати кімнату.;. Є щось дивне в тому, що це тут, але ви не можете зрозуміти, що саме.;. Є щось дивне в тому, що ця річ тут, але у вас немає часу про це хвилюватися.;. Хм, дивно.;, от і все.;. Хммм... що ще, що ще?;. Я маю на увазі, просто вау! Хіба TextWorld не найкращий?;. Вам не терпиться розповісти людям удома про це!;. Щось промайнуло прямо в куточку вашого ока. Напевно, нічого важливого.;. Ви байдуже думаєте, як вони придумали назву TextWorld для цього місця. Вона досить влучна.;. Раптом ви вдаряєтеся головою об стелю, але удар не настільки сильний, щоб завадити вам дивитися на об'єкти й навіть на речі.;. Ого! Прямо як у кіно!;. Ніщо не може бути більш TextWorld, ніж це!;. Ось це я називаю TextWorld!;. Класичний TextWorld.;#suffix#;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#
+
+suffix_(s)_end_angry:. Ви рухаєтеся далі, явно #upsetwith# TextWorld.;. Ви рухаєтеся далі, явно #upsetwith# свій досвід у TextWorld.;. Іноді, лише іноді, TextWorld може бути просто найгіршим.;. Який сенс у порожньому (name-n)?;. Сподіваємося, це вас не надто засмутить.;. Ви подумки вирішуєте не надто радіти наступного разу, коли побачите (name-n) у кімнаті.;. ;. Сподіваємося, це відкриття не зіпсує ваш досвід у TextWorld!;. Ви голосно лаєтеся.;. Це завжди трапляється!;. Це завжди трапляється тут, у TextWorld!;. Дурний (name-n), дурний, порожній, ні на що не здатний (name-n).;. Ви думаєте про те, щоб розбити (name-n) на друзки, викинути їх #intheblank#, тощо, доки вам не набридне.;. Ох, а ви так раділи, сподіваючись, що на ньому будуть речі!;. О! Чому ж на ньому просто не могло бути якихось речей?;. Хм. Ну гаразд.;. Що, ви думаєте, що в TextWorld на всьому мають бути речі?;. Було б так круто, якби на (name-n) були речі! Ну гаразд.;. Ох, а ви так раділи, сподіваючись, що на ньому будуть речі!;. О! Чому ж на ньому просто не могло бути якихось речей?;. Хм. Ну гаразд.;. Що, ви думаєте, що в TextWorld на всьому мають бути речі?;. Було б так круто, якби на (name-n) були речі. Ну гаразд.;. Ох, а ви так раділи, сподіваючись, що на ньому будуть речі!;. О! Чому ж на ньому просто не могло бути якихось речей?;. Хм. Ну гаразд.;. Що, ви думаєте, що в TextWorld на всьому мають бути речі?;. Було б так круто, якби на (name-n) були речі. Ну гаразд.;. Ох, а ви так раділи, сподіваючись, що на ньому будуть речі!;. О! Чому ж на ньому просто не могло бути якихось речей?;. Хм. Ну гаразд.;. Що, ви думаєте, що в TextWorld на всьому мають бути речі?;. Було б так круто, якби на (name-n) були речі. Ну гаразд.;. Ох, а ви так раділи, сподіваючись, що на ньому будуть речі!;. О! Чому ж на ньому просто не могло бути якихось речей?;. Хм. Ну гаразд.;. Що, ви думаєте, що в TextWorld на всьому мають бути речі?;. Було б так круто, якби на (name-n) були речі.;#emptymainperiod#;#emptymain#;#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#;#empty41#;#empty42#;#empty43#;#empty44#;#empty45#;#empty46#;#empty47#;#empty48#;#empty49#;#empty50#
+
+# Виправити розширювані елементи в
+#----------------------------------
+
+smelltype:запах #ansmell#;запах #asmell#
+ansmell:цікавий;жахливий;інтригуючий
+asmell:огидний;різкий;нудотний;жахливий;відразливий;приємний;чудовий;гарний;
+
+upsetwith:засмучений через;розлючений через;розлючений на;пригнічений через;втомлений від;засмучений через;лютий на
+
+pricetagexplain:який досі прикріплений до (name-n);який власник (name-n) досі не зняв;що висить на (name-n);на (name-n);приклеєний до (name-n)
+
+pricebad:#bignumber# доларів;#bignumber# баксів;#bignumber# великих купюр
+
 resourcenumber:10;15;20;25;30;35;40;45;50;55;60;65;70;75;80;85;90;95;100
-bignumber:Thirty;Forty;Fifty;Sixty;Seventy;Eighty;Ninety;A hundred;Two hundred;Three hundred
-Iknow:I know a;I got this;I have a;You know, I know a;You know, I got a;You know what, I've got a
-youknow:You know;Do you know;Did you ever meet;You ever meet
-afriend:person, they work out of #friendplace#,;person;friend;person who works for #friendcompany#;person, their #inlaw# works for #cooljob#,
-inlaw:uncle;aunt;sister-in-law;brother-in-law;cousin;other friend;buddy;pal;roommate;dad;mom;brother;sister;neighbour
-myfriend:they work for #friendcompany#
-cooljob:the store;#friendcompany#;the mayor;the president;the prime minister;the internet
-friendplace:the bank;the велика city;city hall
-friendcompany:the government;the post office;the mayor;a company
-friendtype:buddy;pal;friend;good friend;
-pricefriend:half that much;half that;six bucks;practically nothing
-pricegood:#resourcenumber# bucks
-expensiveplace:some kind of expensive place;some kind of expensive store
-intheblank:in the dump;in a fire;into a pit;into the garbage
-#General Expandables
-#------------------
 
-canshould:can;should;should be able to;may
-looks:seems to be;looks;seems;appears
-here_alt:here;in the room;nearby;close by;in the corner;right there by you
-here_alt_u:Here;У room;Nearby;Close by;У corner;Right there by you
-how_see:You #you_what#;You can #you_what#
-how_see_u:you #you_what#;you can #you_what#
-there_what:is;seems to be
-you_what:see;make out
+bignumber:Тридцять;Сорок;П'ятдесят;Шістдесят;Сімдесят;Вісімдесят;Дев'яносто;Сто;Двісті;Триста
 
+Iknow:Я знаю одного;У мене є один;Я маю одного;Знаєте, я знаю одного;Знаєте, у мене є один;Знаєте що, у мене є один
+
+youknow:Знаєте;Ви знаєте;Ви коли-небудь зустрічали;Ви коли-небудь зустрічали
+
+afriend:людина, вони працюють у #friendplace#;людина;друг;людина, яка працює на #friendcompany#;людина, чий #inlaw# працює як #cooljob#,
+
+inlaw:дядько;тітка;золовка;шурин;двоюрідний брат;інший друг;приятель;товариш;сусід по кімнаті;тато;мама;брат;сестра;сусід
+
+myfriend:вони працюють на #friendcompany#
+
+cooljob:магазин;#friendcompany#;мер;президент;прем'єр-міністр;інтернет
+
+friendplace:банк;велике місто;мерія
+
+friendcompany:уряд;поштове відділення;мер;компанія
+
+friendtype:приятель;дружбан;друг;хороший друг;
+
+pricefriend:половина цієї суми;половина цього;шість баксів;майже нічого
+
+pricegood:#resourcenumber# баксів
+
+expensiveplace:якомусь дорогому місці;якомусь дорогому магазині
+
+intheblank:на звалищі;у вогонь;у яму;у сміття
+
+# Загальні розширювані елементи
+#-----------------------------
+
+canshould:можете;повинні;маєте бути спроможні;можливо, можете
+
+looks:здається;виглядає;здається;виглядає так, ніби
+
+here_alt:тут;у кімнаті;поблизу;неподалік;у кутку;прямо біля вас
+
+here_alt_u:Тут;У кімнаті;Поблизу;Неподалік;У кутку;Прямо біля вас
+
+how_see:Ви #you_what#;Ви можете #you_what#
+
+how_see_u:ви #you_what#;ви можете #you_what#
+
+there_what:є;здається, є
+
+you_what:бачите;розрізняєте
 
 emptymainperiod:#emptymain#
+
 emptymain:#empty1#;#empty2#;#empty3#;#empty4#;#empty5#;#empty6#;#empty7#;#empty8#;#empty9#;#empty10#;#empty11#;#empty12#;#empty13#;#empty14#;#empty15#;#empty16#;#empty17#;#empty18#;#empty19#;#empty20#;#empty21#;#empty22#;#empty23#;#empty24#;#empty25#;#empty26#;#empty27#;#empty28#;#empty29#;#empty30#;#empty31#;#empty32#;#empty33#;#empty34#;#empty35#;#empty36#;#empty37#;#empty38#;#empty39#;#empty40#;#empty41#;#empty42#;#empty43#;#empty44#;#empty45#;#empty46#;#empty47#;#empty48#;#empty49#;#empty50#;#empty51#;#empty52#;#empty53#;#empty54#;#empty55#;#empty56#;#empty57#;#empty58#;#empty59#;#empty60#;#empty61#;#empty62#;#empty63#
+
 empty1:.;
 empty2:.;
 empty3:.;
