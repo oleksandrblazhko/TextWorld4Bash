@@ -373,9 +373,9 @@ door_what_is:znachnym;mitsnym;dobre zroblenym;nadiinym;mitsnym;hrubym;vazhkym;vl
 # Описи станів
 #-----------------
 
-openable_desc:[if open]Vono vidkryte.[else if closed]Vono zakryte.[otherwise]Vono zamknene.[end if];[if open]Ty mozhesh bachyty, shcho vseredyni.[else if closed]Ty ne mozhesh bachyty, shcho vseredyni, bo kryshka zavazhaie.[otherwise]Na nomu ye zamok.[end if]
+openable_desc:[if open]Vono vidkryte.[else if closed]Vono zakryte.[otherwise]Vono zamknene.[end if];[if open]Vy mozhete bachyty, shcho vseredyni.[else if closed]Vy ne mozhete bachyty, shcho vseredyni, bo kryshka zavazhaie.[otherwise]Na nomu ye zamok.[end if]
 
-on_desc:Na (name) ye [a list of things on the (obj)].;Ty bachysh [list of things on the (obj)] na (name);tsei (name) maie na sobi take: [list of things on the (obj)];ty z zhakhom dyvyshsia na [list of things on the (obj)], shcho lezhat na tsomu samomu (name)!;«i chomu», — dumaiesh ty, — «ya dyvliusia na [list of things on the (obj)] na tsomu (name)?»
+on_desc:Na (name) ye [a list of things on the (obj)].;Vy bachyte [list of things on the (obj)] na (name);tsei (name) maie na sobi take: [list of things on the (obj)];ty z zhakhom dyvyshsia na [list of things on the (obj)], shcho lezhat na tsomu samomu (name)!;«i chomu», — dumaiesh ty, — «ya dyvliusia na [list of things on the (obj)] na tsomu (name)?»
 
 # Прикметники для зіставлення ключів
 # Ці прикметники НЕ МОЖНА використовувати деінде!

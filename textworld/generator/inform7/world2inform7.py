@@ -602,7 +602,7 @@ class Inform7Game:
         source += textwrap.dedent("""\
         Printing the content of the inventory is an activity.
         Rule for printing the content of the inventory:
-            say "Ty nesete: ";
+            say "Vy nesete: ";
             list the contents of the player, as a sentence, giving inventory information, including all contents;
             say ".".
 
@@ -732,13 +732,13 @@ class Inform7Game:
             now previous locale is the holder of the noun.
 
         Report taking something from the location:
-            say "Ty beresh [noun] z pidlogy." instead.
+            say "Vy berete [noun] z pidlogy." instead.
 
         Report taking something:
-            say "Ty beresh [noun] z [the previous locale]." instead.
+            say "Vy berete [noun] z [the previous locale]." instead.
 
         Report dropping something:
-            say "Ty kladesh [noun] na pidlogu." instead.
+            say "Vy kladete [noun] na pidlogu." instead.
 
         """)
 
@@ -782,7 +782,7 @@ class Inform7Game:
             say "[line break]Score:[line break] [score]/[maximum score][line break]";
             say "[line break]Objective:[line break] [objective][line break]";
             say "[line break]Inventory description:[line break]";            
-            say "Ty nesesh: [a list of things carried by the player].[line break]";
+            say "Vy nesete: [a list of things carried by the player].[line break]";
             say "[line break]Room description:[line break]";
             try looking;
             say "[line break]-=STATE STOP=-";
@@ -823,7 +823,7 @@ class Inform7Game:
         # Disable implicitly opening/unlocking door.
         source += textwrap.dedent("""\
         Before going through a closed door (called the blocking door):
-            say "Ty mayesh spershu vidkryty [blocking door].";
+            say "Vy mayete spershu vidkryty [blocking door].";
             stop.
 
         Before opening a locked door (called the locked door):
@@ -831,7 +831,7 @@ class Inform7Game:
             if X is nothing:
                 say "[locked door] namertvo zvareni.";
             otherwise:
-                say "Ty mayesh spershu vidimknuty [locked door] za dopomogoiu [X].";
+                say "Vy mayete spershu vidimknuty [locked door] za dopomogoiu [X].";
             stop.
 
         Before opening a locked container (called the locked container):
@@ -839,7 +839,7 @@ class Inform7Game:
             if X is nothing:
                 say "[locked container] namertvo zvarene.";
             otherwise:
-                say "Ty mayesh spershu vidimknuty [locked container] za dopomogoiu [X].";
+                say "Vy mayete spershu vidimknuty [locked container] za dopomogoiu [X].";
             stop.
 
         Before inserting something into a closed container (called the closed container):
