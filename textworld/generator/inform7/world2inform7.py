@@ -842,6 +842,9 @@ class Inform7Game:
                 say "Ty mayesh spershu vidimknuty [locked container] za dopomogoiu [X].";
             stop.
 
+        Check inserting something into a closed container (called the target container):
+                say "[The target container] zakrito.";
+                rule fails;
         """)
 
         '''
