@@ -732,13 +732,13 @@ class Inform7Game:
             now previous locale is the holder of the noun.
 
         Report taking something from the location:
-            say "Ty beresh [the noun] z pidlogy." instead.
+            say "Ty beresh [noun] z pidlogy." instead.
 
         Report taking something:
-            say "Ty beresh [the noun] z [the previous locale]." instead.
+            say "Ty beresh [noun] z [the previous locale]." instead.
 
         Report dropping something:
-            say "Ty kladesh [the noun] na pidlogu." instead.
+            say "Ty kladesh [noun] na pidlogu." instead.
 
         """)
 
