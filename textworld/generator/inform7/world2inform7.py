@@ -852,7 +852,11 @@ class Inform7Game:
 
         After inserting something into something (called the container):
             say "[noun] pokladeno u [container].";
-            rule succeeds.                                                                                 
+            rule succeeds.
+                                  
+        After closing something (called the object):
+            say "[object] zakryto.";
+            rule succeeds.                                                                      
                                   
         """)
 
