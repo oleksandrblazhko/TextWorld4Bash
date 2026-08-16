@@ -843,8 +843,8 @@ class Inform7Game:
             stop.
 
         Check inserting something into a closed container (called the target container):
-                say "[The target container] zakrito.";
-                rule fails;
+            say "[The target container] zakrito.";
+            rule fails;
         """)
 
         '''
