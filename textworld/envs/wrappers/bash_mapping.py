@@ -24,7 +24,7 @@ class BashCommandMappingWrapper(Wrapper):
         
         if mapping_path is None:
             package_dir = os.path.dirname(os.path.abspath(textworld.__file__))
-            mapping_path = os.path.join(package_dir, "..", "Research", "prompts", "tw_bash_command_mapping.json")
+            mapping_path = os.path.join(package_dir, "..", "scripts", "tw_bash_command_mapping.json")
 
         self.mapping_path = os.path.abspath(mapping_path)
         self._load_mappings()
