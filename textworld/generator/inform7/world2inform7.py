@@ -867,7 +867,7 @@ class Inform7Game:
             say "  goal:                pokazaty metu tsiiei hry[line break]";
             say "  inventory:           pokazaty inventar hravtsia[line break]";
             say "  go <dir>:            peremistyty hravtsia na pivnich, skhid, pivden abo zakhid[line break]";
-            say "  examine ...:         rozghlianuty predmet bilsh detально[line break]";
+            say "  examine ...:         rozghlianuty predmet bilsh uvazhno[line break]";
             say "  eat ...:             zisty yizhu[line break]";
             say "  open ...:            vidkryty dveri abo konteiner[line break]";
             say "  close ...:           zakryty dveri abo konteiner[line break]";
