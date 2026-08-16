@@ -847,15 +847,15 @@ class Inform7Game:
             stop.
 
         After opening something (called the object):
-            say "[object] vidkryta.";
+            say "Vy vydkryly [object].";
             rule succeeds.
 
         After inserting something into something (called the container):
-            say "[noun] pokladeno u [container].";
+            say "Vy poklaly [noun] u [container].";
             rule succeeds.
                                   
         After closing something (called the object):
-            say "[object] zakryto.";
+            say "Vy zakryly [object].";
             rule succeeds.                                                                      
                                   
         """)
