@@ -648,7 +648,7 @@ class Inform7Game:
             remove the list of supporters from L;
             remove the list of doors from L;
             if the number of entries in L is greater than 0:                
-                say "Na pidlozi ye [L with indefinite articles].";
+                say "Na pidlozi ye [L].";
 
         """)
 
