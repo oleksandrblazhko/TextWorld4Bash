@@ -1,4 +1,5 @@
 # Інформація про Правила Inform 7 та Обробку Команд у TextWorld
+Документація - https://ganelson.github.io/inform-website/book/WI_19_1.html
 
 Цей документ підсумовує детальні пояснення та аналізи щодо правил Inform 7 та того, як вони обробляються в проекті TextWorld, зосереджуючись на обробці команд та взаємодії з контейнерами.
 
@@ -107,11 +108,11 @@ Before opening a locked container (called the locked container):
 Щоб змінити стандартне повідомлення "The [контейнер] is closed." на "\[назва_контейнера\] zakrito.":
 
 1.  **Цільовий файл**: `c:\\Users\\User\\Yoga\\TextWorld4Bash\\Research\\prompts\\Inform7_rules_info.md`.
-2.  **Правило Inform 7**: Впровадити наступне правило `Check`:
+2.  **Правило Inform 7**: Впровадити наступне правило `Before`:
     ```inform7
-    Check inserting something into a closed container (called the target container):
-        say "[The target container] zakrito.";
-        rule fails;
+    Before inserting something into a closed container (called the closed container):
+       say "[closed container] zakryta.";
+       stop.
     ```
 3.  **Місце вставки**: У методі `Inform7Game.gen_source`, зокрема, після блоку `textwrap.dedent`, що визначає правила для `Before opening a locked container`.
 4.  **Виконання (концептуально)**: Використати операцію `replace`. `old_string` буде останньою частиною блоку `Before opening a locked container`. `new_string` буде `old_string` + нове правило `Check`, забезпечуючи правильне використання `textwrap.dedent` та відступів Inform 7.

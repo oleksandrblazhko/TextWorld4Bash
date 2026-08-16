@@ -845,7 +845,11 @@ class Inform7Game:
         Before inserting something into a closed container (called the closed container):
             say "[closed container] zakryta.";
             stop.
-                                                        
+
+        After opening something (called the object):
+            say "Ty vidkryv [object].";
+            rule succeeds.
+                                                                                          
         """)
 
         '''
